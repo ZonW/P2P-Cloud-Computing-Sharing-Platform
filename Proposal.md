@@ -1,9 +1,9 @@
-Final Project Proposal  
+###Final Project Proposal  ###
 Team Member:  
 Zongshuo Wei  
   
   
-Key feature:  
+###Key feature:###  
 user management  buyer/seller/admin  
 Seller Posting  
 Search/ filter(time/country/price/machine/review)  
@@ -15,7 +15,7 @@ Realtime chatting
 Contact us and FAQ etc.  
 
 
-Extra feature:  
+###Extra feature:###
 
 Advised price through M  L
 Cover page eye catching stuff  
