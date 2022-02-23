@@ -4,7 +4,7 @@ Zongshuo Wei
 Chengchen Zhao  
   
   
-# Key feature:  
+## Key feature:  
 user management  buyer/seller/admin  
 Seller Posting  
 Search/ filter(time/country/price/machine/review)  
