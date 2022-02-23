@@ -1,5 +1,5 @@
 # Final Project Proposal  
-Team Member:  
+## Team Member:  
 Zongshuo Wei  
 Chengchen Zhao  
   
@@ -16,7 +16,6 @@ Realtime chatting
 Contact us and FAQ etc.  
 
 
-# Extra feature:  
-
+## Extra feature:  
 Advised price through M  L
 Cover page eye catching stuff  
