@@ -1,21 +1,21 @@
-Final Project Proposal
-Team Member:
-Zongshuo Wei
+Final Project Proposal  
+Team Member:  
+Zongshuo Wei  
+  
+  
+Key feature:  
+user management  buyer/seller/admin  
+Seller Posting  
+Search/ filter(time/country/price/machine/review)  
+Seller/ Buyer session management  
+Commenting/ rating  
+Teamviewer api  
+Buying/selling history  
+Realtime chatting  
+Contact us and FAQ etc.  
 
 
-Key feature:
-user management  buyer/seller/admin
-Seller Posting 
-Search/ filter(time/country/price/machine/review)
-Seller/ Buyer session management
-Commenting/ rating
-Teamviewer api
-Buying/selling history
-Realtime chatting
-Contact us and FAQ etc.
+Extra feature:  
 
-
-Extra feature:
-
-Advised price through ML
-Cover page eye catching stuff
+Advised price through M  L
+Cover page eye catching stuff  
