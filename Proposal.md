@@ -20,11 +20,11 @@ Contact us and FAQ etc.
 
 
 ## Extra feature:
-1. Admin account
+1. Admin account  
 Content management and answer questions  
-2. Advised price
+2. Advised price  
 Website will provide an advised price for all products  
-3. Eye catching stuff on cover page.
+3. Eye catching stuff on cover page.  
 Fancy UI  
   
   
