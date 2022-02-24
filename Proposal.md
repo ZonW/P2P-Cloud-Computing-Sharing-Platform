@@ -30,4 +30,4 @@ Fancy UI
   
   
 ## Github Repo  
-https://github.com/ZonW/CS546-Final-Project  
+https://github.com/ZonW/P2P-Cloud-Computing-Sharing-Platform    
