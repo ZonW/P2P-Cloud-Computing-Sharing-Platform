@@ -1,7 +1,8 @@
 # Final Project Proposal  
 ## Team Member:  
 Zongshuo Wei  
-Chengchen Zhao  
+Chengchen Zhao
+Lingrui Li
   
   
 ## Key feature:  
