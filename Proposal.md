@@ -19,6 +19,14 @@ Realtime chatting
 Contact us and FAQ etc.  
 
 
-## Extra feature:  
-Advised price through M  L
-Cover page eye catching stuff  
+## Extra feature:
+1. Admin account
+Content management and answer questions  
+2. Advised price
+Website will provide an advised price for all products  
+3. Eye catching stuff on cover page.
+Fancy UI  
+  
+  
+## Github Repo  
+https://github.com/ZonW/CS546-Final-Project  
