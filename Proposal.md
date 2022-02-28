@@ -31,8 +31,8 @@ Commenting and rating function on finished sessions.
 Content management and website data.  
 ### Advised price  
 Website will provide advised prices for all products  
-### Eye catching stuff on cover page   
-A more fancy UI    
+### Eye catching stuff  
+Fancy UI features  
   
   
 ## Github Repo  
