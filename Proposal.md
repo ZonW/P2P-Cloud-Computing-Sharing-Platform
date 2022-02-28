@@ -1,7 +1,7 @@
 # Final Project Proposal  
 ## Team Member:  
 Zongshuo Wei  
-Chengchen Zhao  
+Chengchen Zhao 10468151  
 Lingrui Li
 
   
