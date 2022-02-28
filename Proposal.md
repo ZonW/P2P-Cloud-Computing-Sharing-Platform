@@ -1,5 +1,4 @@
-# Final Project Proposal  
-# P2P Cloud Computing Sharing Platform  
+# Final Project Proposal - P2P Cloud Computing Sharing Platform  
 ## Team Member:  
 Zongshuo Wei  
 Chengchen Zhao 10468151  
