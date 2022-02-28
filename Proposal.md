@@ -3,7 +3,7 @@
 ## Team Member:  
 Zongshuo Wei  
 Chengchen Zhao 10468151  
-Lingrui Li
+Lingrui Li  
 Jiyuan Xia  
 Hanyu Wang  
   
@@ -24,7 +24,7 @@ Display seller info, hardware configuration, availabe software/frameworks, avail
 ### Seller management page   
 Show listing status (active/inactive/completed) and details  
 ### Buyer management page  
-Show purchased sessions and their link, the session management will be achieved through Teamviewer API.  
+Show purchased sessions and details with connection links. The session management will be achieved through Teamviewer API.  
 Commenting and rating function on finished sessions.  
 
 ## Extra feature:  
@@ -32,7 +32,7 @@ Commenting and rating function on finished sessions.
 Content management and website data.  
 ### Advised price  
 Website will provide advised prices for all products  
-### Eye catching stuff on cover page.  
+### Eye catching stuff on cover page   
 A more fancy UI    
   
   
