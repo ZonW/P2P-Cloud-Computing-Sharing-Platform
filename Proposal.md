@@ -1,6 +1,6 @@
 # Final Project Proposal - P2P Cloud Computing Sharing Platform  
 ## Team Member:  
-Zongshuo Wei  20005210
+Zongshuo Wei  20005210  
 Chengchen Zhao 10468151  
 Lingrui Li  
 Jiyuan Xia 10468319  
