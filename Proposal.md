@@ -29,8 +29,8 @@ Commenting and rating function on finished purchases.
 ## Extra features:  
 ### Admin page 
 Content management and display website data.  
-### Advised price  
-Website will provide advised prices for all products  
+### Q&A prompt with FAQ  
+Website will prompt user with related frequently asked questions.  
 ### Eye catching stuff  
 Fancy UI features.  
   
