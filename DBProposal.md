@@ -11,6 +11,7 @@ The user collection contains all the registered users and their corresponding da
   
 _id:  
 userName:  
+password:
 firstName:  
 lastName:  
 email:  
@@ -22,14 +23,22 @@ zipCode:
 orderHistory: [] (An array that stores all the product id bought by the user.)  
 sellingHistory: []  (An array that stores all the product id listed by the user.)  
   
-| xxxx        | xxxx  |  xxxx   |
+| Name        | Type  |  Description   |
 | ------------| ------------- |  -----------|
-| xxxx  | xxxx | xxxx  |
-| xxxx  | xxxx | xxxx |
-| xxxx  | xxxx | xxxx |
-| xxxx  | xxxx | xxxx |
-| xxxx  | xxxx | xxxx |
-| xxxx  | xxxx |  xxxx |
+| _id  | string | A globally unique identifier to represent the user  |
+| userName  | string | User name of the user |
+| password  | string | Password of the user |
+| firstName  | string | First name of the user  |
+| lastName  | string | Last name of the user |
+| email  | string | Email of the user |
+| phone  | string |  Phone number of the user |
+| city  | string | City of the user |
+| state  | string | State of the user |
+| country  | string |  Country of the user |
+| zipCode  | string | Zip code of the user |
+| orderHistory  | array | An array that stores all the product id bought by the user |
+| sellingHistory  | array |  An array that stores all the product id listed by the user |
+  
   
 ## Product:
   
@@ -52,6 +61,40 @@ comments: [{ _id: ;
             rating:  ;  
             }] (An array that stores all the comments)  
 overallRating:  (calculated from each comment)  
+
+| Name        | Type  |  Description   |
+| ------------| ------------- |  -----------|
+| _id  | string | A globally unique identifier to represent the product |
+| features  | array | An array that stores all the features of the product |
+| status  | boolean | Statue of the product  |
+| unitPrice  | number | Unit price of the product |
+| sessions  | array |  An array that stores all the session records |
+| comments  | array |   An array that stores all the comments listed by users |
+| overallRating  | number | Overall rating of the product |
+
+
+## Sessions:
+
+
+| Name        | Type  |  Description   |
+| ------------| ------------- |  -----------|
+| _id  | string | A globally unique identifier to represent the session |
+| startTime  | string | Start time of the session |
+| endTime  | string | End time of the session  |
+| link  | string | Link of the session |
+| password  | string |  Password of the session |
+| active  | boolean |  Active status of the session |
+
+
+## Comments:
+
+
+| Name        | Type  |  Description   |
+| ------------| ------------- |  -----------|
+| _id  | string | A globally unique identifier to represent the comment |
+| User_Name  | string | User name of the user who make the comment |
+| content  | string | Content of the comment  |
+| rating  | number | Rating that user provides |
 
 
 
