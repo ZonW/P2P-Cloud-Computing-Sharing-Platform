@@ -6,11 +6,18 @@ Jiyuan Xia 10468319
 Hanyu Wang  
 
 ## Users:
-_id:
-firstName:
-lastName:
-Email:
-Gender:
-City:
+_id:  
+firstName:  
+lastName:  
+Email:  
+Gender:  
+City:  
+State:  
+Age:  
+
+Server_on_sell: []  
+Server_bought: []  
+
+
 
 
