@@ -10,10 +10,13 @@ _id:
 User_Name:  
 firstName:  
 lastName:  
-Email:  
+Email:
+Phone:
 Gender:  
 City:  
-State:  
+State:
+Country:
+zipCode:
 Age:  
 
 Server_on_sale: [] (An array that stores all the servers id sold by the user.)  
