@@ -22,11 +22,19 @@ Server_bought: []  (An array that stores all the servers id purchased by the use
 
 ## Servers:
 _id:  
-On_sale: Yes/No 
-Comments: [{ _id:  
-            User_Name:  
-            content:  
+features:  
+On_sale:   
+Numbers:  
+Price:  
+Comments: [{ _id: ;
+            User_Name:  ;
+            content:  ;
+            score:  ;
 }] (An array that stores all the comments)
+
+
+over_all_score:  (generate by the comments)  
+
 
 
 
