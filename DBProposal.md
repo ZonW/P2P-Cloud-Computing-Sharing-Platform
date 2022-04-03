@@ -22,6 +22,14 @@ zipCode:
 orderHistory: [] (An array that stores all the product id bought by the user.)  
 sellingHistory: []  (An array that stores all the product id listed by the user.)  
   
+| xxxx        | xxxx  |  xxxx   |
+| ------------| ------------- |  -----------|
+| xxxx  | xxxx | xxxx  |
+| xxxx  | xxxx | xxxx |
+| xxxx  | xxxx | xxxx |
+| xxxx  | xxxx | xxxx |
+| xxxx  | xxxx | xxxx |
+| xxxx  | xxxx |  xxxx |
   
 ## Product:
   
