@@ -7,6 +7,7 @@ Hanyu Wang
 
 ## Users:
 _id:  
+User_Name:  
 firstName:  
 lastName:  
 Email:  
@@ -15,8 +16,17 @@ City:
 State:  
 Age:  
 
-Server_on_sell: []  
-Server_bought: []  
+Server_on_sell: [] (An array that stores all the servers id sold by the user.)  
+Server_bought: []  (An array that stores all the servers id purchased by the user.)  
+
+
+## Servers:
+_id:  
+On_sale: Yes/No 
+Comments: [{ _id:  
+            User_Name:  
+            content:  
+}] (An array that stores all the comments)
 
 
 
