@@ -5,7 +5,10 @@ Lingrui Li 10478741
 Jiyuan Xia 10468319  
 Hanyu Wang  
 
-## Users:
+## Users:  
+
+The user collection contains all the registered users and their corresponding data. Each document is constructed with userid, user name, first name, last name, email address, phone number, residential city, residential state, country, zipcode and the id correspondes to the purchase and selll collections that contain data about their purchase history and selling history.  
+
 _id:  
 User_Name:  
 firstName:  
