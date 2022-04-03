@@ -16,15 +16,15 @@ City:
 State:  
 Age:  
 
-Server_on_sell: [] (An array that stores all the servers id sold by the user.)  
+Server_on_sale: [] (An array that stores all the servers id sold by the user.)  
 Server_bought: []  (An array that stores all the servers id purchased by the user.)  
 
 
 ## Servers:
 _id:  
 features:  
-Status:   (On sale/ bought/ removed)
-Numbers:  
+Status:   (On sale/ bought/ removed)  
+Stocks:  
 Price:  
 Comments: [{ _id: ;
             User_Name:  ;
