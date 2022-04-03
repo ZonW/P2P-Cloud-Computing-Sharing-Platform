@@ -7,36 +7,42 @@ Hanyu Wang
 
 ## Users:
 _id:  
-User_Name:  
+userName:  
 firstName:  
 lastName:  
-Email:  
-Phone:  
-Gender:  
-City:  
-State:  
-Country:  
+email:  
+phone: 
+city:  
+state:  
+country:  
 zipCode:  
-Age:  
 
-Server_on_sale: [] (An array that stores all the servers id sold by the user.)  
-Server_bought: []  (An array that stores all the servers id purchased by the user.)  
-
+server_on_sale: [] (An array that stores all the servers id sold by the user.)  
 
 ## Servers:
 _id:  
-features:  
-Status:   (On sale/ bought/ removed)  
-Stocks:  
-Price:  
-Comments: [{ _id: ;
-            User_Name:  ;
+feature:  
+status:   (using/ empty/ removed)  
+stock:  
+curPrice:  (Latest price) 
+comment: [{ _id: ;
+            userName:  ;
             content:  ;
             score:  ;
 }] (An array that stores all the comments)
 
+overall_score:  (generate by the comments) 
 
-Overall_score:  (generate by the comments)  
+## Orders:
+_id: 
+orderCreateTime: 
+buyerId:  
+sellerId: 
+beginTime: (choose by user)  
+endTime: (stop timing when user stop using)  
+totalHour: (calculate by beginTime and endTime)  
+unitPrice: (get from Servers.curPrice)  
+totalPrice: (calculate by totalHour and unitPrice)  
 
 
 
