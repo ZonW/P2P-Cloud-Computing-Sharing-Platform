@@ -14,14 +14,11 @@ userName:
 firstName:  
 lastName:  
 email:  
-phone:  
-gender:  
+phone:    
 city:  
 state:  
 country:  
-zipCode:  
-age:  
-
+zipCode:    
 orderHistory: [] (An array that stores all the servers id sold by the user.)  
 sellingHistory: []  (An array that stores all the servers id purchased by the user.)  
 
