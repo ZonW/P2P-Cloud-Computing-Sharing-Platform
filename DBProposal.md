@@ -23,7 +23,7 @@ Server_bought: []  (An array that stores all the servers id purchased by the use
 ## Servers:
 _id:  
 features:  
-On_sale:   
+Status:   (On sale/ bought/ removed)
 Numbers:  
 Price:  
 Comments: [{ _id: ;
@@ -33,7 +33,7 @@ Comments: [{ _id: ;
 }] (An array that stores all the comments)
 
 
-over_all_score:  (generate by the comments)  
+Overall_score:  (generate by the comments)  
 
 
 
