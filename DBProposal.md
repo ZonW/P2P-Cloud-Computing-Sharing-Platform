@@ -11,19 +11,7 @@ The user collection contains all the registered users and their corresponding da
   
 ![user](user.jpg)  
   
-_id:  
-userName:  
-password:  
-firstName:  
-lastName:  
-email:  
-phone:    
-city:  
-state:  
-country:  
-zipCode:    
-orderHistory: [] (An array that stores all the product id bought by the user.)  
-sellingHistory: []  (An array that stores all the product id listed by the user.)  
+
   
 | Name        | Type  |  Description   |
 | ------------| ------------- |  -----------|
@@ -48,23 +36,7 @@ The product collection contains all the information about listed product posting
   
 ![product](product.jpg)  
   
-_id:  
-features:  
-status:   (bool)  
-unitPrice:  
-sessions:  [{ _id: ;  
-            startTime: (timestamp) ;  
-            endTime: (timestamp) ;  
-            link: (teamviewer url) ;  
-            password:  
-            active: (bool)  
-            }] (An array that stores all the sessions)  
-comments: [{ _id: ;  
-            User_Name:  ;  
-            content:  ;  
-            rating:  ;  
-            }] (An array that stores all the comments)  
-overallRating:  (calculated from each comment)  
+
 
 | Name        | Type  |  Description   |
 | ------------| ------------- |  -----------|
