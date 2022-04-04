@@ -27,7 +27,7 @@ sellingHistory: []  (An array that stores all the product id listed by the user.
 | ------------| ------------- |  -----------|
 | _id  | string | A globally unique identifier to represent the user  |
 | userName  | string | User name of the user |
-| password  | string | Password of the user |
+| password  | string | Password of the user account |
 | firstName  | string | First name of the user  |
 | lastName  | string | Last name of the user |
 | email  | string | Email of the user |
