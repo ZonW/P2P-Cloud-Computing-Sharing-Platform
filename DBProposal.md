@@ -36,8 +36,8 @@ sellingHistory: []  (An array that stores all the product id listed by the user.
 | state  | string | State of the user |
 | country  | string |  Country of the user |
 | zipCode  | string | Zip code of the user |
-| orderHistory  | array | An array that stores all the product id bought by the user |
-| sellingHistory  | array |  An array that stores all the product id listed by the user |
+| orderHistory  | array | An array that stores all the sessions id bought by the user |
+| sellingHistory  | array |  An array that stores all the sessions id listed by the user |
   
   
 ## Product:
