@@ -11,7 +11,7 @@ The user collection contains all the registered users and their corresponding da
   
 _id:  
 userName:  
-password: 
+password:  
 firstName:  
 lastName:  
 email:  
