@@ -32,7 +32,7 @@ The user collection contains all the registered users and their corresponding da
   
 ## Product:
   
-The product collection contains all the information about listed product postings. Each product contains product id, feature description, active status,unit price, and their corresponding sessions and comments as subdocuments. The session subdocument contains session id, starting time, ending time, access link, password, and active status. The comments subdocument contains comment id, user name, comment content, and rating score. An overall rating will be calculated based on each comment rating.
+The product collection contains all the information about listed product postings. Each product contains product id, feature description as subdocument, active status,unit price, and their corresponding sessions and comments as subdocuments. The session subdocument contains session id, starting time, ending time, access link, password, and active status. The comments subdocument contains comment id, user name, comment content, and rating score. An overall rating will be calculated based on each comment rating.
   
 ![product](product.jpg)  
   
