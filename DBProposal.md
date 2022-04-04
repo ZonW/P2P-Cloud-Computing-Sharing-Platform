@@ -65,12 +65,25 @@ overallRating:  (calculated from each comment)
 | Name        | Type  |  Description   |
 | ------------| ------------- |  -----------|
 | _id  | string | A globally unique identifier to represent the product |
-| features  | array | An array that stores all the features of the product |
-| status  | boolean | Statue of the product  |
+| features  | object | An object that stores all the parameters of the product |
+| status  | boolean | Statue of the product true -- on sale/ false -- removed |
 | unitPrice  | number | Unit price of the product |
 | sessions  | array |  An array that stores all the session records |
 | comments  | array |   An array that stores all the comments listed by users |
 | overallRating  | number | Overall rating of the product |
+
+
+## features:
+
+
+| Name        | Type  |  Description   |
+| ------------| ------------- |  -----------|
+| SSD  | string |  |
+| RAM  | string |  |
+| CPU  | string |  |
+| Transfer  | string |  |
+| Link speed  | string |  |
+| locations  | boolean |  |
 
 
 ## Sessions:
