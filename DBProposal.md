@@ -6,6 +6,8 @@ Jiyuan Xia 10468319
 Hanyu Wang  
 
 ## Users:
+![image](https://user-images.githubusercontent.com/83222722/161462969-308361dc-bf72-49e2-bf8c-f8e18fba5bba.png)
+
 _id:  
 userName:  
 firstName:  
