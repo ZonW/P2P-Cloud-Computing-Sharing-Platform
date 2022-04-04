@@ -78,12 +78,12 @@ overallRating:  (calculated from each comment)
 
 | Name        | Type  |  Description   |
 | ------------| ------------- |  -----------|
-| SSD  | string |  |
-| RAM  | string |  |
-| CPU  | string |  |
-| Transfer  | string |  |
-| Link speed  | string |  |
-| locations  | boolean |  |
+| SSD  | string | product parameter |
+| RAM  | string | product parameter |
+| CPU  | string | product parameter |
+| Transfer  | string | product parameter |
+| Link speed  | string | product parameter |
+| locations  | string | product parameter |
 
 
 ## Sessions:
