@@ -2,8 +2,8 @@ Users:
 CheckUser(username, password):
 DeleteUser(username, password):
 ModifyUserInformation():
-AddSellingHistory():
-AddBuyingHistory():
+AddSellingHistory(UserId, SessionId):
+AddBuyingHistory(UserId, SessionId):
 AddComment(UserId, ProductId, content, rating): [generate overall rating]
 
 
@@ -12,3 +12,6 @@ CreateProduct(UserId, features):
 DeleteProduct(username, password):
 CreateSession(ProductId, start, end):
 SearchProduct(features):
+
+
+TeamViewer:
