@@ -6,6 +6,7 @@ const exportedMethods = {
 
   checkUsername(username){
     if (typeof username !== 'string') throw "username must be string";
+    var username = username.trim();
     if (!/^[\d\w]+$/.test(username)) throw "username is not a valid string";
     if (username.length < 4) throw "username is not a valid string";
     return username.toLowerCase();
