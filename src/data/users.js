@@ -19,6 +19,14 @@ const exportedMethods = {
     return password;
   },
 
+  checkName(name){
+    if (typeof name !== 'string') throw '';
+    var name = name.trim();
+    if (!/(^[A-Za-z]+$)/.test(name)) throw '';
+    if (name.length < 2) throw "";
+    return name.slice(0,1).toUpperCase() + name.slice(1).toLowerCase();
+  },
+
   async getUserById(username){
     const userCollection = await users();
     const username_lower = username.toLowerCase();
