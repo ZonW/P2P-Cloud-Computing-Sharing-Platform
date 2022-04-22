@@ -1,0 +1,94 @@
+* {
+	box-sizing: border-box;
+}
+
+html
+body {
+	font-size: 13pt;
+	background: rgb(118, 148, 140);
+}
+main {
+	max-width: 80%;
+	margin: auto;
+}
+
+
+h1 {
+	color: rgb(0, 1, 3);
+	font-size: 3rem;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+h2 {
+	color: rgb(1, 21, 63);
+	font-size: 2rem;
+	font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+}
+
+h3 {
+	color: rgb(39, 49, 104);
+	font-size: 1rem;
+	margin-bottom: 5px;
+	font-family: fantasy;
+	
+}
+
+p {
+  color: rgb(0, 1, 3);
+	font-size: 1.5rem;
+	font-family: Times;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.login-form
+.sign-up-form{
+	max-width: 500px;
+}
+
+input {
+	display: block;
+	min-height: 3em;
+	margin: 10px 0;
+	width: 50%;
+}
+
+
+label {
+	font-weight: bold;
+	font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
+	font-size: 1.5rem;
+	width: 100%;
+	font-style: normal;
+}
+
+button {
+    padding: 0.6rem 0.4rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	  font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
+    font-size: 1rem;
+	  font-weight: bolder;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	background-color: #008CBA;
+  color: white;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+  font-style: normal;
+}
+
+
