@@ -55,6 +55,33 @@ const exportedMethods = {
     return phone;
   },
 
+  checkCity(city){
+    if (typeof city !== 'string') throw '';
+    var city = city.trim();
+    if (!/(^[A-Za-z\ ]+$)/.test(city)) throw '';
+    var cityStr = city.split(" ");    
+    for(var i = 0; i<cityStr.length; i++){
+      cityStr[i] = cityStr[i].slice(0,1).toUpperCase() + cityStr[i].slice(1).toLowerCase();
+    }    
+    return cityStr.join(" ");
+  },
+
+  checkState(state){
+    if (typeof state !== 'string') throw '';
+    var state = state.trim();
+    if (!/(^[A-Za-z]+$)/.test(state)) throw '';
+
+    return state.toUpperCase();
+  },
+
+  checkCountry(country){
+    if (typeof country !== 'string') throw '';
+    var country = country.trim();
+    if (!/(^[A-Za-z]+$)/.test(country)) throw '';
+
+    return country;
+  },
+
   checkZipCode(zipCode){
     if (typeof zipCode !== 'string') throw '';
     var zipCode = zipCode.trim();
@@ -96,7 +123,7 @@ const exportedMethods = {
       throw err;
     }
 
-    const saltRounds = 1;
+    const saltRounds = 10;
 
     const _username_ = this.checkUsername(username);
     const _password_ = await bcryptjs.hash(password, saltRounds)
@@ -123,7 +150,7 @@ const exportedMethods = {
       },
       address: {
         city: "",
-        status: "",
+        state: "",
         country: "",
         zipCode: ""
       },
@@ -137,7 +164,7 @@ const exportedMethods = {
 
   },
 
-  async checkUser(username, password){
+  async checkUserLogin(username, password){
     if (!username) throw "username must be provided";
     if (!password) throw "password must be provided";
 
@@ -201,18 +228,31 @@ const exportedMethods = {
     }
 
     if (updatedInfo.city) {
+      try {
+        this.checkCity(updatedInfo.city);
+      } catch(err) {
+        throw err;
+      }
       if (!updatedInfoData.address) { updatedInfoData.address = {} };
       updatedInfoData.address.city = updatedInfo.city;
     }
 
-    if (updatedInfo.status) {
-      if (typeof updatedInfo.status !== 'string') throw '';
-      if (updatedInfo.status.trim())
+    if (updatedInfo.state) {
+      try {
+        this.checkState(updatedInfo.state);
+      } catch(err) {
+        throw err;
+      }
       if (!updatedInfoData.address) { updatedInfoData.address = {} };
-      updatedInfoData.address.status = updatedInfo.status;
+      updatedInfoData.address.state = updatedInfo.state;
     }
 
     if (updatedInfo.country) {
+      try {
+        this.checkCountry(updatedInfo.country);
+      } catch(err) {
+        throw err;
+      }
       if (!updatedInfoData.address) { updatedInfoData.address = {} };
       updatedInfoData.address.country = updatedInfo.country;
     }
