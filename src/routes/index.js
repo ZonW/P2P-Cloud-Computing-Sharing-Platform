@@ -1,10 +1,9 @@
-const constructorMethod = (app) => {
-  app.get("/", (req, res) => {
-    res.render('layouts/main', {});
-  });
+const loggedRoutes = require('./logged');
 
-  app.use("*", (req, res) => {
-    res.json({"error": " Page Not Found "});
+const constructorMethod = (app) => {
+  app.use('/', loggedRoutes);
+  app.use('*', (req, res) => {
+    res.sendStatus(404);
   });
 };
 

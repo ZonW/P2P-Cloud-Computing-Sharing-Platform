@@ -1,0 +1,9 @@
+<form action="/signup" method="post" id="signup-form">
+    <label for="username" >Username</label>
+    <input id="username" type="text" name="username" placeholder="username"/>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="password"/>
+    <button type="submit">Sign up</button>
+</form>
+<a href="/">Already have an account? Click here to log-in</a>
+{{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}}

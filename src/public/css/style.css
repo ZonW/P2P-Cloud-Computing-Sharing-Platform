@@ -1,94 +1,111 @@
-* {
-	box-sizing: border-box;
+body {
+	background: #EEE0CB;
 }
 
-html
-body {
-	font-size: 13pt;
-	background: rgb(118, 148, 140);
-}
 main {
-	max-width: 80%;
+	max-width: 50%;
 	margin: auto;
 }
 
+header {
+	border-bottom: 5px solid #BAA898;
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+}
+
+footer { 
+	display: flex; 
+	align-items: center; 
+	justify-content: space-evenly; 
+	border-top:  5px solid #BAA898
+} 
 
 h1 {
-	color: rgb(0, 1, 3);
-	font-size: 3rem;
-	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #839788;
+	margin-bottom: 10px;
+	font-size: 36px;
+	font-family: "Bookman Old Style";
+	font-weight: normal;
+	font-style: italic;
 }
-
 h2 {
-	color: rgb(1, 21, 63);
-	font-size: 2rem;
-	font-family: Georgia, "Times New Roman", Times, serif;
-  font-style: italic;
+	color: #28567B;
+	margin-bottom: 10px;
+	font-size: 32px;
+	font-family: "EB Garamond";
+	font-weight: normal;
+	font-style: italic;
 }
-
 h3 {
-	color: rgb(39, 49, 104);
-	font-size: 1rem;
+	color: #28567B;
+	margin-bottom: 10px;
+	font-size: 28px;
+	font-family: "EB Garamond";
+	font-weight: normal;
+}
+
+p, label{
+	color: #28567B;
+	font-size: 22px;
+	line-height: 1.5;
+	font-family: "EB Garamond";
+	font-weight: lighter;
+	margin-bottom: 20px;
+}
+
+a:link {
+	color: #28567B;
+}
+a:visited {
+	color: #839788;
+}
+a:hover {
+	color: #BAA898;
+}
+a:active {
+	color: #BAA898;
+}
+a.new {
+	color: #6B705C;
+	font-family: Georgia, serif;
+	font-size: 24px;
+	font-style: italic;
 	margin-bottom: 5px;
-	font-family: fantasy;
-	
 }
 
-p {
-  color: rgb(0, 1, 3);
-	font-size: 1.5rem;
-	font-family: Times;
-  font-style: italic;
-  font-weight: bold;
+.text-goes-here {
+	color: red;
 }
 
-.login-form
-.sign-up-form{
-	max-width: 500px;
+.footerClass {
+	color: #839788;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-family: "Bookman Old Style";
+	font-weight: normal;
 }
 
-input {
-	display: block;
-	min-height: 3em;
-	margin: 10px 0;
-	width: 50%;
-}
-
-
-label {
-	font-weight: bold;
-	font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
-	font-size: 1.5rem;
-	width: 100%;
-	font-style: normal;
+input[type=number] {
+	padding: 8px 10px;
 }
 
 button {
-    padding: 0.6rem 0.4rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-	  font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
-    font-size: 1rem;
-	  font-weight: bolder;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    background-color: white; 
-    color: black; 
-    border: 2px solid #008CBA;
+	font-family: "EB Garamond";
+	font-size: 17px;
+	background-color: #839788;
+	border: none;
+	border-radius: 8px;
+	color: white;
+	padding: 8px 10px;
+	text-align: center;
+	display: inline-block;
+	transition-duration: 0.3s;
+	cursor: pointer;
 }
 
 button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-	background-color: #008CBA;
-  color: white;
+	background-color: white;
+	color: #839788;
 }
-
-.error {
-	color: red;
-	font-weight: bold;
-  font-style: normal;
-}
-
 
