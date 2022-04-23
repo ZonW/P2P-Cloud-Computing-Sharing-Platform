@@ -26,3 +26,5 @@ const exportedMethods = {
   }
   
 }
+
+module.exports = exportedMethods;
