@@ -1,0 +1,111 @@
+body {
+	background: #EEE0CB;
+}
+
+main {
+	max-width: 50%;
+	margin: auto;
+}
+
+header {
+	border-bottom: 5px solid #BAA898;
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+}
+
+footer { 
+	display: flex; 
+	align-items: center; 
+	justify-content: space-evenly; 
+	border-top:  5px solid #BAA898
+} 
+
+h1 {
+	color: #839788;
+	margin-bottom: 10px;
+	font-size: 36px;
+	font-family: "Bookman Old Style";
+	font-weight: normal;
+	font-style: italic;
+}
+h2 {
+	color: #28567B;
+	margin-bottom: 10px;
+	font-size: 32px;
+	font-family: "EB Garamond";
+	font-weight: normal;
+	font-style: italic;
+}
+h3 {
+	color: #28567B;
+	margin-bottom: 10px;
+	font-size: 28px;
+	font-family: "EB Garamond";
+	font-weight: normal;
+}
+
+p, label{
+	color: #28567B;
+	font-size: 22px;
+	line-height: 1.5;
+	font-family: "EB Garamond";
+	font-weight: lighter;
+	margin-bottom: 20px;
+}
+
+a:link {
+	color: #28567B;
+}
+a:visited {
+	color: #839788;
+}
+a:hover {
+	color: #BAA898;
+}
+a:active {
+	color: #BAA898;
+}
+a.new {
+	color: #6B705C;
+	font-family: Georgia, serif;
+	font-size: 24px;
+	font-style: italic;
+	margin-bottom: 5px;
+}
+
+.text-goes-here {
+	color: red;
+}
+
+.footerClass {
+	color: #839788;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-family: "Bookman Old Style";
+	font-weight: normal;
+}
+
+input[type=number] {
+	padding: 8px 10px;
+}
+
+button {
+	font-family: "EB Garamond";
+	font-size: 17px;
+	background-color: #839788;
+	border: none;
+	border-radius: 8px;
+	color: white;
+	padding: 8px 10px;
+	text-align: center;
+	display: inline-block;
+	transition-duration: 0.3s;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: white;
+	color: #839788;
+}
+

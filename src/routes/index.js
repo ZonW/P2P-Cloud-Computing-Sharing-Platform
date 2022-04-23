@@ -1,4 +1,3 @@
-
 const loggedRoutes = require('./logged');
 
 const constructorMethod = (app) => {
