@@ -19,7 +19,6 @@ const exportedMethods = {
 
     if (!usersData.getUserById(ObjectId(userId))) throw '';
 
-
     var newProduct = {
       features: {
         "SSD": "20 GB RAID-10",
@@ -39,7 +38,7 @@ const exportedMethods = {
     return { productInserted: true };
   },  
   
-  async deleteProduct(userId, ProductId){
+  async deleteProduct(userId, productId){
     return;
   },
 
@@ -52,6 +51,10 @@ const exportedMethods = {
   },
   
   async searchProduct(features){
+    return;
+  },
+
+  async addComment(userId, producctId, comment){
     return;
   }
   
