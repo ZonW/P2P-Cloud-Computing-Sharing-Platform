@@ -1,27 +1,57 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
+const products = mongoCollections.products;
+const usersData = require('./users');
 const bcryptjs = require('bcryptjs');
-
+const ObjectId = require('mongodb').ObjectId;
 
 const exportedMethods = {
 
-  CreateProduct(UserId, features){
-    return;
+  async getProductById(productId){
+    const productsCollection = await products();
+    if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
+    const productInfo = await productsCollection.findOne({ _id: ObjectId(productId) });
+    if (!productInfo) return false;
+    return productInfo;
+  },
+
+  async createProduct(userId, features, unitPrice){
+
+    if (!usersData.getUserById(ObjectId(userId))) throw '';
+
+
+    var newProduct = {
+      features: {
+        "SSD": "20 GB RAID-10",
+        "RAM": "1024 MB",
+        "CPU": "2x Intel Xeon",
+        "Transfer": "1 TB/mo",
+        "Link speed": "1 Gigabit",
+        "locations": "Multiple"
+      },
+      status: true,
+      unitPrice: unitPrice,
+      sessions: [],
+      comments: [],
+      overall_score: 0
+    }
+
+    return { productInserted: true };
   },  
   
-  DeleteProduct(UserId, ProductId){
+  async deleteProduct(userId, ProductId){
     return;
   },
 
-  CreateSession(ProductId, start, end){
+  async createSession(productId, start, end){
     return;
   },
 
-  ModifySession(SessionId){
+  async modifySession(sessionId){
     return;
   },
   
-  SearchProduct(features){
+  async searchProduct(features){
     return;
   }
   
