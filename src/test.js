@@ -15,8 +15,15 @@ async function main(){
     'zipCode': '12345'
 
   }
-  //await usersData.removeProductsInUsers('62687417b7b96ed3a61b1443','62687417b7b96ed3a61b1442');
-  await productsData.deleteProduct('62687417b7b96ed3a61b1443', '62687bfbaf0f998be7753e26')
+
+  comment_info = {
+    content: "so good",
+    rating: 7
+  }
+  //await usersData.createUser('zcc123','zcc123');
+  await productsData.createProduct('62688351bc980dd1ab788583', 1,1)
+  
+  await productsData.addComment('62688351bc980dd1ab788583', '6268838fe0fdd0a69343fe09', comment_info)
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 
 }
