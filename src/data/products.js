@@ -80,7 +80,5 @@ const exportedMethods = {
   }
   
 }
-async function main(){
-  await usersData.addProductsInUsers('62687417b7b96ed3a61b1443','62687417b7b96ed3a61b1441')
-}
+
 module.exports = exportedMethods;
