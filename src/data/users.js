@@ -1,6 +1,5 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
-const products = mongoCollections.products;
 const bcryptjs = require('bcryptjs');
 const ObjectId = require('mongodb').ObjectId;
 
@@ -287,7 +286,7 @@ const exportedMethods = {
   },
 
   async addProductsInUsers(userId, productId){
-    // won't be directly called. it will be called in productsData.createProduct()
+    // won't be directly called. it will only be called in productsData.createProduct()
     const usersCollection = await users();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
     if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
@@ -309,7 +308,7 @@ const exportedMethods = {
   },
 
   async removeProductsInUsers(userId, productId){
-    // won't be directly called. it will be called in productsData.deleteProduct()
+    // won't be directly called. it will only be called in productsData.deleteProduct()
     const usersCollection = await users();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
     if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";

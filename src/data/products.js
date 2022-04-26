@@ -1,5 +1,4 @@
 const mongoCollections = require('../config/mongoCollections');
-const users = mongoCollections.users;
 const products = mongoCollections.products;
 const usersData = require('./users');
 const bcryptjs = require('bcryptjs');
