@@ -9,10 +9,10 @@ async function main(){
   updatedInfo = {
     'email': '490580638@qq.123.com',
     'phone': '139084728',
-    'city': 'Los An',
+    'city': 'SF',
     'status': 'CA',
     'country': 'US',
-    'zipCode': '12345'
+    'zipCode': '123435'
 
   }
 
@@ -20,10 +20,11 @@ async function main(){
     content: "so good",
     rating: 7
   }
-  //await usersData.createUser('zcc123','zcc123');
-  await productsData.createProduct('62688351bc980dd1ab788583', 1,1)
+  //await usersData.createUser('zcc1234','zcc123','will', 'smith');
+  await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
+  //await productsData.createProduct('62688351bc980dd1ab788583', 1,1)
   
-  await productsData.addComment('62688351bc980dd1ab788583', '6268838fe0fdd0a69343fe09', comment_info)
+  //await productsData.addComment('62688351bc980dd1ab788583', '6268838fe0fdd0a69343fe09', comment_info)
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 
 }

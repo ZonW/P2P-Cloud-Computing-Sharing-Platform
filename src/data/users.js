@@ -105,10 +105,13 @@ const exportedMethods = {
     return userInfo;
   },
 
-  async createUser(username, password){
+  async createUser(username, password, first_name, last_name){
 
     if (!username) throw "username must be provided";
     if (!password) throw "password must be provided";
+    if (!first_name) throw "firstname must be provided";
+    if (!last_name) throw "lastname must be provided";
+
 
     try {
       this.checkUsername(username);
@@ -118,6 +121,18 @@ const exportedMethods = {
 
     try {
       this.checkPassword(password);
+    } catch (err) {
+      throw err;
+    }
+
+    try {
+      this.checkName(first_name);
+    } catch (err) {
+      throw err;
+    }
+
+    try {
+      this.checkName(last_name);
     } catch (err) {
       throw err;
     }
@@ -140,8 +155,8 @@ const exportedMethods = {
         client_secret: ""
       },
       name: {
-        first_name: "",
-        last_name: ""
+        first_name: this.checkName(first_name),
+        last_name: this.checkName(last_name)
       },
       contacts: {
         email: "",
