@@ -1,7 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const products = mongoCollections.products;
-const productsData = require('./products');
 const bcryptjs = require('bcryptjs');
 const ObjectId = require('mongodb').ObjectId;
 
@@ -273,12 +272,12 @@ const exportedMethods = {
   },
 
   async addProductsInUsers(userId, productId){
+    // won't be directly called. it will be called in productsData.createProduct()
     const usersCollection = await users();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
     if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
 
     if (!await this.getUserById(ObjectId(userId))) throw "No User Found";
-    if (!await productsData.getProductById(ObjectId(productId))) throw "No product Found";
 
     updateProductData = {};
     var userInfo = await this.getUserById(ObjectId(userId));
@@ -292,8 +291,29 @@ const exportedMethods = {
 
     await usersCollection.updateOne({ _id: ObjectId(userId) }, { $set: updateProductData });
     return { productInserted: true }; 
+  },
 
+  async removeProductsInUsers(userId, productId){
+    // won't be directly called. it will be called in productsData.deleteProduct()
+    const usersCollection = await users();
+    if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
+    if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
 
+    if (!await this.getUserById(ObjectId(userId))) throw "No User Found";
+
+    updateProductData = {};
+    var userInfo = await this.getUserById(ObjectId(userId));
+
+    const index = userInfo.sellingServers.indexOf(productId);
+    if (index !== -1){
+      userInfo.sellingServers.splice(index, 1);
+      updateProductData.sellingServers = userInfo.sellingServers;
+    } else {
+      throw 'No product exists with id';
+    }
+
+    await usersCollection.updateOne({ _id: ObjectId(userId) }, { $set: updateProductData });
+    return { productDeleted: true }; 
   },
 
   async addBuyingHistory(userId, sessionId){
