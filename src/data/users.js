@@ -137,13 +137,11 @@ const exportedMethods = {
     }
 
     const saltRounds = 10;
-
     const _username_ = this.checkUsername(username);
     const _password_ = await bcryptjs.hash(password, saltRounds)
 
     const usersCollection = await users();
     const userInfo = await this.getUserByName(_username_);
-    
     if (userInfo) throw "there is already a user with that username";
 
     let newUser = {
