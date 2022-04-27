@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const users = require("../data/user");
+const users = require("../data/users");
 const bcryptjs = require("bcryptjs");
 
 // GET
