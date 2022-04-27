@@ -1,6 +1,5 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
-const products = mongoCollections.products;
 const bcryptjs = require('bcryptjs');
 const ObjectId = require('mongodb').ObjectId;
 
@@ -105,10 +104,13 @@ const exportedMethods = {
     return userInfo;
   },
 
-  async createUser(username, password){
+  async createUser(username, password, first_name, last_name){
 
     if (!username) throw "username must be provided";
     if (!password) throw "password must be provided";
+    if (!first_name) throw "firstname must be provided";
+    if (!last_name) throw "lastname must be provided";
+
 
     try {
       this.checkUsername(username);
@@ -122,14 +124,24 @@ const exportedMethods = {
       throw err;
     }
 
-    const saltRounds = 10;
+    try {
+      this.checkName(first_name);
+    } catch (err) {
+      throw err;
+    }
 
+    try {
+      this.checkName(last_name);
+    } catch (err) {
+      throw err;
+    }
+
+    const saltRounds = 10;
     const _username_ = this.checkUsername(username);
     const _password_ = await bcryptjs.hash(password, saltRounds)
 
     const usersCollection = await users();
     const userInfo = await this.getUserByName(_username_);
-    
     if (userInfo) throw "there is already a user with that username";
 
     let newUser = {
@@ -140,8 +152,8 @@ const exportedMethods = {
         client_secret: ""
       },
       name: {
-        first_name: "",
-        last_name: ""
+        first_name: this.checkName(first_name),
+        last_name: this.checkName(last_name)
       },
       contacts: {
         email: "",
@@ -272,7 +284,7 @@ const exportedMethods = {
   },
 
   async addProductsInUsers(userId, productId){
-    // won't be directly called. it will be called in productsData.createProduct()
+    // won't be directly called. it will only be called in productsData.createProduct()
     const usersCollection = await users();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
     if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
@@ -294,7 +306,7 @@ const exportedMethods = {
   },
 
   async removeProductsInUsers(userId, productId){
-    // won't be directly called. it will be called in productsData.deleteProduct()
+    // won't be directly called. it will only be called in productsData.deleteProduct()
     const usersCollection = await users();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
     if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
