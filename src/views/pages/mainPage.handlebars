@@ -1,0 +1,27 @@
+<label for="search">Search</label>
+<input id="search" type="text" name="search" placeholder="What are you looking for?"/>
+<button id="search-buttion">Search</button>
+<button id="result-transaction-button">Hide Recent Transaction</button>
+
+<div class="result" id="search-result">
+
+</div>
+
+<div class="result" id="recent-transaction">
+    <p>recent transaction</p>
+    <dl>1</dl>
+    <dl>2</dl>
+    <dl>3</dl>
+    <dl>4</dl>
+    <dl>5</dl>
+</div>
+<div class="page-icon">
+    <button id="firstPage">first&nbsp;</button>
+    <button id="previousPage">previous&nbsp;</button>
+    <button>第<input id="currentPage" type="text" value="1"/>页</button>
+    <button>/&nbsp;&nbsp;&nbsp;共<input id="totalPage" type="button" value="3" readonly="readonly">页</button>
+    <button id="nextPage">next&nbsp;</button>
+    <button id="lastPage">last</button>
+</div>
+<script src="/public/js/main.js"></script>
+{{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}}
