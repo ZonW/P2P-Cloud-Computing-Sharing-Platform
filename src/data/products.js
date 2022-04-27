@@ -106,12 +106,9 @@ const exportedMethods = {
       comments: productInfo.comments,
       overall_score: new_overall_score
     }
-
     await productsCollection.updateOne({ _id: ObjectId(productId) }, { $set: updateInfo });
-
     return { commentAdded: true };
   }
-  
 }
 
 module.exports = exportedMethods;
