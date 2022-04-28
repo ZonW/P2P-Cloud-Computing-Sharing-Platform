@@ -98,7 +98,7 @@ const exportedMethods = {
   async searchProduct(search_features){
     const productsCollection = await products();
     const productList = await productsCollection
-    .find({}, { features: 0 } )
+    .find( { features: 3 } )
     .toArray();
     return productList;
   },
