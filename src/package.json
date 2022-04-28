@@ -4,6 +4,7 @@
   "description": "A p2p clould computing resource sharing website",
   "main": "app.js",
   "scripts": {
+    "seed": "node ./tasks/seed.js",
     "start": "node app.js"
   },
   "repository": {

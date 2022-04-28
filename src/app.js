@@ -39,6 +39,13 @@ app.use('/login', (req, res, next) => {
   }
 });
 
+const logging = function (req, res, next) {
+   console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} ${req.session.user ? '(Authenticated User)' : '(Non-Authenticated User)'}`);
+   next()
+ };
+ 
+ app.use(logging);
+
 configRoutes(app);
 
 app.listen(3000, () => {

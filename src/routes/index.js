@@ -1,7 +1,9 @@
-const loggedRoutes = require('./logged');
+const homeRoutes = require('./home');
 
 const constructorMethod = (app) => {
-  app.use('/', loggedRoutes);
+  app.use('/', homeRoutes);
+
+
   app.use('*', (req, res) => {
     res.sendStatus(404);
   });
