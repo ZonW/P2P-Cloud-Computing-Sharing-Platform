@@ -25,14 +25,63 @@ async function main(){
   } catch (e){
     console.log(e);
   }
+  
   try{
     const userInfo1 = await usersData.getUserByName("will123");
     await productsData.createProduct(userInfo1._id.toString(), 1,1 )
   } catch (e){
     console.log(e);
   }
+  /*
+  const product1={
+    "features": {
+        "SSD": "20 GB RAID-10",
+        "RAM": "1024 MB",
+        "CPU": "2x Intel Xeon",
+        "Transfer": "1 TB/mo",
+        "Link speed": "1 Gigabit",
+        "locations": "Multiple"
+    },
+    "status": true,
+    "unitPrice": 1000,
+    "sessions:": [{
+        "_id": "6249e720cc211fe94e8d11cf",
+        "startTime": "2022/04/01 19:30:00",
+        "endTime": "2022/04/02 20:30:00",
+        "link": "https://start.teamviewer.com/device/123456789/authorization/password/mode/control",
+        "password": 123456,
+        "active": true
+    },{
+        "_id": "6249e720cc211fe94e8d11cf",
+        "startTime": "2022/04/01 19:30:00",
+        "endTime": "2022/04/02 20:30:00",
+        "link": "https://start.teamviewer.com/device/123456789/authorization/password/mode/control",
+        "password": 123456,
+        "active": true
+    }],
+    "comments": [{
+        "_id": "6249e659cc200fe94e8d11cb",
+        "User_Name": "Will123",
+        "content": "It is very powerful",
+        "rating": 4
+    }, {
+        "_id": "6249e659cc200fe94e8d11cc",
+        "User_Name": "Kaven99",
+        "content": "Very affordable price but very good performance",
+        "rating": 5
+    }],
+    "Overall_score": 4.5
+    } 
+
+  try{
+    const userInfo1 = await usersData.getUserByName("will123");
+    await productsData.createProduct(userInfo1._id.toString(), product1.features,product1.status,product1.unitPrice,product1.sessions,product1.comments,product1.Overall_score)
+  } catch (e){
+    console.log(e);
+  }*/
 
   
+
 }
 
 
