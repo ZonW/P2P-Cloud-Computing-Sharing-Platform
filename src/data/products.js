@@ -98,7 +98,7 @@ const exportedMethods = {
   async searchProduct(search_features){
     const productsCollection = await products();
     const productList = await productsCollection
-    .find( { features: 3 } )
+    .find( { 'features.RAM' : '1023 MB' } )
     .toArray();
     return productList;
   },
