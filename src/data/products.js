@@ -24,6 +24,7 @@ const exportedMethods = {
     const productsCollection = await products();
 
     var newProduct = {
+      
       features: {
         "SSD": "20 GB RAID-10",
         "RAM": "1024 MB",

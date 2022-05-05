@@ -20,6 +20,12 @@ const exportedMethods = {
     return password;
   },
 
+  checkClient(client){
+    if (typeof client !== 'string') throw "Wrong type of clientid/secret";
+    if (client.trim().length == 0) throw "Can't be empty spaces";
+    return client;
+  },
+
   checkName(name){
     if (typeof name !== 'string') throw '';
     var name = name.trim();
@@ -103,22 +109,25 @@ const exportedMethods = {
     if (!userInfo) return false;
     return userInfo;
   },
+  
+  // final user DB
+  async createUser(firstName, lastName, email, userName, phone,  password, city, state, country, zipCode, clientId, clientSecret){
 
-  async createUser(username, password, first_name, last_name, email, phone, city, state, country, zipCode){
-
-    if (!username) throw "username must be provided";
+    if (!userName) throw "username must be provided";
     if (!password) throw "password must be provided";
-    if (!first_name) throw "firstname must be provided";
-    if (!last_name) throw "lastname must be provided";
+    if (!firstName) throw "firstname must be provided";
+    if (!lastName) throw "lastname must be provided";
     if (!email) throw "email must be provided";
     if (!phone) throw "phone must be provided";
     if (!city) throw "city must be provided";
     if (!state) throw "state must be provided";
     if (!country) throw "country must be provided";
     if (!zipCode) throw "zipCode must be provided";
+    if (!clientId) throw "Client ID must be provided";
+    if (!clientSecret) throw "Client secret must be provided";
 
     try {
-      this.checkUsername(username);
+      this.checkUsername(userName);
     } catch (err) {
       throw err;
     }
@@ -130,13 +139,13 @@ const exportedMethods = {
     }
 
     try {
-      this.checkName(first_name);
+      this.checkName(firstName);
     } catch (err) {
       throw err;
     }
 
     try {
-      this.checkName(last_name);
+      this.checkName(lastName);
     } catch (err) {
       throw err;
     }
@@ -177,8 +186,20 @@ const exportedMethods = {
       throw err;
     }
 
+    try {
+      this.checkClient(clientId);
+    } catch (err) {
+      throw err;
+    }
+
+    try {
+      this.checkClient(clientSecret);
+    } catch (err) {
+      throw err;
+    }
+
     const saltRounds = 10;
-    const _username_ = this.checkUsername(username);
+    const _username_ = this.checkUsername(userName);
     const _password_ = await bcryptjs.hash(password, saltRounds)
 
     const usersCollection = await users();
@@ -186,15 +207,15 @@ const exportedMethods = {
     if (userInfo) throw "there is already a user with that username";
 
     let newUser = {
-      username: _username_,
+      userName: _username_,
       password: _password_,
-      TeamViewer_info: {
-        client_id: "",
-        client_secret: ""
+      sellerInfo: {
+        clientId: clientId,
+        clientSecret: clientSecret
       },
       name: {
-        first_name: this.checkName(first_name),
-        last_name: this.checkName(last_name)
+        firstName: this.checkName(firstName),
+        lastName: this.checkName(lastName)
       },
       contacts: {
         email: this.checkEmail(email),
@@ -252,72 +273,98 @@ const exportedMethods = {
     return { userDeleted: true };
 
   },
-
+  //fixed modify user info func
   async modifyUserInformation(userId, updatedInfo){
     const usersCollection = await users();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
     if (!await this.getUserById(ObjectId(userId))) throw "No User Found";
     const updatedInfoData = {};
 
-    if (updatedInfo.email) {
+    if (updatedInfo.userName != "N/A") {
       try {
-        this.checkEmail(updatedInfo.email);
+        updatedInfoData.userName = this.checkUsername(updatedInfo.userName);
       } catch(err) {
         throw err;
       }
-      if (!updatedInfoData.contacts) { updatedInfoData.contacts = {} };
-      updatedInfoData.contacts.email = this.checkEmail(updatedInfo.email);
     }
+    else { updatedInfoData.userName = {} };
+    
 
-    if (updatedInfo.phone) {
+    if (updatedInfo.phone != "N/A") {
       try {
-        this.checkPhone(updatedInfo.phone);
+        updatedInfoData.contacts.phone = this.checkPhone(updatedInfo.phone);
       } catch(err) {
         throw err;
       }
-      if (!updatedInfoData.contacts) { updatedInfoData.contacts = {} };
-      updatedInfoData.contacts.phone = this.checkPhone(updatedInfo.phone);
     }
+    else { updatedInfoData.contacts.phone = {} };
+    
 
-    if (updatedInfo.city) {
+    if (updatedInfo.city != "N/A") {    
       try {
         this.checkCity(updatedInfo.city);
+        updatedInfoData.address.city = updatedInfo.city;
       } catch(err) {
         throw err;
       }
-      if (!updatedInfoData.address) { updatedInfoData.address = {} };
-      updatedInfoData.address.city = updatedInfo.city;
     }
+    else { updatedInfoData.address.city = {} };
 
-    if (updatedInfo.state) {
+
+    if (updatedInfo.state != "N/A") {
       try {
         this.checkState(updatedInfo.state);
+        updatedInfoData.address.state = updatedInfo.state;
       } catch(err) {
         throw err;
       }
-      if (!updatedInfoData.address) { updatedInfoData.address = {} };
-      updatedInfoData.address.state = updatedInfo.state;
     }
+    else { updatedInfoData.address.state = {} };
 
-    if (updatedInfo.country) {
+
+    if (updatedInfo.country != "N/A") {
       try {
         this.checkCountry(updatedInfo.country);
+        updatedInfoData.address.country = updatedInfo.country;
       } catch(err) {
         throw err;
       }
-      if (!updatedInfoData.address) { updatedInfoData.address = {} };
-      updatedInfoData.address.country = updatedInfo.country;
     }
+    else { updatedInfoData.address.country = {} };
+    
 
-    if (updatedInfo.zipCode) {
+    if (updatedInfo.zipCode != "N/A") {
       try {
         this.checkZipCode(updatedInfo.zipCode);
+        updatedInfoData.address.zipCode = this.checkZipCode(updatedInfo.zipCode);
       } catch(err) {
         throw err;
       }
-      if (!updatedInfoData.address) { updatedInfoData.address = {} };
-      updatedInfoData.address.zipCode = this.checkZipCode(updatedInfo.zipCode);
     }
+      else { updatedInfoData.address.zipCode = {} };
+      
+
+    if (updatedInfo.clientId != "N/A") {
+      try {
+        this.checkClient(updatedInfo.clientId);
+        updatedInfoData.sellerInfo.clientId = (updatedInfo.clientId);
+      } catch(err) {
+        throw err;
+      }
+    }
+    else { updatedInfoData.sellerInfo.clientId = {} };
+
+    
+    if (updatedInfo.clientSecret != "N/A") {
+      try {
+        this.checkClient(updatedInfo.clientSecret);
+        updatedInfoData.sellerInfo.clientSecret = (updatedInfo.clientSecret);
+      } catch(err) {
+        throw err;
+      }
+    }
+    else { updatedInfoData.sellerInfo.clientSecret = {} };
+      
 
     await usersCollection.updateOne({ _id: ObjectId(userId) }, { $set: updatedInfoData });
 

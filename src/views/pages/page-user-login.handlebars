@@ -1,0 +1,177 @@
+
+<header class="section-header border-bottom">	
+	<section class="header-main">
+		<div class="container">
+			<div class="row gy-3 align-items-center">
+				<div class="col-4">
+					<a href="../" class="brand-wrap">
+						<img class="logo" height="40" src="/images/logo.svg">
+					</a> <!-- brand-wrap end.// -->
+				</div>
+				<div class="col-8">
+					<div class="float-end">
+						<a href="/user/page-user-login" class="btn btn-outline-primary">  Log in </a>
+						<a href="/user/page-user-signup" class="btn btn-primary">  Sign up </a>
+			        </div>
+				</div> <!-- col end.// -->
+			</div> <!-- row end.// -->
+		</div> <!-- container end.// -->
+	</section> <!-- header-main end.// -->
+</header> <!-- section-header end.// -->
+
+<!-- ============== SECTION CONTENT  ============== -->
+<section class="padding-y bg-light" style="min-height:90vh">
+<div class="container">
+
+
+
+<!-- =========== COMPONENT LOGIN 1=========== -->
+<div class="owl">
+    <div class="hand"></div>
+    <div class="hand hand-r"></div>
+    <div class="arms">
+      <div class="arm"></div>
+      <div class="arm arm-r"></div>
+    </div>
+</div>
+<div class="card shadow mx-auto" style="max-width:400px; margin: top 0;;">
+    <div class="card-body">
+        <h4 class="mb-4">Log in here</h4>
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input name="lorem" class="form-control" placeholder="ex. name@gmail.com" type="email">
+            </div> <!-- col end.// -->
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" placeholder="******" type="password">
+            </div> <!-- col end.// -->
+
+
+            <button class="btn w-100 btn-primary" type="button"> Log in </button>
+             
+        </form> <!-- form end.// -->
+
+        <p class="text-divider my-4">New here?</p>
+        <a href="page-user-signup.html" class="btn w-100 btn-light">Create new account</a>
+
+    </div> <!-- card-body end.// -->
+</div> <!-- card end.// -->
+<!-- ============= COMPONENT LOGIN 1 END.// ============= -->
+
+<br><br>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ============== SECTION CONTENT END// ============== -->
+
+<footer class="section-footer border-top padding-y">
+	<div class="container">
+		<p class="float-md-end"> 
+			&copy; Copyright 2022 All rights reserved
+		</p>
+		<p>
+			<a href="page-term-conditions.html" class="link-primary">Terms and conditions</a>
+		</p>
+	</div><!-- //container -->
+</footer>
+
+<!-- Bootstrap js -->
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom js -->
+<script src="js/script.js?v=2.0"></script>
+<style>
+    .owl {
+        margin: auto;
+        width: 211px;
+        height: 108px;
+        background-image: url("https://dash.readme.io/img/owl-login.png");
+        position: relative;
+    }
+    .owl .hand {
+        width: 34px;
+        height: 34px;
+        border-radius: 40px;
+        background-color: #472d20;
+        transform: scaleY(0.6);
+        position: absolute;
+        left: 14px;
+        bottom: -8px;
+        transition: 0.3s ease-out;
+    }
+    .owl .hand.password {
+        transform: translateX(42px) translateY(-15px) scale(0.7);
+    }
+
+    .owl .hand.hand-r {
+        left: 170px;
+    }
+    .owl .hand.hand-r.password {
+        transform: translateX(-42px) translateY(-15px) scale(0.7);
+    }
+
+    .owl .hand.hand-r.password_in {
+        width: 34px;
+        height: 34px;
+        border-radius: 40px;
+        background-color: #472d20;
+        transform: scaleY(0.6);
+        position: absolute;
+        left: 170px;
+        bottom: -8px;
+    }
+
+    .owl .arms {
+        position: absolute;
+        top: 58px;
+        height: 41px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .owl .arms .arm {
+        width: 40px;
+        height: 65px;
+        background-image: url("https://dash.readme.io/img/owl-login-arm.png");
+        position: absolute;
+        left: 20px;
+        top: 40px;
+        transition: 0.3s ease-out;
+    }
+    .owl .arms .arm.password {
+        transform: translateX(40px) translateY(-40px);
+    }
+    .owl .arms .arm.arm-r {
+        left: 158px;
+        transform: scaleX(-1);
+    }
+    .owl .arms .arm.arm-r.password {
+        transform: translateX(-40px) translateY(-40px) scaleX(-1);
+    }
+    .owl .arms .arm.arm-r.password_in {
+        transform: translateX(40px) translateY(40px) scaleX(-1);
+    }
+</style>
+
+<script>
+    $('input[type="password"]').on('focus', () => {
+         $('*').addClass('password');
+     }).on('focusout', () => {
+         $('*').removeClass('password');
+         $('*').removeClass('password_in');
+     });;
+
+     $('input[type="password"]').keyup(function(){
+        var val = this.value;
+        if (val.length > 1) {
+            $('*').addClass('password_in');
+        }
+        if (val.length > 5) {
+            $('*').removeClass('password_in');
+        }
+    
+    });
+ </script>
+
+
