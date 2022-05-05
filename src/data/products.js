@@ -61,16 +61,46 @@ const exportedMethods = {
     return { productDeleted: true };
   },
 
-  async createSession(productId, start, end){
-    return;
+  async createSession(productId, start, end, password){
+    if (!productId) throw "productId must be provided";
+    if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
+    if (!start) throw "start time must be provided";
+    if (!end) throw "end time must be provided";
+    if (!password) throw "password must be provided";
+
+    const saltRounds = 10;
+
+    var sessionAddInfo = {
+      _id: "",
+      startTime: start,
+      endTime: end,
+      link: "",
+      password: await bcryptjs.hash(password, saltRounds),
+      active: true
+    }
+    const productsCollection = await products();
+    var productInfo = await this.getProductById(ObjectId(productId));
+    productInfo.sessions.push(sessionAddInfo);
+
+    var updateInfo = {
+      sessions: productInfo.sessions
+    }
+    await productsCollection.updateOne({ _id: ObjectId(productId) }, { $set: updateInfo });
+
+
+    return { sessionCreated: true }
   },
 
   async modifySession(sessionId){
     return;
   },
   
-  async searchProduct(features){
-    return;
+  async searchProduct(search_features){
+    const productsCollection = await products();
+    const productList = await productsCollection
+    .find( { 'features.RAM' : '1023 MB' } )
+    .toArray();
+    return productList;
   },
 
   async addComment(userId, productId, comment_info){

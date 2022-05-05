@@ -4,6 +4,19 @@ const productsData = data.products;
 const ObjectId = require('mongodb').ObjectId;
 var PurchaseData = {};
 var userInfo = {'orderSessionHistory':[1,2,3]}
+
+
+function checkCity(city){
+  if (typeof city !== 'string') throw '';
+  var city = city.trim();
+  if (!/(^[A-Za-z\ ]+$)/.test(city)) throw '';
+  var newStr = city.split(" ");    
+  for(var i = 0; i<newStr.length; i++){
+    newStr[i] = newStr[i].slice(0,1).toUpperCase() + newStr[i].slice(1).toLowerCase();
+  }    
+  return newStr.join(" ");
+
+}
       
 async function main(){
   updatedInfo = {
@@ -21,12 +34,12 @@ async function main(){
     rating: 7
   }
   //await usersData.createUser('zcc1234','zcc123','will', 'smith');
-  await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
+  //await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
   //await productsData.createProduct('62688351bc980dd1ab788583', 1,1)
   
-  //await productsData.addComment('62688351bc980dd1ab788583', '6268838fe0fdd0a69343fe09', comment_info)
+  const a = await productsData.searchProduct();
+  console.log(a)
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 
 }
-
 main()
