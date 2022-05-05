@@ -70,7 +70,7 @@
 
   <main class="col-lg-9  col-xl-9">
     <article class="card">
-    <div class="content-body">
+    <div class="content-body" id="content-body">
 
     <figure class="itemside align-items-center">
       <figcaption class="info">
@@ -137,56 +137,59 @@
     </article> <!-- card .// --> 
     <!--  ======== item order .// ======== -->
 
-
     <!--  ======== item order ======== -->
     <article class="card border-primary mb-4">
-      <div class="card-body">
-        <header class="d-lg-flex">
-          <div class="flex-grow-1">
-            <h6 class="mb-0">Product1 <i class="dot"></i>  
-            </h6>
-          </div>
-        </header>
-        <hr>
-        <div class="row">
-          <div class="col-lg-4">
-          </div> <!-- col.// -->
-          <div class="col-lg-4 border-start">
-          </div> <!-- col.// -->
-          <div class="col-lg-4 border-start">
-          </div> <!-- col.// -->
-        </div> <!-- row.// -->
-        <hr>
-        <ul class="row">
-          <!-- Sessions goes here -->
-          <li class="col-xl-4  col-lg-6">
-            <figure class="itemside mb-3">
-              <figcaption class="info">
-                <p class="title">Session1</p>
-                <strong> Complete </strong>
-              </figcaption>
-            </figure> 
-          </li>
-          <li class="col-xl-4  col-lg-6">
-            <figure class="itemside mb-3">
-              <figcaption class="info">
-                <p class="title">Session2</p>
-                <strong> On going </strong>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="col-xl-4  col-lg-6"> 
-            <figure class="itemside mb-3">
-              <figcaption class="info">
-                <p class="title">Session3</p>
-                <strong> Not started </strong>
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
-      </div> <!-- card-body .// -->
-      </article> <!-- card .// --> 
-      <!--  ======== item order .// ======== -->
+    <div class="card-body">
+      <header class="d-lg-flex">
+        <div class="flex-grow-1">
+          <h6 class="mb-0">Product1 <i class="dot"></i>  
+          </h6>
+        </div>
+      </header>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4">
+        </div> <!-- col.// -->
+        <div class="col-lg-4 border-start">
+        </div> <!-- col.// -->
+        <div class="col-lg-4 border-start">
+        </div> <!-- col.// -->
+      </div> <!-- row.// -->
+      <hr>
+      <ul class="row">
+        <!-- Sessions goes here -->
+        <li class="col-xl-4  col-lg-6">
+          <figure class="itemside mb-3">
+            <figcaption class="info">
+              <p class="title">Session1</p>
+              <strong> Complete </strong>
+            </figcaption>
+          </figure> 
+        </li>
+        <li class="col-xl-4  col-lg-6">
+          <figure class="itemside mb-3">
+            <figcaption class="info">
+              <p class="title">Session2</p>
+              <strong hidden> On going </strong>
+              <a href="#" class="btn btn-primary">Launch</a>
+              <p id="demo"></p>
+
+              
+            </figcaption>
+          </figure>
+        </li>
+        <li class="col-xl-4  col-lg-6"> 
+          <figure class="itemside mb-3">
+            <figcaption class="info">
+              <p class="title">Session3</p>
+              <strong> Not started </strong>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div> <!-- card-body .// -->
+    </article> <!-- card .// --> 
+    <!--  ======== item order .// ======== -->
 
 
 
@@ -203,3 +206,35 @@
 </section>
 <!-- ============== SECTION CONTENT END// ============== -->
 
+<script src="/public/pages_js/page-order-history.js"></script>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
