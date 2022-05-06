@@ -20,11 +20,6 @@ const exportedMethods = {
     return password;
   },
 
-  checkClient(client){
-    if (typeof client !== 'string') throw "Wrong type of clientid/secret";
-    if (client.trim().length == 0) throw "Can't be empty spaces";
-    return client;
-  },
 
   checkName(name){
     if (typeof name !== 'string') throw '';
@@ -111,7 +106,7 @@ const exportedMethods = {
   },
   
   // final user DB
-  async createUser(firstName, lastName, email, userName, phone,  password, city, state, country, zipCode, clientId, clientSecret){
+  async createUser(firstName, lastName, email, userName, phone,  password, city, state, country, zipCode){
 
     if (!userName) throw "username must be provided";
     if (!password) throw "password must be provided";
@@ -123,8 +118,7 @@ const exportedMethods = {
     if (!state) throw "state must be provided";
     if (!country) throw "country must be provided";
     if (!zipCode) throw "zipCode must be provided";
-    if (!clientId) throw "Client ID must beeeee provided";
-    if (!clientSecret) throw "Client secret must beeeee provided"; 
+
 
     try {
       this.checkUsername(userName);
@@ -186,17 +180,6 @@ const exportedMethods = {
       throw err;
     }
 
-    try {
-      this.checkClient(clientId);
-    } catch (err) {
-      throw err;
-    }
-
-    try {
-      this.checkClient(clientSecret);
-    } catch (err) {
-      throw err;
-    }
 
     const saltRounds = 10;
     const _username_ = this.checkUsername(userName);
@@ -209,10 +192,6 @@ const exportedMethods = {
     let newUser = {
       username: _username_,
       password: _password_,
-      sellerInfo: {
-        clientId: clientId,
-        clientSecret: clientSecret
-      },
       name: {
         firstName: this.checkName(firstName),
         lastName: this.checkName(lastName)

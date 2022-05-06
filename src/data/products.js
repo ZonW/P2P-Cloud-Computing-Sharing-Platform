@@ -37,14 +37,18 @@ const exportedMethods = {
     });
   },
 
+
   async filterProduct(key){
     if(!key) throw("Input key as obj")
     if(typeof key !== 'object') throw "Key must be obj"
 
     const productsCollection = await products();
     const productList = await productsCollection
-    .find( {'operatingSystem' : "xxx", }  )
+    .find( {operatingSystem : "MacOS", 
+            'location.lat':40.7467} )
     .toArray();
+
+    return productList;
     
   },
 
@@ -82,7 +86,7 @@ const exportedMethods = {
       name: name,
       description: description,
       operatingSystem: operatingSystem,
-      features: {},
+      features: features,
       status: true,
       time: time,
       unitPrice: unitPrice,
@@ -150,13 +154,6 @@ const exportedMethods = {
     return;
   },
   
-  async searchProduct(search_features){
-    const productsCollection = await products();
-    const productList = await productsCollection
-    .find( { 'features.RAM' : '1023 MB' } )
-    .toArray();
-    return productList;
-  },
 
   async addComment(userId, productId, comment_info){
     if (!userId) throw "userId must be provided";
