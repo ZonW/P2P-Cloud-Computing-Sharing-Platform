@@ -1,7 +1,10 @@
 (function ($) {
     let responseMessage={
+        userName:"shiwodadiao",
+        email:"shiwodadiao@wohaoniu.com",
+        phone:"1145142333",
         sellSessions:[
-      {
+        {
         productName: "qunimade",
         sessions:[
           {
@@ -23,7 +26,7 @@
         ]
       }
     ]
-}
+  }
 
     $.each(responseMessage.sellSessions,function(index,element){
         $('#content-body').append(
@@ -31,7 +34,7 @@
             <div class="card-body">
               <header class="d-lg-flex">
                 <div class="flex-grow-1">
-                  <h6 class="mb-0">${responseMessage.sellSessions[index].productName}<i class="dot"></i> 
+                  <h6 class="mb-0">${responseMessage.sellSessions[index].productName} <i class="dot"></i> 
                   </h6>
                 </div>
               </header>

@@ -1,6 +1,10 @@
 (function ($) {
-    let responseMessage=[
-      {
+    let responseMessage={
+        userName:"shiwodadiao",
+        email:"shiwodadiao@wohaoniu.com",
+        phone:"1145142333",
+        orderSessions:[
+        {
         productName: "qunimade",
         sessions:[
           {
@@ -22,14 +26,15 @@
         ]
       }
     ]
+  }
 
-    $.each(responseMessage,function(index,element){
+    $.each(responseMessage.orderSessions,function(index,element){
         $('#content-body').append(
             `<article class="card border-primary mb-4">
             <div class="card-body">
               <header class="d-lg-flex">
                 <div class="flex-grow-1">
-                  <h6 class="mb-0">${responseMessage[index].productName}<i class="dot"></i> 
+                  <h6 class="mb-0">${responseMessage.orderSessions[index].productName} <i class="dot"></i> 
                   </h6>
                 </div>
               </header>
@@ -51,9 +56,9 @@
             </article>`
         );
 
-        $.each(responseMessage[index].sessions,function(indexSes,elementSes){
-          if(!responseMessage[index].sessions[indexSes].active){
-            if(responseMessage[index].sessions[indexSes].endTime<new Date().getTime()){
+        $.each(responseMessage.orderSessions[index].sessions,function(indexSes,elementSes){
+          if(!responseMessage.orderSessions[index].sessions[indexSes].active){
+            if(responseMessage.orderSessions[index].sessions[indexSes].endTime<new Date().getTime()){
               $(`#row${index}`).append(`
             <li class="col-xl-4  col-lg-6">
             <figure class="itemside mb-3">
@@ -64,7 +69,7 @@
             </figure> 
           </li> 
             `)
-            } else if(responseMessage[index].sessions[indexSes].startTime>new Date().getTime()){
+            } else if(responseMessage.orderSessions[index].sessions[indexSes].startTime>new Date().getTime()){
               $(`#row${index}`).append(`
               <li class="col-xl-4  col-lg-6">
               <figure class="itemside mb-3">
@@ -81,7 +86,7 @@
               <figure class="itemside mb-3">
                 <figcaption class="info">
                   <p class="title">Session ${indexSes+1}</p>
-                  <strong hidden> ${responseMessage[index].sessions[indexSes].active} </strong>
+                  <strong hidden> ${responseMessage.orderSessions[index].sessions[indexSes].active} </strong>
                   <strong hidden> On going </strong>
                   <a href="#" class="btn btn-primary">Launch</a>
                   <p id="demo"></p>
@@ -91,7 +96,7 @@
 
             <script>
             // Set the date we're counting down to
-            var countDownDate = ${responseMessage[index].sessions[indexSes].endTime};
+            var countDownDate = ${responseMessage.orderSessions[index].sessions[indexSes].endTime};
 
             // Update the count down every 1 second
             var x = setInterval(function() {
