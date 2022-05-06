@@ -37,10 +37,10 @@
 <div class="card shadow mx-auto" style="max-width:400px; margin: top 0;;">
     <div class="card-body">
         <h4 class="mb-4">Log in here</h4>
-        <form id="login">
+        <form id="login" method="post" action="page-user-login">
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input id="emial" name="lorem" class="form-control" placeholder="ex. name@gmail.com" type="email">
+                <input id="email" name="lorem" class="form-control" placeholder="ex. name@gmail.com" type="email">
             </div> <!-- col end.// -->
 
             <div class="mb-3">
@@ -49,7 +49,7 @@
             </div> <!-- col end.// -->
 
 
-            <button class="btn w-100 btn-primary" type="button"> Log in </button>
+            <button class="btn w-100 btn-primary" type="submit"> Log in </button>
              
         </form> <!-- form end.// -->
 
@@ -154,6 +154,9 @@
     .owl .arms .arm.arm-r.password_in {
         transform: translateX(40px) translateY(40px) scaleX(-1);
     }
+    .text-goes-here {
+        color: red;
+    }
 </style>
 
 <script>
@@ -175,5 +178,4 @@
     
     });
  </script>
-
 

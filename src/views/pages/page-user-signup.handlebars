@@ -30,24 +30,24 @@
 <div class="card shadow mx-auto" style="max-width:400px; margin-top:40px;">
 	<div class="card-body">
 	<h4 class="card-title mb-4">Sign up here</h4>
-	<form>	
+	<form id="signup" method="post">	
 		<div class="row gx-2">
 			<div class="col-6 mb-3">
 				<label class="form-label">First name</label>
-				<input type="text" class="form-control" name="lorem">
+				<input id="firstName" type="text" class="form-control" name="lorem">
 			</div>
 			<div class="col-6 mb-3">
 				<label class="form-label">Last name</label>
-				<input type="text" class="form-control" name="lorem">
+				<input id="lastName" type="text" class="form-control" name="lorem">
 			</div> 
 		</div> <!-- row // -->
 		<div class="mb-3">
 			 <label class="form-label">Email</label>
-			 <input class="form-control" placeholder="Type email" type="text">
+			 <input id="email" class="form-control" placeholder="Type email" type="text">
 		</div>
 		<div class="mb-3">
 			<label class="form-label">User name</label>
-			<input class="form-control" placeholder="User name" type="text">
+			<input id="userName" class="form-control" placeholder="User name" type="text">
 	   </div>  
 		<div class="mb-3">
 			 <label class="form-label">Phone</label>
@@ -275,15 +275,15 @@
 		</div> 
 		<div class="mb-3">
 			<label class="form-label">Create password</label>
-			<input class="form-control" placeholder="At least 6 characters." type="password">
+			<input id="password" class="form-control" placeholder="At least 6 characters." type="password">
 		</div>  
 		<div class="mb-3">
 			<label class="form-label">Repeat password</label>
-			<input class="form-control" placeholder="******" type="password">
+			<input id="repeatedPassword" class="form-control" placeholder="******" type="password">
 		</div>
 		<div class="mb-3">
 			<label for="" class="form-label">City</label>
-			<input class="form-control" placeholder="City" type="text">
+			<input id="city" class="form-control" placeholder="City" type="text">
 		</div>
 		<div class="mb-3">
 			<label for="" class="form-label">State</label>
@@ -597,16 +597,16 @@
 		</div>
 		<div class="mb-3">
 			<label class="form-label">Zip code</label>
-			<input class="form-control" placeholder="Zip code" type="text">
+			<input id="zipCode" class="form-control" placeholder="Zip code" type="text">
 	   </div>  
 	   <div class="mb-3">
 			<label class="form-label">Client ID (Optional, sellers only)</label>
-			<input class="form-control" type="text" value = "N/A">
+			<input id="clientId" class="form-control" type="text" value = "N/A">
    	   </div>
 		  
 		<div class="mb-3">
 			<label class="form-label">Client secret (Optional, sellers only)</label>
-			<input class="form-control" type="text" value = "N/A">
+			<input id="clientSecret" class="form-control" type="text" value = "N/A">
 	    </div> 
 
 	   <div class="mb-4">

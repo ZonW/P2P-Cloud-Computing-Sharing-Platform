@@ -35,7 +35,8 @@ const exportedMethods = {
   },
 
   checkEmail(email){
-    if (typeof email !== 'string') throw '';
+    if(arguments.length !==1) throw "email is needed";
+    if (typeof email !== 'string') throw 'Email should be string';
     var email = email.trim();
     if(email.match(/^\w+@\w+\.\w+$/i)){
       return email;
@@ -43,7 +44,7 @@ const exportedMethods = {
       if (email.match(/^\w+@\w+\.\w+\.\w+$/i)){
         return email;
       }
-      throw '';
+      throw 'not valid email format';
     }
   },
 
