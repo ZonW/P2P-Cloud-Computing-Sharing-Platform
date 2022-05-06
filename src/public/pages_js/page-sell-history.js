@@ -8,8 +8,8 @@
         productName: "qunimade",
         sessions:[
           {
-              startTime:"1607110465663",
-              endTime:"1607116465663",
+              startTime:1607110465663,
+              endTime:1607116465663,
               active:false},
           {
             startTime:new Date().getTime(),
@@ -57,6 +57,15 @@
         );
 
         $.each(responseMessage.sellSessions[index].sessions,function(indexSes,elementSes){
+            let getStart=responseMessage.sellSessions[index].sessions[indexSes].startTime;
+            let getEnd=responseMessage.sellSessions[index].sessions[indexSes].endTime;
+            let startTime = new Date(getStart);
+            let endTime = new Date(getEnd);
+            let start=(startTime.getMonth()+1)+"/"+startTime.getDate()+"/"+startTime.getFullYear()+
+            " "+startTime.getHours()+":"+startTime.getMinutes()+":"+startTime.getSeconds();
+            let end=(endTime.getMonth()+1)+"/"+endTime.getDate()+"/"+endTime.getFullYear()+
+            " "+endTime.getHours()+":"+endTime.getMinutes()+":"+endTime.getSeconds();
+
           if(!responseMessage.sellSessions[index].sessions[indexSes].active){
             if(responseMessage.sellSessions[index].sessions[indexSes].endTime<new Date().getTime()){
               $(`#row${index}`).append(`
@@ -64,6 +73,8 @@
             <figure class="itemside mb-3">
               <figcaption class="info">
                 <p class="title">Session ${indexSes+1}</p>
+                <p>From ${start}</p>
+                <p>To ${end}</p>
                 <strong> Complete </strong>
               </figcaption>
             </figure> 
@@ -75,6 +86,8 @@
               <figure class="itemside mb-3">
                 <figcaption class="info">
                   <p class="title">Session ${indexSes+1}</p>
+                  <p>From ${start}</p>
+                  <p>To ${end}</p>
                   <strong> Not started </strong>
                 </figcaption>
               </figure> 
@@ -86,6 +99,8 @@
               <figure class="itemside mb-3">
                 <figcaption class="info">
                   <p class="title">Session ${indexSes+1}</p>
+                  <p>From ${start}</p>
+                  <p>To ${end}</p>
                   <strong hidden> ${responseMessage.sellSessions[index].sessions[indexSes].active} </strong>
                   <strong hidden> On going </strong>
                   <a href="#" class="btn btn-primary">Launch</a>
