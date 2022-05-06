@@ -123,8 +123,8 @@ const exportedMethods = {
     if (!state) throw "state must be provided";
     if (!country) throw "country must be provided";
     if (!zipCode) throw "zipCode must be provided";
-    if (!clientId) throw "Client ID must be provided";
-    if (!clientSecret) throw "Client secret must be provided";
+    if (!clientId) throw "Client ID must beeeee provided";
+    if (!clientSecret) throw "Client secret must beeeee provided"; 
 
     try {
       this.checkUsername(userName);

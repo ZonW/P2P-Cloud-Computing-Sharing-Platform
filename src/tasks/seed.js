@@ -6,28 +6,34 @@ const ObjectId = require('mongodb').ObjectId;
 
 async function main(){
   try{
-    await usersData.createUser("will123","will123123","will","smith","will123@gmail.com","2012048888","hoboken","NJ","US","07030");
+    await usersData.createUser("Zon","Wei","zwei123@gmail.com","Boo123", "2012048888", "weizongshuo123", "hoboken","NJ","US","07030", "xyz123455665", "wer3345433d");
   } catch (e){
     console.log(e);
   }
+  
   try{
-    await usersData.createUser("yyfyyf123","GG12321#","YVFAN","yang","yyf@gmail.com","2012041234","NYC","NY","US","07111");
+    await usersData.createUser("Zong","Fei","fei123@gmail.com","Foo123", "2012048888", "feizongshuo123", "hoboken","NJ","US","07030", "xyz123455665", "wer3345433d");
   } catch (e){
     console.log(e);
   }
+
   try{
-    await usersData.createUser("czhao123","zcc123321#","chengchen","zhao","zhaocc@gmail.com","2012048568","hoboken","NJ","US","07030");
+    await usersData.createUser("Zoo","Hei","hei123@gmail.com","Bar123", "2012048888", "heizongshuo123", "hoboken","NJ","US","07030", "xyz123455665", "wer3345433d");
   } catch (e){
     console.log(e);
   }
+  
   try{
-    await usersData.createUser("DTrump","DT123123","Donald","trump","DTrump@gmail.com","2012148888","NYC","NY","US","07111");
+    const userInfo1 = await usersData.getUserByName("Boo123");
+    console.log(userInfo1)
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", "[webServer, deepLearning]", 5, {'lat': 40.7467,'long': -74.0574})
   } catch (e){
     console.log(e);
   }
+
   try{
-    const userInfo1 = await usersData.getUserByName("will123");
-    await productsData.createProduct(userInfo1._id.toString(), 1,1 )
+    const userInfo1 = await usersData.getUserByName("Foo123");
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", "[webServer, deepLearning]", 5, {'lat': 40.7467,'long': -74.0574})
   } catch (e){
     console.log(e);
   }
