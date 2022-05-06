@@ -22,6 +22,15 @@ router.get("/page-user-signup", (req, res) => {
   }
 });
 
+router.get("/page-user-edit", (req, res) => {
+  if (req.session.user) {
+    res.redirect("/private");
+  } else {
+    res.status(401).render("../views/pages/page-user-edit", {});
+    return;
+  }
+});
+
 router.post("/signup", async (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
