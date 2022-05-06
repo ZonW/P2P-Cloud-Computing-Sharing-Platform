@@ -15,11 +15,40 @@ const exportedMethods = {
     return productInfo;
   },
 
-  async getAllProduct(){
-    const productsCollection = await products();
-    return productsCollection;
+  async getAllProduct(...args){
+    if (args.length != 0) throw('No argument is allowed')
+
+    const prodCollection = await products();
+    const prodList = await prodCollection.find({}).toArray();
+    if (!prodList) throw 'Could not get all products';
+    return prodList;
   },
   
+  async sortProduct(arr, key, way,...args){
+    if (args.length != 0) throw('3 arguments allowed')
+    if (!arr) throw "Input array"
+    if (!key) throw "Input key"
+    if (!way) throw "Input way"
+
+    return arr.sort(function(a, b) {
+      var x = a[key]; var y = b[key];
+      if (way === 'fwd') { return ((x < y) ? -1 : ((x > y) ? 1 : 0)); }
+      if (way === 'bwd') { return ((x > y) ? -1 : ((x < y) ? 1 : 0)); }
+    });
+  },
+
+  async filterProduct(key){
+    if(!key) throw("Input key as obj")
+    if(typeof key !== 'object') throw "Key must be obj"
+
+    const productsCollection = await products();
+    const productList = await productsCollection
+    .find( {'operatingSystem' : "xxx", }  )
+    .toArray();
+    
+  },
+
+
   //all set
   async createProduct(userId, name, description, operatingSystem, features, unitPrice, location){
     if (!userId) throw "userId must be provided";
