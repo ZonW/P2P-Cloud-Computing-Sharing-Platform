@@ -20,9 +20,17 @@
             endTime:new Date().getTime()+86400000+3600000,
             active:false},
           {
+            startTime:1607110465663,
+            endTime:1607116465663,
+            active:true},
+          {
+            startTime:new Date().getTime(),
+            endTime:new Date().getTime()+3600000,
+            active:true},
+          {
             startTime:new Date().getTime()+86400000,
             endTime:new Date().getTime()+86400000+3600000,
-            active:true}
+            active:true},
         ]
       }
     ]
@@ -67,8 +75,8 @@
             let end=(endTime.getMonth()+1)+"/"+endTime.getDate()+"/"+endTime.getFullYear()+
             " "+endTime.getHours()+":"+endTime.getMinutes()+":"+endTime.getSeconds();
 
-          if(!responseMessage.sellSessions[index].sessions[indexSes].active){
-            if(responseMessage.sellSessions[index].sessions[indexSes].endTime<new Date().getTime()){
+            if(responseMessage.sellSessions[index].sessions[indexSes].active === false &&
+                responseMessage.sellSessions[index].sessions[indexSes].endTime<new Date().getTime()){
               $(`#row${index}`).append(`
             <li class="col-xl-4  col-lg-6">
             <figure class="itemside mb-3">
@@ -81,7 +89,8 @@
             </figure> 
           </li> 
             `)
-            } else if(responseMessage.sellSessions[index].sessions[indexSes].startTime>new Date().getTime()){
+            } else if(responseMessage.sellSessions[index].sessions[indexSes].active === false &&
+                responseMessage.sellSessions[index].sessions[indexSes].startTime>new Date().getTime()){
               $(`#row${index}`).append(`
               <li class="col-xl-4  col-lg-6">
               <figure class="itemside mb-3">
@@ -94,7 +103,10 @@
               </figure> 
             </li> 
               `)
-            } else{
+            } else if(responseMessage.sellSessions[index].sessions[indexSes].active === false &&
+                responseMessage.sellSessions[index].sessions[indexSes].startTime<new Date().getTime()&&
+                responseMessage.sellSessions[index].sessions[indexSes].endTime>new Date().getTime()
+                ){
               $(`#row${index}`).append(`
               <li class="col-xl-4  col-lg-6">
               <figure class="itemside mb-3">
@@ -105,7 +117,7 @@
                   <strong hidden> ${responseMessage.sellSessions[index].sessions[indexSes].active} </strong>
                   <strong hidden> On going </strong>
                   
-                  <a href="${sellerUrl}" class="btn btn-primary">Launch</a>
+                  <a href="${sellerUrl}" class="btn btn-primary">Connect to TeamViewer</a>
                   
                   <p id="demo"></p>
                 </figcaption>
@@ -143,8 +155,36 @@
             }, 1000);
             </script>
               `)
+            } else if(responseMessage.sellSessions[index].sessions[indexSes].active&&
+                responseMessage.sellSessions[index].sessions[indexSes].startTime<new Date().getTime()){
+              $(`#row${index}`).append(`
+            <li class="col-xl-4  col-lg-6">
+            <figure class="itemside mb-3">
+              <figcaption class="info">
+                <p class="title">Session ${indexSes+1}</p>
+                <p>From ${start}</p>
+                <p>To ${end}</p>
+                <strong> Expired </strong>
+              </figcaption>
+            </figure> 
+          </li> 
+            `)
+            } else if(responseMessage.sellSessions[index].sessions[indexSes].active&&
+                responseMessage.sellSessions[index].sessions[indexSes].startTime>new Date().getTime()){
+              $(`#row${index}`).append(`
+              <li class="col-xl-4  col-lg-6">
+              <figure class="itemside mb-3">
+                <figcaption class="info">
+                  <p class="title">Session ${indexSes+1}</p>
+                  <p>From ${start}</p>
+                  <p>To ${end}</p>
+                  <strong> Not sold yet </strong>
+                </figcaption>
+              </figure> 
+            </li> 
+              `)
             }
-          }
+          
         })
 
       })
