@@ -162,7 +162,6 @@
         ajaxTestLength += 1;
         ajaxTestConvert.push(ajaxTest[i]);
     }
-    console.log(ajaxTestConvert);
 
     let test_listing = [
         {
