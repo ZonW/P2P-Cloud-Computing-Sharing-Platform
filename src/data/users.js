@@ -207,7 +207,7 @@ const exportedMethods = {
     if (userInfo) throw "there is already a user with that username";
 
     let newUser = {
-      userName: _username_,
+      username: _username_,
       password: _password_,
       sellerInfo: {
         clientId: clientId,

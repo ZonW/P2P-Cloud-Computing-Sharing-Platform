@@ -24,16 +24,16 @@ async function main(){
   }
   
   try{
-    const userInfo1 = await usersData.getUserByName("Boo123");
-    console.log(userInfo1)
-    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", "[webServer, deepLearning]", 5, {'lat': 40.7467,'long': -74.0574})
+    const userInfo1 = await usersData.getUserByName("boo123");
+
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", "[webServer, deepLearning]", "time", 5, {'lat': 40.7467,'long': -74.0574})
   } catch (e){
     console.log(e);
   }
 
   try{
     const userInfo1 = await usersData.getUserByName("Foo123");
-    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", "[webServer, deepLearning]", 5, {'lat': 40.7467,'long': -74.0574})
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", "[webServer, deepLearning]", "time", 5, {'lat': 40.7467,'long': -74.0574})
   } catch (e){
     console.log(e);
   }
