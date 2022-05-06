@@ -8,9 +8,9 @@
         productName: "qunimade",
         sessions:[
           {
-              startTime:1607110465663,
-              endTime:1607116465663,
-              active:false},
+            startTime:1607110465663,
+            endTime:1607116465663,
+            active:false},
           {
             startTime:new Date().getTime(),
             endTime:new Date().getTime()+3600000,
@@ -26,7 +26,8 @@
         ]
       }
     ]
-  }
+  }  
+    let buyerUrl="http://www.google.com"
 
     $.each(responseMessage.orderSessions,function(index,element){
         $('#content-body').append(
@@ -104,7 +105,7 @@
                   <p>To ${end}</p>
                   <strong hidden> ${responseMessage.orderSessions[index].sessions[indexSes].active} </strong>
                   <strong hidden> On going </strong>
-                  <a href="#" class="btn btn-primary">Launch</a>
+                  <a href="${buyerUrl}" class="btn btn-primary">Launch</a>
                   <p id="demo"></p>
                 </figcaption>
               </figure> 

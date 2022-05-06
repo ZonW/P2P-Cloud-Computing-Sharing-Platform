@@ -8,9 +8,9 @@
         productName: "qunimade",
         sessions:[
           {
-              startTime:1607110465663,
-              endTime:1607116465663,
-              active:false},
+            startTime:1607110465663,
+            endTime:1607116465663,
+            active:false},
           {
             startTime:new Date().getTime(),
             endTime:new Date().getTime()+3600000,
@@ -27,6 +27,7 @@
       }
     ]
   }
+    let sellerUrl="https://login.teamviewer.com/oauth2/authorize?response_type=code&client_id=528911-XLEsSfsRD5hdKZ5ATT02&redirect_uri=http://localhost:3000/profile/page-sell-history&display=popup";
 
     $.each(responseMessage.sellSessions,function(index,element){
         $('#content-body').append(
@@ -103,7 +104,9 @@
                   <p>To ${end}</p>
                   <strong hidden> ${responseMessage.sellSessions[index].sessions[indexSes].active} </strong>
                   <strong hidden> On going </strong>
-                  <a href="#" class="btn btn-primary">Launch</a>
+                  
+                  <a href="${sellerUrl}" class="btn btn-primary">Launch</a>
+                  
                   <p id="demo"></p>
                 </figcaption>
               </figure> 

@@ -13,16 +13,10 @@ router.get("/page-order-history", (req, res) => {
 
 router.get("/page-sell-history", (req, res) => {
     try {
-        const active_code = req.query.code;
-        console.log(active_code)
+      res.render("../views/pages/page-sell-history", {});
     }
-    finally {
-        try {
-            res.render("../views/pages/page-sell-history", {});
-          }
-          catch (e) {
-              return res.status(404).json({error: e});
-          }
+    catch (e) {
+        return res.status(404).json({error: e});
     }
 });
 
@@ -34,7 +28,5 @@ router.get("/page-new-item", (req, res) => {
         return res.status(404).json({error: e});
     }
 });
-
-
 
 module.exports = router;
