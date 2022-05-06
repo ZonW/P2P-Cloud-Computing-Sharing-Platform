@@ -75,7 +75,7 @@ router.get("/:id", async (req, res) => {
 });
 
 
-router.get("/page-term-conditions", async (req, res) => {
+router.get("/page-term-conditions/1", async (req, res) => {
     res.render("../views/pages/page-term-conditions", {});
 })
 
