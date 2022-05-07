@@ -18,7 +18,7 @@ if (myForm) {
                         errorDiv.hidden = false;
                         //alert(res.error);
                     } else {
-                        location.replace('/user/private');
+                        location.replace('../');
                     }
                 });
             } catch (e) {

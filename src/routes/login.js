@@ -6,7 +6,7 @@ const users = require('../data/users');
 router.get('/page-user-login', (req, res) => {
     if (req.session.user) {
         console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`);
-        res.redirect('/user/private');
+        res.redirect('../');
     } else {
         console.log(
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`)
@@ -19,7 +19,7 @@ router.get('/page-user-login', (req, res) => {
 //GET signup
 router.get('/page-user-signup', (req, res) => {
     if (req.session.user) {
-        res.redirect('/user/private');
+        res.redirect('../');
     } else {
         res.status(401).render('../views/pages/page-user-signup', {});
         return;
@@ -121,7 +121,7 @@ router.post('/page-user-login', async (req, res) => {
             req.session.user = email;
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`);
             console.log(9999);
-            res.redirect('/user/private');
+            res.redirect('../');
         } else {
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`);
             res.status(400).render('../views/pages/page-user-login', { error: 'username or password is not valid' });
@@ -133,7 +133,7 @@ router.post('/page-user-login', async (req, res) => {
     }
 });
 
-//private
+/* //private
 router.get('/private', async (req, res) => {
     let user = await req.session.user;
 
@@ -146,13 +146,13 @@ router.get('/private', async (req, res) => {
         );
         res.status(400).render('../views/pages/page-user-login', { error: 'username or password not valid' });
     }
-});
+}); */
 
 // GET logout
 router.get('/logout', async (req, res) => {
     if (await req.session.user) {
         req.session.destroy();
-        res.render('../views/pages/index', { message: 'You have logged out!' });
+        res.redirect('../');
     }
 });
 
