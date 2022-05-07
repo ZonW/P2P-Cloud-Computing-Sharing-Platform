@@ -37,26 +37,27 @@
 <div class="card shadow mx-auto" style="max-width:400px; margin: top 0;;">
     <div class="card-body">
         <h4 class="mb-4">Log in here</h4>
-        <form id="login" method="post" action="page-user-login">
+        <form id="login-form" method="post" action="page-user-login">
             <div class="mb-3">
-                <label class="form-label">Email</label>
+                <label class="form-label" for="email">Email</label>
                 <input id="email" name="lorem" class="form-control" placeholder="ex. name@gmail.com" type="email">
             </div> <!-- col end.// -->
 
             <div class="mb-3">
-                <label class="form-label">Password</label>
+                <label class="form-label" for="password">Password</label>
                 <input id="password" class="form-control" placeholder="******" type="password">
             </div> <!-- col end.// -->
 
 
-            <button class="btn w-100 btn-primary" type="submit"> Log in </button>
+            <button id="loginbutton" class="btn w-100 btn-primary" type="submit"> Log in </button>
              
         </form> <!-- form end.// -->
 
         <p class="text-divider my-4">New here?</p>
         <a href="/user/page-user-signup" class="btn w-100 btn-light">Create new account</a>
-        {{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}}
-        {{#if message}}<div class="message-goes-here">{{message}}</div>{{/if}}
+        
+        {{!-- {{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}} --}}
+        <div id="error" class="text-goes-here" hidden>I'm an error</div>
     </div> <!-- card-body end.// -->
 </div> <!-- card end.// -->
 <!-- ============= COMPONENT LOGIN 1 END.// ============= -->
@@ -78,7 +79,6 @@
 	</div><!-- //container -->
 </footer>
 
-<script src="../../public/js/user-login.js"></script>
 <!-- Bootstrap js -->
 <script src="js/bootstrap.bundle.min.js"></script>
 
@@ -178,4 +178,5 @@
     
     });
  </script>
+ <script src="../../public/pages_js/user-login.js"></script>
 

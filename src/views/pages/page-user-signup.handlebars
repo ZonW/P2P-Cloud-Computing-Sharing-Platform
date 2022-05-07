@@ -30,27 +30,27 @@
 <div class="card shadow mx-auto" style="max-width:400px; margin-top:40px;">
 	<div class="card-body">
 	<h4 class="card-title mb-4">Sign up here</h4>
-	<form id="signup" method="post">	
+	<form id="signup-form" method="post" action="page-user-signup"> 	
 		<div class="row gx-2">
 			<div class="col-6 mb-3">
-				<label class="form-label">First name</label>
+				<label class="form-label" for="firstName">First name</label>
 				<input id="firstName" type="text" class="form-control" name="lorem">
 			</div>
 			<div class="col-6 mb-3">
-				<label class="form-label">Last name</label>
+				<label class="form-label" for="lastName">Last name</label>
 				<input id="lastName" type="text" class="form-control" name="lorem">
 			</div> 
 		</div> <!-- row // -->
 		<div class="mb-3">
-			 <label class="form-label">Email</label>
+			 <label class="form-label" for="email">Email</label>
 			 <input id="email" class="form-control" placeholder="Type email" type="text">
 		</div>
 		<div class="mb-3">
-			<label class="form-label">User name</label>
+			<label class="form-label" for="userName">User name</label>
 			<input id="userName" class="form-control" placeholder="User name" type="text">
 	   </div>  
 		<div class="mb-3">
-			 <label class="form-label">Phone</label>
+			 <label class="form-label" for="Country code" >Phone</label>
 			 <div class="row gx-2">
 			 	<div class="col-4"> 
 					<select class="form-select" id="Country code" aria-label="Country code">
@@ -270,23 +270,24 @@
 						<option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
 					</select>
 				</div>
-			 	<div class="col-8"> <input class="form-control" placeholder="Phone" type="text"> </div>
+				 <label class="form-label" for="phoneNum" ></label>
+			 	<div class="col-8"> <input class="form-control" placeholder="Phone" type="text" id="phoneNum"> </div>
 			 </div> <!-- row // -->
 		</div> 
 		<div class="mb-3">
-			<label class="form-label">Create password</label>
+			<label class="form-label" for="password">Create password</label>
 			<input id="password" class="form-control" placeholder="At least 6 characters." type="password">
 		</div>  
 		<div class="mb-3">
-			<label class="form-label">Repeat password</label>
+			<label class="form-label" for="repeatedPassword">Repeat password</label>
 			<input id="repeatedPassword" class="form-control" placeholder="******" type="password">
 		</div>
 		<div class="mb-3">
-			<label for="" class="form-label">City</label>
+			<label for="city" class="form-label">City</label>
 			<input id="city" class="form-control" placeholder="City" type="text">
 		</div>
 		<div class="mb-3">
-			<label for="" class="form-label">State</label>
+			<label for="State" class="form-label">State</label>
 			<select class="form-select" id="State" aria-label="State">
 				<option value="">N/A</option>
 				<option value="AK">Alaska</option>
@@ -344,7 +345,7 @@
 			</select>
 		</div>
 		<div class="mb-3">
-			<label for="" class="form-label">Country</label>
+			<label for="Country" class="form-label">Country</label>
 			<select class="form-select" id="Country" aria-label="Country">
 				<option value="Afganistan">N/A</option>
 				<option value="Afganistan">Afghanistan</option>
@@ -596,18 +597,9 @@
 			</select>
 		</div>
 		<div class="mb-3">
-			<label class="form-label">Zip code</label>
+			<label class="form-label" for="zipCode">Zip code</label>
 			<input id="zipCode" class="form-control" placeholder="Zip code" type="text">
 	   </div>  
-	   <div class="mb-3">
-			<label class="form-label">Client ID (Optional, sellers only)</label>
-			<input id="clientId" class="form-control" type="text" value = "N/A">
-   	   </div>
-		  
-		<div class="mb-3">
-			<label class="form-label">Client secret (Optional, sellers only)</label>
-			<input id="clientSecret" class="form-control" type="text" value = "N/A">
-	    </div> 
 
 	   <div class="mb-4">
 		<label class="form-check">
@@ -655,3 +647,4 @@
 		</p>
 	</div><!-- //container -->
 </footer>
+<script src="../../public/pages_js/user-signup.js"></script>
