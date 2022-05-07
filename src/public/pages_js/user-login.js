@@ -10,8 +10,6 @@ if (myForm) {
         if (username.value.trim() || password.value.trim()) {
             error.hidden = true;
             try {
-                // checkUsername(username.value);
-                // checkPassword(password.value);
                 $.post('/user/page-user-login', { username: username.value, password: password.value }).then((res) => {
                     if (res.code == 400) {
                         errorDiv.innerHTML = res.error;

@@ -8,10 +8,8 @@ router.get('/page-user-login', (req, res) => {
         console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`);
         res.redirect('/user/private');
     } else {
-        console.log(
-            console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`)
-        );
-        res.status(401).render('../views/pages/page-user-login', {});
+        console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`);
+        res.status(200).render('../views/pages/page-user-login', {});
         return;
     }
 });
@@ -26,23 +24,21 @@ router.get('/page-user-signup', (req, res) => {
     }
 });
 
-//POST signup    会不会是form里没有定义action="/signup" ?
-//               答案是没错！
+//POST signup
 router.post('/page-user-signup', async (req, res) => {
     let userName = req.body.userName;
-    let password = req.body.password;
+    let passWord = req.body.passWord;
     console.log(req.body);
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let email = req.body.email;
-    let phone = req.body.phone;
+    let phoneNum = req.body.phoneNum;
     let city = req.body.city;
     let state = req.body.state;
     let country = req.body.country;
     let zipCode = req.body.zipCode;
-    let clientId = req.body.clientId;
-    let clientSecret = req.body.clientSecret;
     let user;
+    // console.log(phone);
     try {
         // if (typeof userName !== 'string') throw "username must be string";
         // userName = userName.trim();
@@ -51,41 +47,36 @@ router.post('/page-user-signup', async (req, res) => {
         // if (typeof password !== 'string') throw "password must be string";
         // if (password.indexOf(' ') !== -1) throw "password is not a valid string";
         // if (password.length < 6) throw "password is not a valid string";
-
-        users.checkUsername(userName);
-        users.checkName(firstName);
-        users.checkName(lastName);
-        users.checkEmail(email);
-        users.checkPhone(phone);
-        users.checkCity(city);
-        users.checkState(state);
-        users.checkCountry(country);
-        users.checkZipCode(zipCode);
-        users.checkClient(clientId);
-        users.checkClient(clientSecret);
+        // users.checkUsername(userName);
+        // users.checkName(firstName);
+        // users.checkName(lastName);
+        // users.checkEmail(email);
+        // users.checkPhone(phone);
+        // users.checkCity(city);
+        // users.checkState(state);
+        // users.checkCountry(country);
+        // users.checkZipCode(zipCode);
         user = await users.createUser(
             firstName,
             lastName,
             email,
             userName,
-            phone,
-            password,
+            //phone,
+            phoneNum,
+            passWord,
             city,
             state,
             country,
-            zipCode,
-            clientId,
-            clientSecret
+            zipCode
         );
     } catch (e) {
         return res.status(400).render('../views/pages/page-user-signup', { error: e });
     }
-
     if (!user.userInserted) {
         res.status(500).render({ error: 'Internal Server Error' });
         return;
     } else {
-        res.redirect('/');
+        res.redirect('/user/page-user-login');
     }
 });
 
