@@ -14,6 +14,8 @@
           {
             startTime:new Date().getTime()-1000,
             endTime:new Date().getTime()+3600000,
+            end_customer_link: "https://get.teamviewer.com/s06432945",
+            supporter_link: "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
             active:false},
           {
             startTime:new Date().getTime()+86400000,
@@ -27,7 +29,6 @@
       }
     ]
   }  
-    let buyerUrl="http://www.google.com"
 
     $.each(responseMessage.orderSessions,function(index,element){
         $('#content-body').append(
@@ -103,9 +104,15 @@
                   <p class="title">Session ${indexSes+1}</p>
                   <p>From ${start}</p>
                   <p>To ${end}</p>
+
                   <strong hidden> ${responseMessage.orderSessions[index].sessions[indexSes].active} </strong>
-                  <strong hidden> On going </strong>
-                  <a href="${buyerUrl}" class="btn btn-primary">Launch</a>
+
+                  <div id="buyerNotStart">
+                  <strong> On going </strong>
+                  <p>Please wait</p>
+                  </div>
+                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="buyerLaunchButton">Launch</a>
+
                   <p id="demo"></p>
                 </figcaption>
               </figure> 
@@ -142,6 +149,15 @@
             }, 1000);
             </script>
               `)
+              if(!elementSes.supporter_link){
+                $('#buyerNotStart').show();
+                $('#buyerLaunchButton').hide();
+                $('#demo').hide();
+              } else {
+                $('#buyerNotStart').hide();
+                $('#buyerLaunchButton').show();
+                $('#demo').show();
+              }
             }
           }
 //        }
