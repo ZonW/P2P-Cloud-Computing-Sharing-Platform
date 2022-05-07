@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const products = require("../data/products");
 const axios = require('axios')
+const url = require('url');
 
 router.get("/page-order-history", (req, res) => {
     try {
@@ -15,8 +16,10 @@ router.get("/page-order-history", (req, res) => {
 
 //All set
 router.get("/page-sell-history", (req, res) => {
-    try {
-        const active_code = req.query.code;      
+    const active_code = req.query.code;
+    if (active_code) {
+        const active_code = req.query.code;
+        console.log(active_code)      
         const tokenRequestOptions = {
             method: 'post',
             url: 'https://webapi.teamviewer.com/api/v1/oauth2/token',
@@ -36,10 +39,12 @@ router.get("/page-sell-history", (req, res) => {
         axios(tokenRequestOptions)
         .then(function (response) {
             const token = response.data.access_token;
+            console.log(token)
             const sessionRequestOptions = {
                 method: 'post',
                 url: 'https://webapi.teamviewer.com/api/v1/sessions',
                 data: {
+                        //"valid_until" : end_time,
                         "groupname" : "website"
                 },
                 headers: { Authorization: `Bearer ${token}` }
@@ -47,10 +52,11 @@ router.get("/page-sell-history", (req, res) => {
 
             axios(sessionRequestOptions)
             .then(function (response) {
-                console.log(response.response.data);
-                const responseSession = response.response.data;
+                console.log(response.data);
+                const responseSession = response.data;
                 try{
-                    res.send(responseSession);   //Juice
+                    //res.redirect(url.parse(req.url).pathname);
+                    res.render("../views/pages/page-sell-history", responseSession);
                 } catch (e) {
                     return res.status(400).json({error: e});
                 }
@@ -63,7 +69,7 @@ router.get("/page-sell-history", (req, res) => {
             console.log(error);
         });
     }
-    finally {
+    else {
         try {
             res.render("../views/pages/page-sell-history", {});
           }
@@ -81,7 +87,5 @@ router.get("/page-new-item", (req, res) => {
         return res.status(404).json({error: e});
     }
 });
-
-
 
 module.exports = router;

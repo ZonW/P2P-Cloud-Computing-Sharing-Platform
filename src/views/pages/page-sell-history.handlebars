@@ -68,12 +68,12 @@
   </aside>
   <main class="col-lg-9  col-xl-9">
     <article class="card">
-    <div class="content-body">
+    <div class="content-body" id="content-body">
 
     <figure class="itemside align-items-center">
       <figcaption class="info">
-        <h6 class="title">Mr. Jackson Mike</h6>
-        <p>Email: myusername@gmail.com, Phone: +1234567890988 
+        <h6 class="title" id="user-name">{{userName}}</h6>
+        <p>Email: {{email}}, Phone: {{phone}} 
           <a href="/user/page-user-edit" class="px-2"><i class="fa fa-pen"></i></a>
         </p>
       </figcaption>
@@ -153,3 +153,12 @@
 
 <!-- Font awesome 5 -->
 <link href="../public/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+
+<script src="../public/pages_js/page-sell-history.js"></script>
+
+<script>
+  window.onload = function() {
+    let url = location.href;
+    history.pushState(null, "", url.split("?")[0]);
+};
+</script>
