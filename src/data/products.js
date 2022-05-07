@@ -141,11 +141,12 @@ const exportedMethods = {
 
 
   //all set
-  async createProduct(userId, name, description, operatingSystem, features, unitPrice, location){
+  async createProduct(userId, name, description, operatingSystem, features, time, unitPrice, location){
     if (!userId) throw "userId must be provided";
     if (!name) throw "Name must be provided"
     if (!description) throw "Description must be provided"
     if (!operatingSystem) throw "OS must be provided"
+    if (!time) throw "time must be provided";
     if (!features) throw "features must be provided";
     if (!unitPrice) throw "unitPrice must be provided";
     if (!location) throw "location must be provided";
@@ -158,15 +159,13 @@ const exportedMethods = {
       name: name,
       description: description,
       operatingSystem: operatingSystem,
-      features: {},
+      features: features,
       status: true,
       time: time,
       unitPrice: unitPrice,
       location: location,
       sessions: [],
       comments: [],
-      buyerNumber: 0,
-      rating: 0
     }
 
     const newInsertInformation = await productsCollection.insertOne(newProduct);
@@ -208,7 +207,7 @@ const exportedMethods = {
       endTime: end,
       buyerLink: buyerLink,
       sellerLink: sellerLink,
-      active: true
+      active: false
     }
 
     const productsCollection = await products();
@@ -228,24 +227,22 @@ const exportedMethods = {
     return;
   },
   
-  async searchProduct(search_features){
+  /* async searchProduct(search_features){
     const productsCollection = await products();
     const productList = await productsCollection
     .find( { 'features.RAM' : '1023 MB' } )
     .toArray();
     return productList;
-  },
+  }, */
 
   async addComment(userId, productId, comment_info){
     if (!userId) throw "userId must be provided";
     if (!productId) throw "productId must be provided";
-    if (!comment_info) throw "comment must be provided";
-    //if (!comment_info.content) throw "comment content must be provided";
-    //if (!comment_info.rating) throw "comment rating must be provided";
+    if (!comment_info.content) throw "comment content must be provided";
+    if (!comment_info.rating) throw "comment rating must be provided";
 
-    if (typeof comment_info !== 'string') throw "comment content must be string";
-    //if (typeof comment_info.rating !== 'number') throw "comment rating must be number";
-    //if (comment_info.rating < 1 || comment_info.rating > 5) throw "rating is out of range (1-5)";
+    if (typeof comment_info.rating !== 'number') throw "comment rating must be number";
+    if (comment_info.rating < 1 || comment_info.rating > 5) throw "rating is out of range (1-5)";
 
     const productsCollection = await products();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
