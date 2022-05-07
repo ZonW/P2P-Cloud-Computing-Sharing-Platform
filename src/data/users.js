@@ -19,12 +19,6 @@ const exportedMethods = {
         return password;
     },
 
-    checkClient(client) {
-        if (typeof client !== 'string') throw 'Wrong type of clientid/secret';
-        if (client.trim().length == 0) throw "Can't be empty spaces";
-        return client;
-    },
-
     checkName(name) {
         if (typeof name !== 'string') throw '';
         var name = name.trim();
