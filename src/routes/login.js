@@ -6,7 +6,7 @@ const users = require('../data/users');
 router.get('/page-user-login', (req, res) => {
     if (req.session.user) {
         console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`);
-        res.redirect('../views/pages/index');
+        res.redirect('/user/private');
     } else {
         console.log(
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`)
@@ -19,7 +19,7 @@ router.get('/page-user-login', (req, res) => {
 //GET signup
 router.get('/page-user-signup', (req, res) => {
     if (req.session.user) {
-        res.redirect('../views/pages/index');
+        res.redirect('/user/private');
     } else {
         res.status(401).render('../views/pages/page-user-signup', {});
         return;
@@ -95,8 +95,6 @@ router.post('/page-user-login', async (req, res) => {
     const password = req.body.password;
     let user;
     try {
-        // users.checkEmail(email);
-        // users.checkPassword(password);
         if (!email || !password) throw 'Missing email or password';
         if (typeof email !== 'string') throw 'email should be string';
         if (email.trim().length === 0) throw 'email cannot be empty spaces';
