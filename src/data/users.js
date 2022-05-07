@@ -1,6 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
-const bcryptjs = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const ObjectId = require('mongodb').ObjectId;
 
 const exportedMethods = {
@@ -116,7 +116,7 @@ const exportedMethods = {
         firstName,
         lastName,
         email,
-        userName,
+        username,
         phone,
         password,
         city,
@@ -124,7 +124,7 @@ const exportedMethods = {
         country,
         zipCode,
     ) {
-        if (!userName) throw 'username must be provided';
+        if (!username) throw 'username must be provided';
         if (!password) throw 'password must be provided';
         if (!firstName) throw 'firstname must be provided';
         if (!lastName) throw 'lastname must be provided';
@@ -136,7 +136,7 @@ const exportedMethods = {
         if (!zipCode) throw 'zipCode must be provided';
 
         try {
-            this.checkUsername(userName);
+            this.checkUsername(username);
         } catch (err) {
             throw err;
         }
@@ -197,7 +197,7 @@ const exportedMethods = {
 
 
         const saltRounds = 10;
-        const _username_ = this.checkUsername(userName);
+        const _username_ = this.checkUsername(username);
         const _password_ = await bcryptjs.hash(password, saltRounds);
         //  bcrypt.hash(password, saltRounds);
         const usersCollection = await users();
@@ -205,7 +205,7 @@ const exportedMethods = {
         if (userInfo) throw 'there is already a user with that username';
 
         let newUser = {
-            userName: _username_,
+            username: _username_,
             password: _password_,
             name: {
                 firstName: this.checkName(firstName),

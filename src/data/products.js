@@ -166,6 +166,7 @@ const exportedMethods = {
       location: location,
       sessions: [],
       comments: [],
+      overall_score: null
     }
 
     const newInsertInformation = await productsCollection.insertOne(newProduct);
