@@ -19,11 +19,6 @@ const exportedMethods = {
         return password;
     },
 
-    checkClient(client) {
-        if (typeof client !== 'string') throw 'Wrong type of clientid/secret';
-        if (client.trim().length == 0) throw "Can't be empty spaces";
-        return client;
-    },
 
     checkName(name) {
         if (typeof name !== 'string') throw '';
@@ -212,10 +207,6 @@ const exportedMethods = {
         let newUser = {
             userName: _username_,
             password: _password_,
-            sellerInfo: {
-                clientId: clientId,
-                clientSecret: clientSecret,
-            },
             name: {
                 firstName: this.checkName(firstName),
                 lastName: this.checkName(lastName),
