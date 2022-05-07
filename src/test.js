@@ -26,6 +26,7 @@ async function main(){
     'status': 'CA',
     'country': 'US',
     'zipCode': '123435'
+
   }
 
   comment_info = {
@@ -47,7 +48,7 @@ async function main(){
   //await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
   //await productsData.createProduct('62688351bc980dd1ab788583', 1,1)
   
-  const a = await productsData.filterProduct(filter_info);
+  const a = await productsData.searchProduct();
   console.log(a)
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 }

@@ -6,20 +6,19 @@ const ObjectId = require('mongodb').ObjectId;
 
 async function main(){
   try{
-    await usersData.createUser("Zon","Wei","zwei123@gmail.com","Boo123", "2012048888", "weizongshuo123", "hoboken","NJ","US","07030");
-    console.log(e);
+    await usersData.createUser("Zon","Wei","zwei123@gmail.com","Boo123", "2012048888", "weizongshuo123", "hoboken","NJ","US","07030", "xyz123455665", "wer3345433d");
   } catch (e){
     console.log(e);
   }
   
   try{
-    await usersData.createUser("Zong","Fei","fei123@gmail.com","Foo123", "2012048888", "feizongshuo123", "hoboken","NJ","US","07030");
+    await usersData.createUser("Zong","Fei","fei123@gmail.com","Foo123", "2012048888", "feizongshuo123", "hoboken","NJ","US","07030", "xyz123455665", "wer3345433d");
   } catch (e){
     console.log(e);
   }
 
   try{
-    await usersData.createUser("Zoo","Hei","hei123@gmail.com","Bar123", "2012048888", "heizongshuo123", "hoboken","NJ","US","07030");
+    await usersData.createUser("Zoo","Hei","hei123@gmail.com","Bar123", "2012048888", "heizongshuo123", "hoboken","NJ","US","07030", "xyz123455665", "wer3345433d");
   } catch (e){
     console.log(e);
   }

@@ -37,7 +37,6 @@ const exportedMethods = {
     });
   },
 
-
   async filterProduct(key){
     if(!key) throw("Input key as obj")
     if(typeof key !== 'object') throw "Key must be obj"
@@ -140,24 +139,9 @@ const exportedMethods = {
     
   },
 
-  getDistance(lat1, lng1, lat2, lng2) {
-    lat1 = lat1 || 0;
-    lng1 = lng1 || 0;
-    lat2 = lat2 || 0;
-    lng2 = lng2 || 0;
-
-    var rad1 = lat1 * Math.PI / 180.0;
-    var rad2 = lat2 * Math.PI / 180.0;
-    var a = rad1 - rad2;
-    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
-    var r = 6378137;
-    var distance = r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))/1000;
-
-    return distance.toFixed(2);
-  },
 
   //all set
-  async createProduct(userId, name, description, operatingSystem, features, time, unitPrice, location){
+  async createProduct(userId, name, description, operatingSystem, features, unitPrice, location){
     if (!userId) throw "userId must be provided";
     if (!name) throw "Name must be provided"
     if (!description) throw "Description must be provided"
@@ -174,14 +158,15 @@ const exportedMethods = {
       name: name,
       description: description,
       operatingSystem: operatingSystem,
-      features: features,
+      features: {},
       status: true,
       time: time,
       unitPrice: unitPrice,
       location: location,
       sessions: [],
       comments: [],
-      overall_score: 0
+      buyerNumber: 0,
+      rating: 0
     }
 
     const newInsertInformation = await productsCollection.insertOne(newProduct);
@@ -216,6 +201,7 @@ const exportedMethods = {
     if (!sellerLink) throw "SellerLink must be provided";
 
 
+
     var sessionAddInfo = {
       _id: ObjectId(),
       startTime: start,
@@ -242,17 +228,24 @@ const exportedMethods = {
     return;
   },
   
+  async searchProduct(search_features){
+    const productsCollection = await products();
+    const productList = await productsCollection
+    .find( { 'features.RAM' : '1023 MB' } )
+    .toArray();
+    return productList;
+  },
 
   async addComment(userId, productId, comment_info){
     if (!userId) throw "userId must be provided";
     if (!productId) throw "productId must be provided";
     if (!comment_info) throw "comment must be provided";
-    if (!comment_info.content) throw "comment content must be provided";
-    if (!comment_info.rating) throw "comment rating must be provided";
+    //if (!comment_info.content) throw "comment content must be provided";
+    //if (!comment_info.rating) throw "comment rating must be provided";
 
-    if (typeof comment_info.content !== 'string') throw "comment content must be string";
-    if (typeof comment_info.rating !== 'number') throw "comment rating must be number";
-    if (comment_info.rating < 1 || comment_info.rating > 5) throw "rating is out of range (1-5)";
+    if (typeof comment_info !== 'string') throw "comment content must be string";
+    //if (typeof comment_info.rating !== 'number') throw "comment rating must be number";
+    //if (comment_info.rating < 1 || comment_info.rating > 5) throw "rating is out of range (1-5)";
 
     const productsCollection = await products();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
