@@ -15,9 +15,7 @@ async function main() {
             'hoboken',
             'NJ',
             'US',
-            '07030',
-            'xyz123455665',
-            'wer3345433d'
+            '07030'           
         );
     } catch (e) {
         console.log(e);
@@ -34,9 +32,7 @@ async function main() {
             'hoboken',
             'NJ',
             'US',
-            '07030',
-            'xyz123455665',
-            'wer3345433d'
+            '07030'           
         );
     } catch (e) {
         console.log(e);
@@ -53,9 +49,7 @@ async function main() {
             'hoboken',
             'NJ',
             'US',
-            '07030',
-            'xyz123455665',
-            'wer3345433d'
+            '07030'          
         );
     } catch (e) {
         console.log(e);
