@@ -265,6 +265,7 @@
        console.log(outputData);
         $.ajax(requestConfig1).then(function (responseMessage) {
             alert("Success!");
+            console.log(responseMessage);
 
         });
     });
