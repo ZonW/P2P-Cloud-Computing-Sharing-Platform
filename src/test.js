@@ -34,14 +34,14 @@ async function main(){
   }
 
   filter_info = {
-    distance:100,
-    features: ["deepLearning"],
-    keywords: "good",
+    distance: 100000,
+    features: ['webServer'],
+    keywords: "bad",
     lat:40.7467,
     lon:-74.0574,
-    operatingSystem:"windows",
-    price: 5,
-    sortBy: 'price'
+    operatingSystem:"MacOS",
+    price: 12,
+    sortBy: 'highestRated'
   }
   //await usersData.createUser('zcc1234','zcc123','will', 'smith');
   //await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
@@ -50,6 +50,7 @@ async function main(){
   const a = await productsData.filterProduct(filter_info);
   console.log(a)
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
-
 }
-main()
+main();
+
+

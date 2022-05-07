@@ -8,6 +8,8 @@ async function main(){
   try{
     await usersData.createUser("Zon","Wei","zwei123@gmail.com","Boo123", "2012048888", "weizongshuo123", "hoboken","NJ","US","07030");
     console.log(e);
+  } catch (e){
+    console.log(e);
   }
   
   try{
@@ -25,18 +27,38 @@ async function main(){
   try{
     const userInfo1 = await usersData.getUserByName("boo123");
 
-    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", ["webServer", "deepLearning"], "time", 5, {'lat': 40.7467,'long': -74.0574})
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "windows", ["webServer", "deepLearning"], "time", 3, {'lat': 40.7467,'long': -74.0574})
   } catch (e){
     console.log(e);
   }
 
   try{
     const userInfo1 = await usersData.getUserByName("Foo123");
-    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "MacOS", ["webServer", "draw"], "time", 5, {'lat': 40.7467,'long': -74.0574})
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "MacOS", ["webServer", "draw"], "time", 10, {'lat': 40.7467,'long': -74.0574})
   } catch (e){
     console.log(e);
   }
 
+  try{
+    const userInfo1 = await usersData.getUserByName("Foo123");
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "MacOS", ["webServer", "draw"], "time", 6, {'lat': 40.7467,'long': -74.0574})
+  } catch (e){
+    console.log(e);
+  }
+
+  try{
+    const userInfo1 = await usersData.getUserByName("Foo123");
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "MacOS", ["webServer", "draw"], "time", 1.1, {'lat': 40.7467,'long': -74.0574})
+  } catch (e){
+    console.log(e);
+  }
+
+  try{
+    const userInfo1 = await usersData.getUserByName("Foo123");
+    await productsData.createProduct(userInfo1._id.toString(), "Good Computer 1", "This is a very good computer.", "MacOS", ["webServer", "draw"], "time", 4, {'lat': 40.7467,'long': -74.0574})
+  } catch (e){
+    console.log(e);
+  }
   
 }
 

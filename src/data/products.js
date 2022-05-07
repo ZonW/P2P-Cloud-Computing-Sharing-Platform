@@ -43,12 +43,100 @@ const exportedMethods = {
     if(typeof key !== 'object') throw "Key must be obj"
 
     const productsCollection = await products();
-    const productList = await productsCollection
-    .find( {operatingSystem : "MacOS", 
-            'location.lat':40.7467} )
-    .toArray();
+    var productList = [];
+    var shortestDistance = false;
+    if (key.sortBy === "lowestPrice"){
+      productList = await productsCollection
+      .find( { operatingSystem : key.operatingSystem, 
+            $or: [ {unitPrice: { $lt: key.price }},
+                   {unitPrice: { $eq: key.price }}
+                 ]})
+      .sort({unitPrice: 1})
+      .toArray();
+    }
+    if (key.sortBy === "shortestDistance"){
+      productList = await productsCollection
+      .find( { operatingSystem : key.operatingSystem, 
+            $or: [ {unitPrice: { $lt: key.price }},
+                   {unitPrice: { $eq: key.price }}
+                 ]})
+      .toArray();
+      shortestDistance = true;
+    }
+    if (key.sortBy === "highestRated"){
+      productList = await productsCollection
+      .find( { operatingSystem : key.operatingSystem, 
+            $or: [ {unitPrice: { $lt: key.price }},
+                   {unitPrice: { $eq: key.price }}
+                 ]})
+      .sort({overall_score: -1})
+      .toArray();
+    }
+    if (key.sortBy === "newestListed"){
+      productList = await productsCollection
+      .find( { operatingSystem : key.operatingSystem, 
+            $or: [ {unitPrice: { $lt: key.price }},
+                   {unitPrice: { $eq: key.price }}
+                 ]})
+      .toArray();
+    }
+    var dislist = [];
+    var respondproductList = [];
+    for (var i = 0; i<productList.length; i++){
+      const dis = this.getDistance(key.lat, key.lon, productList[i].location.lat,productList[i].location.lon);
+      var filterFeature = false;
 
-    return productList;
+      let len = key.features.length;
+      let tempArr = key.features.filter(item => {
+        return productList[i].features.includes(item);
+      })
+      if(tempArr.length === len) {
+        filterFeature = true; }
+
+      var filterKeywords = false;
+      if (productList[i].name.toLowerCase().indexOf(key.keywords.toLowerCase())!==-1 || 
+      productList[i].description.toLowerCase().indexOf(key.keywords.toLowerCase())!==-1){
+        filterKeywords = true;
+      }
+      
+      if (dis <= key.distance && filterKeywords && filterFeature){
+        if (shortestDistance){
+
+          if (dislist.length === 0){
+            respondproductList.push(productList[i]);
+            dislist.push(dis);
+          } else if (dislist.length === 1){
+            if (dis<=dislist[0]){
+              respondproductList.splice(0,0,productList[i]);
+              dislist.splice(0,0,dis);
+            } else {
+              respondproductList.push(productList[i]);
+              dislist.push(dis);
+            }
+          } else {
+            for (var x = 0; x<dislist.length - 1; x++){
+              if (dis<=dislist[x]){
+                respondproductList.splice(0,0,productList[i]);
+                dislist.splice(0,0,dis);
+                break;
+              } else if (dis>dislist[x] && dis<=dislist[x+1]){
+                respondproductList.splice(x+1,0,productList[i]);
+                dislist.splice(x+1,0,dis);
+                break;
+              } else if (x===dislist.length - 2){
+                respondproductList.push(productList[i]);
+                dislist.push(dis);
+                break;
+              }
+            }
+          }
+        } else {
+          respondproductList.push(productList[i]);
+        }
+      }
+    }
+
+    return respondproductList;
     
   },
 
