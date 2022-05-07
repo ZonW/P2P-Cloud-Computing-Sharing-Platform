@@ -36,8 +36,8 @@
     };
 
     let requestConfig1 = {
-        method: "GET",
-        url: "http://ip-api.com/json/"
+        method: "POST",
+        url: "search"
     };
 
     let requestConfig2 = {
@@ -716,6 +716,23 @@
 
                currentPageNumber = 1;
                showDiv.html(drawDiv());
+               
+               requestConfig1 = {
+                method : "POST",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    name: 'newName',
+                    description: 'newDescription'
+                }),
+                url: "/search"
+               }
+               console.log(searchInfo)
+               $.ajax(requestConfig1).then(function (responseMessage) {
+                console.log(1111)
+
+                console.log(responseMessage)
+        
+            });
 
 
            }
