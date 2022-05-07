@@ -12,7 +12,7 @@
             endTime:1607116465663,
             active:false},
           {
-            startTime:new Date().getTime(),
+            startTime:new Date().getTime()-1000,
             endTime:new Date().getTime()+3600000,
             active:false},
           {

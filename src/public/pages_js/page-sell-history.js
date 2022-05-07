@@ -10,32 +10,72 @@
           {
             startTime:1607110465663,
             endTime:1607116465663,
-            active:false},
+            active:true},
           {
             startTime:new Date().getTime(),
             endTime:new Date().getTime()+3600000,
-            active:false},
+            active:true},
           {
             startTime:new Date().getTime()+86400000,
             endTime:new Date().getTime()+86400000+3600000,
-            active:false},
+            active:true},
           {
             startTime:1607110465663,
             endTime:1607116465663,
-            active:true},
+            active:false},
           {
-            startTime:new Date().getTime(),
+            startTime:new Date().getTime()-1000,
             endTime:new Date().getTime()+3600000,
-            active:true},
+            active:false,
+            end_customer_link: "https://get.teamviewer.com/s06432945",
+            supporter_link: "https://get.teamviewer.com/s06432945-t4HO88yy20JF"},
           {
             startTime:new Date().getTime()+86400000,
             endTime:new Date().getTime()+86400000+3600000,
-            active:true},
+            active:false}
         ]
       }
     ]
   }
     let sellerUrl="https://login.teamviewer.com/oauth2/authorize?response_type=code&client_id=528911-XLEsSfsRD5hdKZ5ATT02&redirect_uri=http://localhost:3000/profile/page-sell-history&display=popup";
+    
+    /*
+    var requestConfig = {
+      method: 'GET',
+      url: sellerUrl,
+    };
+
+    $.ajax(requestConfig).then(function (responseMess) {
+      console.log("nya!");
+      console.log(responseMess);
+      $('#content-body').append(
+        `<article class="card border-primary mb-4">
+        <div class="card-body">
+          <header class="d-lg-flex">
+            <div class="flex-grow-1">
+              <h6 class="mb-0"> Meow <i class="dot"></i> 
+              </h6>
+            </div>
+          </header>
+          <hr>
+          <div class="row">
+            <div class="col-lg-4">
+            </div> <!-- col.// -->
+            <div class="col-lg-4 border-start">
+            </div> <!-- col.// -->
+            <div class="col-lg-4 border-start">
+            </div> <!-- col.// -->
+          </div> <!-- row.// -->
+          <hr>
+          <ul class="row" id="row" value="row">
+            <!-- Sessions goes here -->
+   
+          </ul>
+        </div> <!-- card-body .// -->
+        </article>`
+    );
+    });*/
+
 
     $.each(responseMessage.sellSessions,function(index,element){
         $('#content-body').append(
@@ -117,7 +157,9 @@
                   <strong hidden> ${responseMessage.sellSessions[index].sessions[indexSes].active} </strong>
                   <strong hidden> On going </strong>
                   
-                  <a href="${sellerUrl}" class="btn btn-primary">Connect to TeamViewer</a>
+                  <a href="${sellerUrl}" class="btn btn-primary" id="connectButton">Connect to TeamViewer</a>
+                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="launchButton">Launch</a>
+
                   
                   <p id="demo"></p>
                 </figcaption>
@@ -155,6 +197,17 @@
             }, 1000);
             </script>
               `)
+            if(!elementSes.end_customer_link){
+                $('#connectButton').show();
+                $('#launchButton').hide();
+                $('#demo').hide();
+              } else {
+                $('#connectButton').hide();
+                $('#launchButton').show();
+                $('#demo').show();
+              }
+
+
             } else if(responseMessage.sellSessions[index].sessions[indexSes].active&&
                 responseMessage.sellSessions[index].sessions[indexSes].startTime<new Date().getTime()){
               $(`#row${index}`).append(`
@@ -188,6 +241,5 @@
         })
 
       })
-
 
 })(window.jQuery);
