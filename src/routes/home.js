@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const products = require("../data/products");
+const productsData = require("../data/products");
 const users = require("../data/users");
 
 router.get("/", async (req, res) => {
     try{
-        let prodData = await products.getAllProduct()
+        let prodData = await productsData.getAllProduct()
         res.render("../views/pages/index", {});
     } catch(e) {
         return res.status(400).json({error: e});
     }
 })
 
-router.post('/search', async (req, res) => {
+router.post('/search',async (req, res) => {
     try{
         const userInfo = req.body;
         const mes = await products.filterProduct(userInfo);
@@ -77,7 +77,7 @@ router.get("/all", async (req, res) => {
             sortBy: querys.sortBy
           }
 
-        let prodData = await products.filterProduct(filter_info);
+        let prodData = await productsData.filterProduct(filter_info);
         let indexlist = [];
         let resData = [];
 

@@ -1,8 +1,22 @@
 (function ($) {
-    let responseMessage={
+    let requestConfig = {
+      method : "GET",
+      url:"order-details",
+    };
+
+    $.ajax(requestConfig).then(function (response) {
+        console.log(response)
+        let responseMessage = {
+          userName:response.userName,
+          email:response.email,
+          orderSessions:response.orderSessions
+        }
+        
+    //let responseMessage = {
+    let testData={
         userName:"shiwodadiao",
         email:"shiwodadiao@wohaoniu.com",
-        phone:"1145142333",
+   //     phone:"1145142333",
         orderSessions:[
         {
         productName: "qunimade",
@@ -29,6 +43,7 @@
       }
     ]
   }  
+    
 
     $.each(responseMessage.orderSessions,function(index,element){
         $('#content-body').append(
@@ -107,11 +122,11 @@
 
                   <strong hidden> ${responseMessage.orderSessions[index].sessions[indexSes].active} </strong>
 
-                  <div id="buyerNotStart">
+                  <div id="buyerNotStart_${index}_${indexSes}">
                   <strong> On going </strong>
                   <p>Please wait</p>
                   </div>
-                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="buyerLaunchButton">Launch</a>
+                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="buyerLaunchButton_${index}_${indexSes}">Launch</a>
 
                   <p id="demo"></p>
                 </figcaption>
@@ -150,20 +165,28 @@
             </script>
               `)
               if(!elementSes.supporter_link){
-                $('#buyerNotStart').show();
-                $('#buyerLaunchButton').hide();
-                $('#demo').hide();
+                $(`#buyerNotStart_${index}_${indexSes}`).show();
+                $(`#buyerLaunchButton_${index}_${indexSes}`).hide();
+                $(`#demo_${index}_${indexSes}`).hide();
               } else {
-                $('#buyerNotStart').hide();
-                $('#buyerLaunchButton').show();
-                $('#demo').show();
+                $(`#buyerNotStart_${index}_${indexSes}`).hide();
+                $(`#buyerLaunchButton_${index}_${indexSes}`).show();
+                $(`#demo_${index}_${indexSes}`).show();
               }
             }
           }
 //        }
         })
-
       })
-
-
+    });
 })(window.jQuery);
+
+/*     axios({method: 'GET',
+          url: "/order-details"})
+    .then(function (response) {
+        console.log(response);
+        uuu = response.userName;
+    })
+    .catch(function (error) {
+        console.log(error);
+    }); */

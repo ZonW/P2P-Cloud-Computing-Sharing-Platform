@@ -1,6 +1,7 @@
 let timestamp = 1607110465663
 let date = new Date(timestamp);
 
+console.log(new Date().getTime())
 /*
 let getStart=1607110465663;
 let getEnd=1607116465663;

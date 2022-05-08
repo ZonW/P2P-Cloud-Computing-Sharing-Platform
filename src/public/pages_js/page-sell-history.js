@@ -1,5 +1,27 @@
 (function ($) {
-    let responseMessage={
+/*      let requestConfig = {
+      method : "GET",
+      url:"http://localhost:3000/page-sell-history",
+    };
+
+    $.ajax(requestConfig).then(function (responseMessage) {
+
+    });  */
+    let requestConfig = {
+      method : "GET",
+      url:"sell-details",
+    };
+
+    $.ajax(requestConfig).then(function (response) {
+        console.log(response)
+        let responseMessage = {
+          userName:response.userName,
+          email:response.email,
+          sellSessions:response.sellSessions
+        }
+
+    let testData={
+    //let responseMessage={
         userName:"shiwodadiao",
         email:"shiwodadiao@wohaoniu.com",
         phone:"1145142333",
@@ -24,10 +46,11 @@
             endTime:1607116465663,
             active:false},
           {
+            _id:"555",
             startTime:new Date().getTime()-1000,
             endTime:new Date().getTime()+3600000,
             active:false,
-            end_customer_link: "https://get.teamviewer.com/s06432945",
+   //         end_customer_link: "https://get.teamviewer.com/s06432945",
             supporter_link: "https://get.teamviewer.com/s06432945-t4HO88yy20JF"},
           {
             startTime:new Date().getTime()+86400000,
@@ -38,6 +61,22 @@
     ]
   }
     let sellerUrl="https://login.teamviewer.com/oauth2/authorize?response_type=code&client_id=528911-XLEsSfsRD5hdKZ5ATT02&redirect_uri=http://localhost:3000/profile/page-sell-history&display=popup";
+
+
+    let urlCode = undefined;
+    if(location.href.split("?")[1]){
+      urlCode = location.href.split("?")[1].slice(5);
+    }
+    
+    window.onload = function() {
+      let url = location.href;
+      history.pushState(null, "", url.split("?")[0]);
+    };
+    
+    console.log(urlCode)
+/*      if(urlCode){
+        $('#content-body').append(`<p>${urlCode}</p>`)
+    } */
     
     /*
     var requestConfig = {
@@ -157,9 +196,8 @@
                   <strong hidden> ${responseMessage.sellSessions[index].sessions[indexSes].active} </strong>
                   <strong hidden> On going </strong>
                   
-                  <a href="${sellerUrl}" class="btn btn-primary" id="connectButton">Connect to TeamViewer</a>
-                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="launchButton">Launch</a>
-
+                  <a href="${sellerUrl}" class="btn btn-primary" id="connectButton_${index}_${indexSes}">Connect to TeamViewer</a>
+                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="launchButton_${index}_${indexSes}">Launch</a>
                   
                   <p id="demo"></p>
                 </figcaption>
@@ -198,16 +236,22 @@
             </script>
               `)
             if(!elementSes.end_customer_link){
-                $('#connectButton').show();
-                $('#launchButton').hide();
+                $(`#connectButton_${index}_${indexSes}`).show();
+                $(`#launchButton_${index}_${indexSes}`).hide();
                 $('#demo').hide();
               } else {
-                $('#connectButton').hide();
-                $('#launchButton').show();
+                $(`#connectButton_${index}_${indexSes}`).hide();
+                $(`#launchButton_${index}_${indexSes}`).show();
                 $('#demo').show();
               }
 
-
+            if(urlCode){
+              $.post("page-sell-history",{
+                code:urlCode,
+                session:elementSes._id
+              })
+            }
+            
             } else if(responseMessage.sellSessions[index].sessions[indexSes].active&&
                 responseMessage.sellSessions[index].sessions[indexSes].startTime<new Date().getTime()){
               $(`#row${index}`).append(`
@@ -241,5 +285,12 @@
         })
 
       })
+    });
 
+/*     window.onload = function() {
+      if(!window.location.hash) {
+          window.location = window.location + '#loaded';
+          window.location.reload();
+      }
+    } */
 })(window.jQuery);

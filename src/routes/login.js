@@ -95,7 +95,6 @@ router.post('/page-user-login', async (req, res) => {
         if (user.authenticated) {
             req.session.user = email;
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`);
-
             res.redirect('../');
         } else {
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`);

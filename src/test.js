@@ -35,24 +35,23 @@ async function main(){
   }
 
   filter_info = {
-    distance: [0,100000],
-    features: [],
-    keywords: "good",
+    distance: 100000,
+    features: ['webServer'],
+    keywords: "bad",
     lat:40.7467,
     lon:-74.0574,
-    operatingSystem:"macos",
+    operatingSystem:"MacOS",
     price: 12,
     sortBy: 'highestRated'
   }
   //await usersData.createUser('zcc1234','zcc123','will', 'smith');
   //await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
-  const a= await productsData.getProductBySession('6276e89f0b8f5a03dcc9e2ee')
+  //await productsData.createProduct('62688351bc980dd1ab788583', 1,1)
+  
+  const a = await productsData.searchProduct();
   console.log(a)
-  //const a = await productsData.filterProduct(filter_info);
- 
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 }
-const a = {1:1,2:3}
-console.log(Object.keys(a).length)
+main();
 
 
