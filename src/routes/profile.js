@@ -44,8 +44,9 @@ router.get("/order-details", async (req, res) => {
                                     "sessions" : [],
                                     "number" : "sessions"
                                 }
-                for (let j=0;j<sessionInfo.length;j++){
+                for (let j=0;j< prodSession.length;j++){
                     let prodSessionAtom = {
+                        "_id" : prodSession[j]._id.toString(),
                         'startTime': prodSession[j].startTime,
                         'endTime': prodSession[j].endTime,
                         'active': prodSession[j].active,
@@ -66,7 +67,7 @@ router.get("/order-details", async (req, res) => {
                 throw e
             }
             
-            console.log(result)
+            //console.log(result)
             responseData.orderSessions = result
             res.send(responseData);
         }
@@ -119,22 +120,54 @@ router.get("/page-sell-history", async (req, res) => {
 router.get("/sell-details", async (req, res) => {
     let user = await req.session.user;
     if (user) {
-        const userInfo = await getUserByEmail(user);
-        let sellData = userInfo.sellingServers;
-        let responseData = {
-            "userId" : userInfo._id.toString(),
-            "userName" : userInfo.username,
-            "userEmail" : user,
-            "sellHistory" : []
-        };
-
-        for (let i=0;i<sellData.length;i++){
-            let prodId = sellData[i];
-            let prodInfo = await products.getProductById(prodId);
-            responseData.sellHistory.push(prodInfo);
-        }
-
         try {
+            const userInfo = await getUserByEmail(user);
+            let responseData = {
+                "userId" : userInfo._id.toString(),
+                "userName" : userInfo.username,
+                "email" : user,
+                "sellSessions" : []
+            };
+           
+            const prodInfo = userInfo.sellingServers;
+            //console.log(sessionInfo)
+            for (let i=0;i<prodInfo.length;i++){
+                let prodId = prodInfo[i];
+                //console.log(sessionId)
+                let prodDetail = await products.getProductById(prodId)
+                let prodName = prodDetail.name;
+                let prodSession = prodDetail.sessions;
+                
+                //console.log(prodSession) arr
+                let sessionAtom = {"productName" : prodName,
+                                    "sessions" : [],
+                                    "number" : "sessions"
+                                }
+                for (let j=0;j<prodSession.length;j++){
+                    let prodSessionAtom = {
+                        "_id" : prodSession[j]._id.toString(),
+                        'startTime': prodSession[j].startTime,
+                        'endTime': prodSession[j].endTime,
+                        'active': prodSession[j].active,
+                        'end_customer_link': prodSession[j].sellerLink,
+                        'supporter_link': prodSession[j].buyerLink
+                    }
+                    sessionAtom.sessions.push(prodSessionAtom)
+                }
+                responseData.sellSessions.push(sessionAtom)
+            }
+            let input = responseData.sellSessions;
+            //console.log(input)
+            let result
+            try{
+                result = groupBy(input, 'productName', 'sessions', 'number');
+            }
+            catch(e){
+                throw e
+            }
+            
+            console.log(result)
+            responseData.sellSessions = result
             res.send(responseData);
         }
         catch (e) {
@@ -148,10 +181,12 @@ router.get("/sell-details", async (req, res) => {
 
 router.post("/page-sell-history", async (req, res) => {
     const postData = req.body;
+    console.log(postData)
     const active_code = postData.code;
     const sessionId = postData.session;
+    console.log(active_code)
+    console.log(sessionId )
     if (active_code){
-        const active_code = req.query.code;
         console.log(active_code)      
         const tokenRequestOptions = {
             method: 'post',
@@ -187,12 +222,12 @@ router.post("/page-sell-history", async (req, res) => {
             }
 
             axios(sessionRequestOptions)
-            .then(function (response) {
+            .then(async function (response) {
                 console.log(response.data);
                 const responseSession = response.data;
                 try{
                     //res.redirect(url.parse(req.url).pathname);
-                    modifySession(sessionId,responseSession.supporter_link, responseSession.end_customer_link, false)
+                    const modReturn = await products.modifySession(sessionId,responseSession.supporter_link, responseSession.end_customer_link, false)
                     res.send(responseSession);
                 } catch (e) {
                     return res.status(400).json({error: e});

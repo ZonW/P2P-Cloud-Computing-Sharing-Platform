@@ -7,8 +7,21 @@
     $.ajax(requestConfig).then(function (responseMessage) {
 
     });  */
+    let requestConfig = {
+      method : "GET",
+      url:"sell-details",
+    };
 
-    let responseMessage={
+    $.ajax(requestConfig).then(function (response) {
+        console.log(response)
+        let responseMessage = {
+          userName:response.userName,
+          email:response.email,
+          sellSessions:response.sellSessions
+        }
+
+    let testData={
+    //let responseMessage={
         userName:"shiwodadiao",
         email:"shiwodadiao@wohaoniu.com",
         phone:"1145142333",
@@ -234,7 +247,7 @@
               }
 
             if(urlCode){
-              $.post("/page-sell-history",{
+              $.post("page-sell-history",{
                 code:urlCode,
                 session:elementSes._id
               })
@@ -273,5 +286,5 @@
         })
 
       })
-
+    });
 })(window.jQuery);
