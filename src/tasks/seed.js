@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 async function main() {
               //////user//////
-/*     try {
+     try {
         await usersData.createUser(
             'Zon',
             'Wei',
@@ -82,7 +82,23 @@ async function main() {
               "city": "Jersey City",
               "lat": 40.7467, 
               "lon": -74.0574 
-            }
+            },
+            [{
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "",
+                sellerLink: ""
+            },{
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
+                sellerLink: "https://get.teamviewer.com/s06432945"
+            },{
+                startTime: new Date().getTime(), 
+                endTime: new Date().getTime()+3600000, 
+                buyerLink: "",
+                sellerLink: ""
+            }]
          );
       } catch (e) {
           console.log(e);
@@ -103,7 +119,23 @@ async function main() {
               "city": "Washington",
               "lat": 38.9072, 
               "lon": -77.0369 
-            }
+            },
+            [{
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "",
+                sellerLink: ""
+            },{
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
+                sellerLink: "https://get.teamviewer.com/s06432945"
+            },{
+                startTime: new Date().getTime(), 
+                endTime: new Date().getTime()+3600000, 
+                buyerLink: "",
+                sellerLink: ""
+            }]
          );
       } catch (e) {
           console.log(e);
@@ -125,10 +157,26 @@ async function main() {
            "lat": 47.6034, 
            "lon": -122.3414 
          }
+         [{
+            startTime: 1651988836000, 
+            endTime: 1651988936000, 
+            buyerLink: "",
+            sellerLink: ""
+        },{
+            startTime: 1651988836000, 
+            endTime: 1651988936000, 
+            buyerLink: "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
+            sellerLink: "https://get.teamviewer.com/s06432945"
+        },{
+            startTime: new Date().getTime(), 
+            endTime: new Date().getTime()+3600000, 
+            buyerLink: "",
+            sellerLink: ""
+        }]
       );
     } catch (e) {
         console.log(e);
-    }  */
+    }  
 
          
     
@@ -139,13 +187,13 @@ async function main() {
     
     
     ////////session//////////
-    try {
+    /* try {
         await productsData.createSession(
             "627756f59cd000b47ff88acc", 
-            1651988836, 
-            1651988936, 
-            "NA", 
-            "NA"
+            1651988836000, 
+            1651988936000, 
+            "", 
+            ""
             )
     }
     catch (e){
@@ -155,8 +203,8 @@ async function main() {
     try {
         await productsData.createSession(
             "627756f59cd000b47ff88acc", 
-            1650988836, 
-            1650988936, 
+            1750988836000, 
+            1750988936000, 
             "https://get.teamviewer.com/s06432945-t4HO88yy20JF", 
             "https://get.teamviewer.com/s06432945"
             )
@@ -175,8 +223,8 @@ async function main() {
             )
     }
     catch (e){
-        throw e
-    }
+        throw e 
+    }*/
 
 
 
@@ -221,8 +269,8 @@ async function main() {
       );
     } catch (e) {
         console.log(e);
-    }
- */
+    }*/
+ 
 }
 
 main();
