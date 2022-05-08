@@ -202,7 +202,6 @@ router.get("/all", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     let user = req.session.user;
-    console.log(user)
     if (user){
         try {
             const prodData = await products.getProductById(req.params.id);
@@ -227,8 +226,7 @@ router.get("/:id", async (req, res) => {
                 "session" : prodData.sessions,  //[[start,end],[start,end]]
                 "comments" : comments //["xxx","xxx"]
             }
-            console.log(response)
-            res.render('../views/pages/page-item-detail',{});
+            res.render('pages/page-item-detail',{});
         }
         catch (e) {
             return res.status(404).json({error: e});
