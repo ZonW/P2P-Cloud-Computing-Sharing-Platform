@@ -240,20 +240,34 @@ const exportedMethods = {
     await productsCollection.updateOne({ _id: ObjectId(productId) }, { $set: updateInfo });
 
 
-    return { sessionCreated: true }
+    return { sessionCreated: true };
   },
 
-  async modifySession(sessionId){
-    return;
-  },
-  
-  /* async searchProduct(search_features){
+  async modifySession(sessionId, buyerLink, sellerLink, active){
+    const productId = await this.getProductBySession(sessionId);
+    const productInfo = await this.getProductById(productId);
+    var updateInfo = [];
+    for (var i = 0; i < productInfo.sessions.length; i++){
+      if (productInfo.sessions[i]._id.toString() === sessionId){
+        updateInfo.push(
+          {
+            _id: ObjectId(sessionId),
+            startTime: productInfo.sessions[i].startTime,
+            endTime: productInfo.sessions[i].endTime,
+            buyerLink: buyerLink,
+            sellerLink: sellerLink,
+            active: active
+          }
+        );
+      } else {
+        updateInfo.push(productInfo.sessions[i]);
+      }
+    }
     const productsCollection = await products();
-    const productList = await productsCollection
-    .find( { 'features.RAM' : '1023 MB' } )
-    .toArray();
-    return productList;
-  }, */
+    await productsCollection.updateOne({ _id: ObjectId(productId) }, { $set: { sessions: updateInfo } });
+    return { sessionModified: true };
+  },
+
 
   async addComment(userId, productId, comment_info){
     if (!userId) throw "userId must be provided";

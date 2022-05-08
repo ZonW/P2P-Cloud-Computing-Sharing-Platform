@@ -5,6 +5,7 @@ const products = require("../data/products");
 const axios = require('axios')
 const url = require('url');
 const { getUserByEmail } = require("../data/users");
+const { modifySession } = require("../data/products");
 
 router.get("/page-order-history", async (req, res) => {
     let user = await req.session.user;
@@ -99,6 +100,9 @@ router.post("/page-sell-history", async (req, res) => {
     
         axios(tokenRequestOptions)
         .then(function (response) {
+            if(!response.data.access_token){
+                throw "No token get"
+            }
             const token = response.data.access_token;
             console.log(token)
             const sessionRequestOptions = {
@@ -117,7 +121,8 @@ router.post("/page-sell-history", async (req, res) => {
                 const responseSession = response.data;
                 try{
                     //res.redirect(url.parse(req.url).pathname);
-                    res.render("../views/pages/page-sell-history", responseSession);
+                    modifySession(sessionId,responseSession.supporter_link, responseSession.end_customer_link, true)
+                    res.send(responseSession);
                 } catch (e) {
                     return res.status(400).json({error: e});
                 }
