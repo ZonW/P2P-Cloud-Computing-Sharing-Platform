@@ -8,7 +8,7 @@ const exportedMethods = {
         if (typeof username !== 'string') throw 'username must be string';
         var username = username.trim();
         if (!/^[\d\w]+$/.test(username)) throw 'username is not a valid string';
-        if (username.length < 4) throw 'username is not a valid string';
+        if (username.length < 3) throw 'username is not a valid string';
         return username.toLowerCase();
     },
 
@@ -18,7 +18,6 @@ const exportedMethods = {
         if (password.length < 6) throw 'password is not a valid string';
         return password;
     },
-
 
     checkName(name) {
         if (typeof name !== 'string') throw '';
@@ -92,7 +91,8 @@ const exportedMethods = {
     async getUserByName(username) {
         const usersCollection = await users();
         const username_lower = username.toLowerCase();
-        const userInfo = await usersCollection.findOne({ username: username_lower });
+        console.log(username_lower);
+        const userInfo = await usersCollection.findOne({ userName: username_lower });
         if (!userInfo) return false;
         return userInfo;
     },
@@ -112,18 +112,7 @@ const exportedMethods = {
         return userInfo;
     },
     // final user DB
-    async createUser(
-        firstName,
-        lastName,
-        email,
-        userName,
-        phone,
-        password,
-        city,
-        state,
-        country,
-        zipCode,
-    ) {
+    async createUser(firstName, lastName, email, userName, phone, password, city, state, country, zipCode) {
         if (!userName) throw 'username must be provided';
         if (!password) throw 'password must be provided';
         if (!firstName) throw 'firstname must be provided';
@@ -134,68 +123,75 @@ const exportedMethods = {
         if (!state) throw 'state must be provided';
         if (!country) throw 'country must be provided';
         if (!zipCode) throw 'zipCode must be provided';
+        // try {
+        //     this.checkUsername(userName);
+        //     this.checkPassword(password);
+        //     this.checkName(firstName);
+        //     this.checkName(lastName);
+        //     this.checkPhone(phone);
+        //     this.checkEmail(email);
+        //     this.checkCity(city);
+        //     this.checkState(state);
+        //     this.checkCountry(country);
+        //     this.checkZipCode(zipCode);
+        // } catch (err) {
+        //     console.log(err);
+        //     throw err;
+        // }
 
-        try {
-            this.checkUsername(userName);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkPassword(password);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkPassword(password);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkName(firstName);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkName(firstName);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkName(lastName);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkName(lastName);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkEmail(email);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkEmail(email);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkPhone(phone);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkPhone(phone);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkCity(city);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkCity(city);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkState(state);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkState(state);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkCountry(country);
+        // } catch (err) {
+        //     throw err;
+        // }
 
-        try {
-            this.checkCountry(country);
-        } catch (err) {
-            throw err;
-        }
-
-        try {
-            this.checkZipCode(zipCode);
-        } catch (err) {
-            throw err;
-        }
-
-
+        // try {
+        //     this.checkZipCode(zipCode);
+        // } catch (err) {
+        //     throw err;
+        // }
         const saltRounds = 10;
         const _username_ = this.checkUsername(userName);
         const _password_ = await bcryptjs.hash(password, saltRounds);
@@ -203,28 +199,26 @@ const exportedMethods = {
         const usersCollection = await users();
         const userInfo = await this.getUserByName(_username_);
         if (userInfo) throw 'there is already a user with that username';
-
         let newUser = {
             userName: _username_,
             password: _password_,
             name: {
-                firstName: this.checkName(firstName),
-                lastName: this.checkName(lastName),
+                firstName: firstName,
+                lastName: lastName,
             },
             contacts: {
-                email: this.checkEmail(email),
-                phone: this.checkPhone(phone),
+                email: email,
+                phone: phone,
             },
             address: {
-                city: this.checkCity(city),
-                state: this.checkState(state),
-                country: this.checkCountry(country),
-                zipCode: this.checkZipCode(zipCode),
+                city: city,
+                state: state,
+                country: country,
+                zipCode: zipCode,
             },
             orderSessionHistory: [],
             sellingServers: [],
         };
-
         const newInsertInformation = await usersCollection.insertOne(newUser);
         if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
         return { userInserted: true };
@@ -335,7 +329,6 @@ const exportedMethods = {
         } else {
             updatedInfoData.address.zipCode = {};
         }
-
 
         await usersCollection.updateOne({ _id: ObjectId(userId) }, { $set: updatedInfoData });
 
