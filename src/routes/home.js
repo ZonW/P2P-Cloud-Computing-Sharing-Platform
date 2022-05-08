@@ -12,24 +12,14 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.post('/search', async (req, res) => {
+router.post('/search',async (req, res) => {
     try{
         const userInfo = req.body;
         console.log(userInfo);
         const mes = await products.filterProduct(userInfo);
-        console.log(mes)
-        var resMess = {};
-        for (var i = 0; i<Object.keys(mes).length; i++){
-            if (!mes[i].overall_score) {rating = ""}
-            else {rating = mes[i].overall_score}
-            var tmp = {
-                _id: mes[i]._id.toString(),
-                name: mes[i].name,
-                description: mes[i].description,
-                price: mes[i].unitPrice,
-                rating: rating
-            };
-            resMess[i+1] = tmp;
+        var resMess = {}
+        for (var i = 0; i<mes.Keys().length; i++){
+            resMess.i = mes[0];
         }
         console.log(resMess);
         res.json({ success: true, message: mes });
@@ -37,7 +27,7 @@ router.post('/search', async (req, res) => {
         return res.status(400).json({error: e});
     }
 })
-router.get('/first', async (req, res) => {
+router.get('/first',async () => {
 
 })
 

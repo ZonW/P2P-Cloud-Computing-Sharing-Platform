@@ -80,7 +80,6 @@ router.post('/page-user-login', async (req, res) => {
         }
         // if (!email.match('^[a-zA-Z0-9]+$')) throw 'email can only be alphanumeric characters';
         if (email.length < 4) throw 'email should be at least 4 characters';
-        console.log(2222);
         if (password.trim().length === 0) throw 'password with only spaces is not allowed';
         for (let i = 0; i < password.length; i++) {
             if (password[i] === ' ') throw 'password cannot contain space';
@@ -97,7 +96,6 @@ router.post('/page-user-login', async (req, res) => {
         if (user.authenticated == true) {
             req.session.user = email;
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`);
-            console.log(9999);
             res.redirect('../');
         } else {
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`);

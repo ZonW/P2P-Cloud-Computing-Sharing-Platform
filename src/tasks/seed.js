@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 async function main() {
               //////user//////
-    try {
+    /* try {
         await usersData.createUser(
             'Zon',
             'Wei',
@@ -54,11 +54,11 @@ async function main() {
         );
     } catch (e) {
         console.log(e); 
-    }
+    }*/
               ///// Products/////
 
 
-     try {
+     /* try {
          const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
          await productsData.createProduct(
              userInfo1._id.toString(),
@@ -119,7 +119,7 @@ async function main() {
       );
     } catch (e) {
         console.log(e);
-    }
+    } */
 
           ////////session//////////
 
@@ -129,7 +129,7 @@ async function main() {
       const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
       await productsData.addComment(
           userInfo1._id.toString(),
-          "6276d28ba33ff84b89246543",
+          "62764cdfc2160d9772b04ff1",
           {"content": "Very good computer",
             "rating": 2,
           }
@@ -142,7 +142,7 @@ async function main() {
       const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
       await productsData.addComment(
           userInfo1._id.toString(),
-          "6276d28ba33ff84b89246543",
+          "62764cdfc2160d9772b04ff1",
           {"content": "Another very good computer",
             "rating": 4,
           }
@@ -155,7 +155,7 @@ async function main() {
       const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
       await productsData.addComment(
           userInfo1._id.toString(),
-          "6276d28ba33ff84b89246543",
+          "62764cdfc2160d9772b04ff2",
           {"content": "Good for deep learning",
             "rating": 4,
           }
