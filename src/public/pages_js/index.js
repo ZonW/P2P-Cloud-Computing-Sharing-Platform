@@ -1,4 +1,4 @@
-(function ($) {
+(async function ($) {
 
     let recent = [];
 
@@ -13,22 +13,6 @@
         lon:-74.0476
     };
 
-    let testRecentData = {
-
-        name:"sdsdsPC",
-        description:"asdfasdfadsfasdfasdfasdfadsfasdfhasdkfjashdflashdflkajsdhfajlsksdfhajsdslkdfasdfa",
-        price:"150"
-
-    };
-
-    let testListingData = {
-
-        name:"sdsdsPC",
-        description:"This is a good PC for code test",
-        price:"150",
-        rating:"3.5"
-
-    };
 
     let requestConfig = {
         method : "POST",
@@ -54,7 +38,7 @@
 
     });
 
-    
+
 
     $.ajax(requestConfig2).then(function (responseMessage) {
 
@@ -65,7 +49,7 @@
             mainDiv.append("<h3>No recent products found!</h3>");
         } else {
             for(let i of recent) {
-                    console.log(1)
+                    console.log(i._id)
 
                     if (i.description.length>300){
                         i.description = i.description.slice(0,297) + "...";
@@ -75,7 +59,7 @@
                         "        <div class='row g-0'>" +
                         "            <div class='col-xl-6 col-md-5 col-sm-7'>" +
                         "                <div class='card-body'>" +
-                        "                    <a href='#' class='title h5'>"+i.name+"</a>" +
+                        "                    <a href='/"+i._id+"' class='title h5'>"+i.name+"</a>" +
                         "                    <p> "+i.description+"</p>" +
                         "                </div>" +
                         "            </div>" +
@@ -86,7 +70,7 @@
                         "                    </div>" +
                         "                    <br>" +
                         "                        <div class='mb-3'>" +
-                        "                            <a href='#' class='btn btn-primary'> Buy this </a>" +
+                        "                            <a href='/"+i._id+"' class='btn btn-primary'> Buy this </a>" +
                         "                        </div>" +
                         "                </div>" +
                         "            </aside>" +
@@ -101,96 +85,6 @@
     if(recent.length > 5) recent = recent.slice(0,5);
 
 
-
-    let ajaxTest = {
-        1:{
-            name:"ajax",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-        },
-        2:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:"2"
-
-        },
-        3:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:"3"
-
-        },
-        4:{
-
-            name:"testss",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:"1.1"
-
-        },
-        5:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        },
-        6:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        },
-        7:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        },
-        8:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        },
-        9:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        },
-        10:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        },
-        11:{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        }
-    };
-
     let ajaxTestLength = 0;
 
     let ajaxTestConvert = [];
@@ -199,193 +93,6 @@
     //     ajaxTestLength += 1;
     //     ajaxTestConvert.push(ajaxTest[i]);
     // }
-
-    let test_listing = [
-        {
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        }, {
-
-            name: "sdsdsPC",
-            description: "This is a good PC for code test",
-            price: "2",
-            rating: "2"
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"3",
-            rating:"3"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"4",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"5",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"6",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"7",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"8",
-            rating:"3.5"
-
-        }, {
-
-            name: "sdsdsPC",
-            description: "This is a good PC for code test",
-            price: "9",
-            rating: "3.5"
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        }, {
-
-            name: "sdsdsPC",
-            description: "This is a good PC for code test",
-            price: "2",
-            rating: "2"
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"3",
-            rating:"3"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"4",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"5",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"6",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"7",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"8",
-            rating:"3.5"
-
-        }, {
-
-            name: "sdsdsPC",
-            description: "This is a good PC for code test",
-            price: "9",
-            rating: "3.5"
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"1",
-            rating:""
-
-        }, {
-
-            name: "sdsdsPC",
-            description: "This is a good PC for code test",
-            price: "2",
-            rating: "2"
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"3",
-            rating:"3"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"4",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"5",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"6",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"7",
-            rating:"3.5"
-
-        },{
-
-            name:"sdsdsPC",
-            description:"This is a good PC for code test",
-            price:"8",
-            rating:"3.5"
-
-        }, {
-
-            name: "sdsdsPC",
-            description: "This is a good PC for code test",
-            price: "9",
-            rating: "3.5"
-        }
-    ];
 
 
 
@@ -414,6 +121,10 @@
     let lastPage = $("#last_page");
     let resultDiv = $("#result_div");
     let showDiv = $("#show_div");
+
+    let flag = 1;
+
+    let higherShowDiv = $("#higher_show_div");
 
 
     prePage.on('click',function(event){
@@ -511,19 +222,46 @@
             searchInfo.sortBy="newestListed";
         }
 
-        console.log(searchInfo);
+        // console.log(searchInfo);
+        //
+        // currentPageNumber = 1;
+        // showDiv.html(drawDiv());
+        // $.ajax(requestConfig).then(function (responseMessage){
+        //      for(let i in responseMessage.message){
+        //
+        //         ajaxTestConvert.push(responseMessage.message[i]);
+        //     }
+        //      currentPageNumber = 1;
+        //      showDiv.html(drawDiv());
+        //
+        // });
+        requestConfig.data = JSON.stringify(searchInfo);
+        console.log(requestConfig.data);
 
-        currentPageNumber = 1;
-        showDiv.html(drawDiv());
+        ajaxTestConvert = [];
+        showDiv.html("");
+        console.log(requestConfig)
         $.ajax(requestConfig).then(function (responseMessage){
-             for(let i in responseMessage.message){
-        
+            for(let i in responseMessage.message){
                 ajaxTestConvert.push(responseMessage.message[i]);
+                console.log(responseMessage.message[i]);
             }
-             currentPageNumber = 1;
-             showDiv.html(drawDiv());
-        
+
+            currentPageNumber = 1;
+
         });
+        setTimeout(function(){
+            if(ajaxTestConvert.length === 0){
+                resultNav.attr("hidden","hidden");
+                showDiv.append("<h3>No product found!</h3>");
+                flag = 2;
+            }
+            else{
+                currentPageNumber = 1;
+                showDiv.append(drawDiv());
+                flag = 2;
+            }
+        },1000);
 
     });
 
@@ -656,7 +394,7 @@
                 "        <div class='row g-0'>" +
                 "            <div class='col-xl-6 col-md-5 col-sm-7'>" +
                 "                <div class='card-body'>" +
-                "                    <a href='#' class='title h5'>"+i.name+"</a>" +
+                "                    <a href='/"+i._id+"' class='title h5'>"+i.name+"</a>" +
                 "                    <div class='rating-wrap mb-2'>" +
                 "                        <ul class='rating-stars'>" +
                 "                           <li class='stars-active' style='width: "+(i.rating/5)*100+"%;'>" +
@@ -675,7 +413,7 @@
                 "                    </div>" +
                 "                    <br>" +
                 "                        <div class='mb-3'>" +
-                "                            <a href='#' class='btn btn-primary'> Buy this </a>" +
+                "                            <a href='/"+i._id+"' class='btn btn-primary'> Buy this </a>" +
                 "                        </div>" +
                 "                </div>" +
                 "            </aside>" +
@@ -691,9 +429,14 @@
     }
     searchButton.on('click',function (event){
 
+
         let inputKeyword = $("#search_content");
         inputKeyword = inputKeyword.val().trim();
+        console.log(inputKeyword);
         let searchAlert = $("#search_alert");
+        if(flag != 1){
+            location.reload();
+        }
 
 
        if(inputKeyword === "") {
@@ -702,38 +445,39 @@
            $("#alert").css("color","red");
        }
        else{
+
            searchAlert.html("");
            searchAlert.attr("hidden","hidden");
 
            searchInfo.keywords = inputKeyword;
            requestConfig.data = JSON.stringify(searchInfo);
-           console.log(searchInfo);
 
 
            recentResult.attr("hidden","hidden");
            searchResult.removeAttr("hidden");
-
-
-           if(ajaxTestConvert.length === 0){
-               resultNav.attr("hidden","hidden");
-               resultDiv.html("<h3>No product found!</h3>");
-           }
-           else{
-               currentPageNumber = 1;
-               showDiv.html(drawDiv());
-           }
-
-           console.log(requestConfig);
            $.ajax(requestConfig).then(function (responseMessage){
-               console.log(responseMessage.message)
-                for(let i in responseMessage.message){
-                    console.log(responseMessage.message[i])
+               for(let i in responseMessage.message){
                    ajaxTestConvert.push(responseMessage.message[i]);
                }
-                currentPageNumber = 1;
-                resultDiv.html(drawDiv());
-           
+
+               currentPageNumber = 1;
+
            });
+           setTimeout(function(){
+               if(ajaxTestConvert.length === 0){
+                   resultNav.attr("hidden","hidden");
+                   showDiv.append("<h3>No product found!</h3>");
+                   flag = 2;
+               }
+               else{
+                   currentPageNumber = 1;
+                   showDiv.append(drawDiv());
+                   flag = 2;
+               }
+           },1000);
+
+
+
        }
 
 
@@ -746,6 +490,7 @@
         let distanceMin = Number($("#distance_min").val());
         let distanceMax = Number($("#distance_max").val());
 
+        console.log(searchInfo);
 
         if(priceMin < 0 || priceMax > 10000||priceMin > priceMax ||priceMax <= 0||
             distanceMin < 0 || distanceMax > 10000|| distanceMin > distanceMax ||distanceMax <= 0){
@@ -754,18 +499,32 @@
 
 
         }else{
-            console.log(searchInfo);
-            // $.ajax(requestConfig).then(function (responseMessage){
-            //      for(let i in responseMessage){
-            //
-            //         ajaxTestConvert.push(ajaxTest[i]);
-            //     }
-            //      currentPageNumber = 1;
-            //      showDiv.html(drawDiv());
-            //
-            // });
-            currentPageNumber = 1;
-            showDiv.html(drawDiv());
+            requestConfig.data = JSON.stringify(searchInfo);
+
+            ajaxTestConvert = [];
+            showDiv.html("");
+            console.log(requestConfig)
+            $.ajax(requestConfig).then(function (responseMessage){
+                for(let i in responseMessage.message){
+                    ajaxTestConvert.push(responseMessage.message[i]);
+                    console.log(responseMessage.message[i]);
+                }
+
+                currentPageNumber = 1;
+
+            });
+            setTimeout(function(){
+                if(ajaxTestConvert.length === 0){
+                    resultNav.attr("hidden","hidden");
+                    showDiv.append("<h3>No product found!</h3>");
+                    flag = 2;
+                }
+                else{
+                    currentPageNumber = 1;
+                    showDiv.append(drawDiv());
+                    flag = 2;
+                }
+            },1000);
         }
 
     });
