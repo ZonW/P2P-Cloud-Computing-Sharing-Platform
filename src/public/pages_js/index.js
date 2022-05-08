@@ -48,7 +48,6 @@
     };
 
     $.ajax(requestConfig1).then(function (responseMessage) {
-
         searchInfo.lat = responseMessage.lat;
         searchInfo.lon = responseMessage.lon;
 

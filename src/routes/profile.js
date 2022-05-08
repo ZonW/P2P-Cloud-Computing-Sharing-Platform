@@ -125,7 +125,7 @@ router.post("/page-###", async (req, res) => {
     else{
         res.redirect("/user/page-user-login");
     }
-})
+});
 
 router.get("/page-new-item", (req, res) => {
     try {
@@ -135,5 +135,15 @@ router.get("/page-new-item", (req, res) => {
         return res.status(404).json({error: e});
     }
 });
+
+router.post("/add_comment", (req, res) => {
+    try {
+      res.render("../views/pages/page-new-item", {});
+    }
+    catch (e) {
+        return res.status(404).json({error: e});
+    }
+});
+
 
 module.exports = router;
