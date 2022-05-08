@@ -36,6 +36,7 @@
 </div>
 <div class="card shadow mx-auto" style="max-width:400px; margin: top 0;;">
     <div class="card-body">
+        <div id="error" class="text-goes-here" hidden>wrong email or password</div>
         <h4 class="mb-4">Log in here</h4>
         <form id="login-form" method="post" action="page-user-login">
             <div class="mb-3">
@@ -57,7 +58,6 @@
         <a href="/user/page-user-signup" class="btn w-100 btn-light">Create new account</a>
         
         {{!-- {{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}} --}}
-        <div id="error" class="text-goes-here" hidden>I'm an error</div>
     </div> <!-- card-body end.// -->
 </div> <!-- card end.// -->
 <!-- ============= COMPONENT LOGIN 1 END.// ============= -->

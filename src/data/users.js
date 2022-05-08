@@ -19,7 +19,6 @@ const exportedMethods = {
         return password;
     },
 
-
     checkName(name) {
         if (typeof name !== 'string') throw 'name must be string';
         var name = name.trim();
@@ -111,18 +110,7 @@ const exportedMethods = {
         return userInfo;
     },
     // final user DB
-    async createUser(
-        firstName,
-        lastName,
-        email,
-        username,
-        phone,
-        password,
-        city,
-        state,
-        country,
-        zipCode,
-    ) {
+    async createUser(firstName, lastName, email, username, phone, password, city, state, country, zipCode) {
         if (!username) throw 'username must be provided';
         if (!password) throw 'password must be provided';
         if (!firstName) throw 'firstname must be provided';
@@ -182,11 +170,11 @@ const exportedMethods = {
             throw err;
         }
 
-        try {
-            this.checkCountry(country);
-        } catch (err) {
-            throw err;
-        }
+        // try {
+        //     this.checkCountry(country);
+        // } catch (err) {
+        //     throw err;
+        // }
 
         try {
             this.checkZipCode(zipCode);
@@ -194,15 +182,13 @@ const exportedMethods = {
             throw err;
         }
 
-
         const saltRounds = 10;
         const _username_ = this.checkUsername(username);
         const _password_ = await bcryptjs.hash(password, saltRounds);
         const usersCollection = await users();
         const userInfo = await this.getUserByName(_username_);
         const userInfo_email = await this.getUserByEmail(this.checkEmail(email));
-        if (userInfo || userInfo_email) throw 'there is already a user with that username';
-        
+        if (userInfo || userInfo_email) throw 'there is already a user with that username or emial';
 
         let newUser = {
             username: _username_,
@@ -218,7 +204,8 @@ const exportedMethods = {
             address: {
                 city: this.checkCity(city),
                 state: this.checkState(state),
-                country: this.checkCountry(country),
+                // country: this.checkCountry(country),
+                country: country,
                 zipCode: this.checkZipCode(zipCode),
             },
             orderSessionHistory: [],
@@ -335,7 +322,6 @@ const exportedMethods = {
         } else {
             updatedInfoData.address.zipCode = {};
         }
-
 
         await usersCollection.updateOne({ _id: ObjectId(userId) }, { $set: updatedInfoData });
 

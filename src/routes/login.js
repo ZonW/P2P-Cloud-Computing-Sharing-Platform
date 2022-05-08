@@ -19,26 +19,32 @@ router.get('/page-user-login', (req, res) => {
 //GET signup
 router.get('/page-user-signup', (req, res) => {
     if (req.session.user) {
-        res.redirect('../');
+        res.redirect('/');
     } else {
         res.status(401).render('../views/pages/page-user-signup', {});
         return;
     }
 });
 
-//POST signup    
+//POST signup
 router.post('/page-user-signup', async (req, res) => {
     try {
-        const username = users.checkUsername(req.body.username);
+        const username = users.checkUsername(req.body.userName);
         const firstName = users.checkName(req.body.firstName);
         const lastName = users.checkName(req.body.lastName);
         const email = users.checkEmail(req.body.email);
-        const password = users.checkPassword(req.body.password);
-        const phone = users.checkPhone(req.body.phone);
+        const password = users.checkPassword(req.body.passWord);
+        const repeatedPass = req.body.repeatedPass;
+        const phone = users.checkPhone(req.body.phoneNum);
         const city = users.checkCity(req.body.city);
         const state = users.checkState(req.body.state);
-        const country = users.checkCountry(req.body.country);
+        // const country = users.checkCountry(req.body.country);
+        const country = req.body.country;
         const zipCode = users.checkZipCode(req.body.zipCode);
+        // console.log(req.body);
+        if(password!==repeatedPass){
+            throw "password and repeated password are not same";
+        }
 
         const user = await users.createUser(
             firstName,
@@ -52,18 +58,19 @@ router.post('/page-user-signup', async (req, res) => {
             country,
             zipCode
         );
-
+        console.log(123);
         if (user.userInserted) {
+            console.log(333);
             res.redirect('/');
             return;
         } else {
-            res.status(500).render('../views/pages/page-user-signup', { error :  'Internal Server Error' });
+            res.status(500).render('../views/pages/page-user-signup', { error: 'Internal Server Error' });
             return;
         }
     } catch (e) {
-        res.status(500).render('../views/pages/page-user-signup', { error : e });
+        console.log(e);
+        res.status(500).render('../views/pages/page-user-signup', { error: e });
     }
-
 });
 
 //POST login

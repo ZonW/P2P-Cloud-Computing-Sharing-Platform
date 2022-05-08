@@ -27,7 +27,7 @@
 
 
 <!-- ====== COMPONENT LOGIN  ====== -->
-{{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}}
+<div id="error" class="text-goes-here" hidden>{{error}}</div>
 <div class="card shadow mx-auto" style="max-width:400px; margin-top:40px;">
 	<div class="card-body">
 	<h4 class="card-title mb-4">Sign up here</h4>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="userName">User name</label>
-			<input id="userName" class="form-control" placeholder="User name" type="text" name = "username">
+			<input id="userName" class="form-control" placeholder="User name" type="text" name = "userName">
 	   </div>  
 		<div class="mb-3">
 			 <label class="form-label" for="Country code" >Phone</label>
