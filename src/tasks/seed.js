@@ -68,6 +68,7 @@ async function main() {
     ///// Products/////
 
      try {
+        console.log(1)
          const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
          await productsData.createProduct(
              userInfo1._id.toString(),
@@ -82,7 +83,29 @@ async function main() {
               "city": "Jersey City",
               "lat": 40.7467, 
               "lon": -74.0574 
-            }
+            },
+            [{
+                _id: ObjectId(),
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "",
+                sellerLink: "",
+                active: true
+            },{
+                _id: ObjectId(),
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
+                sellerLink: "https://get.teamviewer.com/s06432945",
+                active: true
+            },{
+                _id: ObjectId(),
+                startTime: new Date().getTime(), 
+                endTime: new Date().getTime()+360000000, 
+                buyerLink: "",
+                sellerLink: "",
+                active: false
+            }]
          );
       } catch (e) {
           console.log(e);
@@ -103,13 +126,36 @@ async function main() {
               "city": "Washington",
               "lat": 38.9072, 
               "lon": -77.0369 
-            }
+            },
+            [{
+                _id: ObjectId(),
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "",
+                sellerLink: "",
+                active: true
+            },{
+                _id: ObjectId(),
+                startTime: 1651988836000, 
+                endTime: 1651988936000, 
+                buyerLink: "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
+                sellerLink: "https://get.teamviewer.com/s06432945",
+                active: true
+            },{
+                _id: ObjectId(),
+                startTime: new Date().getTime(), 
+                endTime: new Date().getTime()+3600000, 
+                buyerLink: "",
+                sellerLink: "",
+                active: true
+            }]
          );
       } catch (e) {
           console.log(e);
       }
 
      try {
+         console.log(1)
       const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
       await productsData.createProduct(
           userInfo1._id.toString(),
@@ -124,11 +170,34 @@ async function main() {
            "city": "Seattle",
            "lat": 47.6034, 
            "lon": -122.3414 
-         }
+         },
+         [{
+            _id: ObjectId(),
+            startTime: 1651988836000, 
+            endTime: 1651988936000, 
+            buyerLink: "",
+            sellerLink: "",
+            active: true
+        },{
+            _id: ObjectId(),
+            startTime: 1651988836000, 
+            endTime: 1651988936000, 
+            buyerLink: "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
+            sellerLink: "https://get.teamviewer.com/s06432945",
+            active: true
+        },{
+            _id: ObjectId(),
+            startTime: new Date().getTime(), 
+            endTime: new Date().getTime()+3600000, 
+            buyerLink: "",
+            sellerLink: "",
+            active: true
+        }]
       );
     } catch (e) {
+        console.log(1)
         console.log(e);
-    }
+    }  
 
          
     
@@ -138,45 +207,45 @@ async function main() {
     
     
     
-    // ////////session//////////
-    // try {
-    //     await productsData.createSession(
-    //         "627756f59cd000b47ff88acc",
-    //         1651988836,
-    //         1651988936,
-    //         "NA",
-    //         "NA"
-    //         )
-    // }
-    // catch (e){
-    //     throw e
-    // }
-    //
-    // try {
-    //     await productsData.createSession(
-    //         "627756f59cd000b47ff88acc",
-    //         1650988836,
-    //         1650988936,
-    //         "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
-    //         "https://get.teamviewer.com/s06432945"
-    //         )
-    // }
-    // catch (e){
-    //     throw e
-    // }
-    //
-    // try {
-    //     await productsData.createSession(
-    //         "627756f59cd000b47ff88acc",
-    //         new Date().getTime(),
-    //         new Date().getTime()+3600000,
-    //         "https://get.teamviewer.com/s06432945-t4HO88yy20JF",
-    //         "https://get.teamviewer.com/s06432945"
-    //         )
-    // }
-    // catch (e){
-    //     throw e
-    // }
+    ////////session//////////
+    /* try {
+        await productsData.createSession(
+            "627756f59cd000b47ff88acc", 
+            1651988836000, 
+            1651988936000, 
+            "", 
+            ""
+            )
+    }
+    catch (e){
+        throw e
+    }
+
+    try {
+        await productsData.createSession(
+            "627756f59cd000b47ff88acc", 
+            1750988836000, 
+            1750988936000, 
+            "https://get.teamviewer.com/s06432945-t4HO88yy20JF", 
+            "https://get.teamviewer.com/s06432945"
+            )
+    }
+    catch (e){
+        throw e
+    }
+
+    try {
+        await productsData.createSession(
+            "627756f59cd000b47ff88acc", 
+            new Date().getTime(), 
+            new Date().getTime()+3600000, 
+            "https://get.teamviewer.com/s06432945-t4HO88yy20JF", 
+            "https://get.teamviewer.com/s06432945"
+            )
+    }
+    catch (e){
+        throw e 
+    }*/
 
 
 
@@ -221,8 +290,8 @@ async function main() {
       );
     } catch (e) {
         console.log(e);
-    }
- */
+    }*/
+ 
 }
 
 main();

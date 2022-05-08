@@ -2,10 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const products = require("../data/products");
-const users = require("../data/users");
 const axios = require('axios')
 const url = require('url');
-const ObjectId = require('mongodb').ObjectId;
 const { getUserByEmail } = require("../data/users");
 const { modifySession } = require("../data/products");
 
@@ -74,7 +72,7 @@ router.get("/order-details", async (req, res) => {
             res.send(responseData);
         }
         catch (e) {
-            return res.status(400).json({error: e});
+            return res.status(404).json({error: e});
         }
     }
     else{
@@ -146,9 +144,6 @@ router.get("/sell-details", async (req, res) => {
                                     "number" : "sessions"
                                 }
                 for (let j=0;j<prodSession.length;j++){
-                    console.log(prodSession[j]);
-                    console.log(prodSession[j]._id);
-                    console.log(typeof prodSession[j]._id.toString())
                     let prodSessionAtom = {
                         "_id" : prodSession[j]._id.toString(),
                         'startTime': prodSession[j].startTime,
@@ -183,81 +178,6 @@ router.get("/sell-details", async (req, res) => {
         res.redirect("/user/page-user-login");
     }
 });
-
-router.post("/createProduct", async (req, res) => {
-    console.log(req.body)
-    let user = await req.session.user;
-    if (user) {
-        const userInfo = await users.getUserByEmail(user);
-        //undefined parameters:
-        const time = Date.parse(new Date());
-        const lat = 1;
-        const lon = 1;
-        var sessions = [];
-        //
-
-        if (typeof req.body.features === 'string') {
-            features = [req.body.features];
-        } else {
-            features = req.body.features;
-        }
-        const location =  {
-            country: req.body.country,
-            region: req.body.region,
-            city: req.body.city,
-            lat: lat, 
-            lon: lon 
-        }
-
-        if (req.body.session1[0] === '' && req.body.session2[0] === '' && req.body.session3[0] === '') {
-            return res.status(404).json({error: 'no session'});
-        } else {
-            if (req.body.session1[0]){
-                sessions.push({
-                    _id: ObjectId(),
-                    startTime: Date.parse(req.body.session1[0]),
-                    endTime: Date.parse(req.body.session1[1]),
-                    buyerLink: '',
-                    sellerLink: '',
-                    active: true
-                  });
-            }
-            if (req.body.session2[0]){
-                sessions.push({
-                    _id: ObjectId(),
-                    startTime: Date.parse(req.body.session2[0]),
-                    endTime: Date.parse(req.body.session2[1]),
-                    buyerLink: '',
-                    sellerLink: '',
-                    active: true
-                  });
-            }
-            if (req.body.session3[0]){
-                sessions.push({
-                    _id: ObjectId(),
-                    startTime: Date.parse(req.body.session3[0]),
-                    endTime: Date.parse(req.body.session3[1]),
-                    buyerLink: '',
-                    sellerLink: '',
-                    active: true
-                  });
-            }
-            
-            try{
-                const productId = await products.createProduct(userInfo._id.toString(), req.body.new_name, req.body.description, req.body.operating_system, 
-                features, time, Number(req.body.new_price), location, sessions);
-                res.redirect(`/${productId}`);
-    
-            } catch (err) {
-                return res.status(404).json({error: err});
-            }
-        }
-    }
-    else{
-        res.redirect("/user/page-user-login");
-    }
-});
-
 
 router.post("/page-sell-history", async (req, res) => {
     const postData = req.body;
@@ -329,7 +249,7 @@ router.get("/page-new-item", (req, res) => {
       res.render("../views/pages/page-new-item", {});
     }
     catch (e) {
-        return res.status(400).json({error: e});
+        return res.status(404).json({error: e});
     }
 });
 
@@ -353,6 +273,5 @@ router.post("/add_comment", async (req, res) => {
         return res.status(400).json({error: 'Non-Authenticated User'});
     }
 });
-
 
 module.exports = router;
