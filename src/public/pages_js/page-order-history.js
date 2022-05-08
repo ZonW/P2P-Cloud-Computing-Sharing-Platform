@@ -1,4 +1,19 @@
 (function ($) {
+/*     let requestConfig = {
+      method : "GET",
+      url:"/page-order-history",
+    };
+
+    $.ajax(requestConfig).then(function (response) {
+        console.log(response)
+        uuu=response.body.userName
+
+    });  */
+
+    $.ajax({url: '/page-order-history'}).done(function (data) {
+      console.log(data);
+    });
+
     let responseMessage={
         userName:"shiwodadiao",
         email:"shiwodadiao@wohaoniu.com",
@@ -29,6 +44,7 @@
       }
     ]
   }  
+    $('#content-body').append(`<p>${uuu}</p>`)
 
     $.each(responseMessage.orderSessions,function(index,element){
         $('#content-body').append(
@@ -107,11 +123,11 @@
 
                   <strong hidden> ${responseMessage.orderSessions[index].sessions[indexSes].active} </strong>
 
-                  <div id="buyerNotStart">
+                  <div id="buyerNotStart_${index}_${indexSes}">
                   <strong> On going </strong>
                   <p>Please wait</p>
                   </div>
-                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="buyerLaunchButton">Launch</a>
+                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="buyerLaunchButton_${index}_${indexSes}">Launch</a>
 
                   <p id="demo"></p>
                 </figcaption>
@@ -150,13 +166,13 @@
             </script>
               `)
               if(!elementSes.supporter_link){
-                $('#buyerNotStart').show();
-                $('#buyerLaunchButton').hide();
-                $('#demo').hide();
+                $(`#buyerNotStart_${index}_${indexSes}`).show();
+                $(`#buyerLaunchButton_${index}_${indexSes}`).hide();
+                $(`#demo_${index}_${indexSes}`).hide();
               } else {
-                $('#buyerNotStart').hide();
-                $('#buyerLaunchButton').show();
-                $('#demo').show();
+                $(`#buyerNotStart_${index}_${indexSes}`).hide();
+                $(`#buyerLaunchButton_${index}_${indexSes}`).show();
+                $(`#demo_${index}_${indexSes}`).show();
               }
             }
           }

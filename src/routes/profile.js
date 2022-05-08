@@ -18,7 +18,6 @@ router.get("/page-order-history", async (req, res) => {
                 "userEmail" : user,
                 "purchaseHistory" : []
             };
-    
             const sessionInfo = userInfo.orderSessionHistory;
             for (let i;i=0;i++){
                 let sessionId = sessionInfo[i];
