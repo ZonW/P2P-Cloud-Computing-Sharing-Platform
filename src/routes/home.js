@@ -15,13 +15,11 @@ router.get("/", async (req, res) => {
 router.post('/search', async (req, res) => {
     try{
         const userInfo = req.body;
-        console.log(userInfo);
         const mes = await productsData.filterProduct(userInfo);
         var resMess = {}
-        for (var i = 0; i<mes.Keys().length; i++){
-            resMess.i = mes[0];
+        for (var i = 0; i<mes.length; i++){
+            resMess[i+1] = mes[i];
         }
-        console.log(resMess);
         res.json({ success: true, message: mes });
     } catch (e) {
         return res.status(400).json({error: e});
