@@ -1,22 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const productsData = require("../data/products");
+const products = require("../data/products");
 const users = require("../data/users");
 
 router.get("/", async (req, res) => {
     try{
-        let prodData = await productsData.getAllProduct()
+        let prodData = await products.getAllProduct()
         res.render("../views/pages/index", {});
     } catch(e) {
         return res.status(400).json({error: e});
     }
 })
 
-router.post('/search', async (req, res) => {
+router.post('/search',async (req, res) => {
     try{
         const userInfo = req.body;
         console.log(userInfo);
-        const mes = await productsData.filterProduct(userInfo);
+        const mes = await products.filterProduct(userInfo);
         var resMess = {}
         for (var i = 0; i<mes.Keys().length; i++){
             resMess.i = mes[0];
@@ -27,21 +27,8 @@ router.post('/search', async (req, res) => {
         return res.status(400).json({error: e});
     }
 })
-router.post('/first', async (req, res) => {
-    try {
-        const productList = await productsData.getAllProduct();
-        if (productList.length <= 5){
-            res.json({ success: true, message: productList });
-        } else {
-            const resList = [];
-            for (var i = 0; i < 5; i++){
-                resList.push(productList[i]);
-            }
-            res.json({ success: true, message: resList });
-        }
-    } catch (e) {
-        return res.status(400).json({error: e});
-    }
+router.get('/first',async () => {
+
 })
 
 
@@ -69,7 +56,7 @@ router.get("/all", async (req, res) => {
             sortBy: querys.sortBy
           }
 
-        let prodData = await productsData.filterProduct(filter_info);
+        let prodData = await products.filterProduct(filter_info);
         let indexlist = [];
         let resData = [];
 
@@ -116,7 +103,7 @@ router.get("/all", async (req, res) => {
             } else {
                 for (var i = 0; i<prodData.length; i++){
                     console.log(indexlist)
-                    var dis = productsData.getDistance(reqLat, reqLon, prodData[i].location.lat, prodData[i].location.long)
+                    var dis = products.getDistance(reqLat, reqLon, prodData[i].location.lat, prodData[i].location.long)
                     if (indexlist.length === 0){
                         indexlist.push(dis);
                         resData.push(prodData[i]);
@@ -197,7 +184,7 @@ router.get("/all", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        const prodData = await productsData.getProductById(req.params.id);
+        const prodData = await products.getProductById(req.params.id);
         let comments = prodData.comments;
         if (comments.length > 5){
             comments = comments.reverse().slice(4)
