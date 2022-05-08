@@ -1,12 +1,12 @@
 (function ($) {
-    /* let requestConfig = {
+/*      let requestConfig = {
       method : "GET",
-      url:"/page-sell-history",
+      url:"http://localhost:3000/page-sell-history",
     };
 
     $.ajax(requestConfig).then(function (responseMessage) {
 
-    }); */
+    });  */
 
     let responseMessage={
         userName:"shiwodadiao",

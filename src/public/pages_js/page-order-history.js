@@ -8,7 +8,11 @@
         console.log(response)
         uuu=response.body.userName
 
-    }); */
+    });  */
+
+    $.ajax({url: '/page-order-history'}).done(function (data) {
+      console.log(data);
+    });
 
     let responseMessage={
         userName:"shiwodadiao",
