@@ -7,32 +7,68 @@ const url = require('url');
 const { getUserByEmail } = require("../data/users");
 const { modifySession } = require("../data/products");
 
-router.get("/page-order-history", async (req, res) => {
+function groupBy(list, group, key, value) {
+    return Array.from(list
+        .reduce((map, object) => map.set(object[group], Object.assign(
+            map.get(object[group]) || { [group]: object[group] },
+            { [object[value]]: object[key] }
+        )), new Map)
+        .values()
+    );
+}
+
+router.get("/order-details", async (req, res) => {
     let user = await req.session.user;
     if (user) {
         try {
             const userInfo = await getUserByEmail(user);
             let responseData = {
                 "userId" : userInfo._id.toString(),
-                "userName" : userInfo.name,
-                "userEmail" : user,
-                "purchaseHistory" : []
+                "userName" : userInfo.username,
+                "email" : user,
+                "orderSessions" : []
             };
+           
             const sessionInfo = userInfo.orderSessionHistory;
-            for (let i;i=0;i++){
+            //console.log(sessionInfo)
+            for (let i=0;i<sessionInfo.length;i++){
                 let sessionId = sessionInfo[i];
+                //console.log(sessionId)
                 let prodInfo = await products.getProductBySession(sessionId);
-                let prodName = prodInfo.name;
-                let prodSession = prodInfo.sessions;
-                let prodId = prodInfo._id.toString();
-                let tempData = {
-                    "productId" : prodId,
-                    "productName" : prodName,
-                    "sessions" : prodSession
+                let prodDetail = await products.getProductById(prodInfo)
+                let prodName = prodDetail.name;
+                let prodSession = prodDetail.sessions;
+                
+                //console.log(prodSession) arr
+                let sessionAtom = {"productName" : prodName,
+                                    "sessions" : [],
+                                    "number" : "sessions"
+                                }
+                for (let j=0;j<sessionInfo.length;j++){
+                    let prodSessionAtom = {
+                        'startTime': prodSession[j].startTime,
+                        'endTime': prodSession[j].endTime,
+                        'active': prodSession[j].active,
+                        'end_customer_link': prodSession[j].sellerLink,
+                        'supporter_link': prodSession[j].buyerLink
+                    }
+                    sessionAtom.sessions.push(prodSessionAtom)
                 }
-                responseData.purchaseHistory.push(tempData);
+                responseData.orderSessions.push(sessionAtom)
             }
-            res.render("../views/pages/page-order-history", responseData);
+            let input = responseData.orderSessions;
+            //console.log(input)
+            let result
+            try{
+                result = groupBy(input, 'productName', 'sessions', 'number');
+            }
+            catch(e){
+                throw e
+            }
+            
+            console.log(result)
+            responseData.orderSessions = result
+            res.send(responseData);
         }
         catch (e) {
             return res.status(404).json({error: e});
@@ -43,27 +79,63 @@ router.get("/page-order-history", async (req, res) => {
     }
 });
 
-//All set
+router.get("/page-order-history",async (req, res) => {
+    let user = await req.session.user;
+    if (user) {
+        try {
+            const userInfo = await getUserByEmail(user);
+            res.render("../views/pages/page-order-history", {"userName": userInfo.username, "userEmail" : userInfo.contacts.email});
+        }
+        catch (e) {
+            return res.status(404).json({error: e});
+        }
+    }
+    else{
+        res.redirect("/user/page-user-login");
+    }
+});
+
+
 router.get("/page-sell-history", async (req, res) => {
+    let user = await req.session.user;
+    if (user) {
+        try {
+            const userInfo = await getUserByEmail(user);
+            res.render("../views/pages/page-sell-history", {"userName": userInfo.username, "userEmail" : userInfo.contacts.email});
+
+        }
+        catch (e) {
+            return res.status(404).json({error: e});
+        }
+    }
+    else{
+        res.redirect("/user/page-user-login");
+    }
+});
+
+
+
+//All set
+router.get("/sell-details", async (req, res) => {
     let user = await req.session.user;
     if (user) {
         const userInfo = await getUserByEmail(user);
         let sellData = userInfo.sellingServers;
         let responseData = {
             "userId" : userInfo._id.toString(),
-            "userName" : userInfo.name,
+            "userName" : userInfo.username,
             "userEmail" : user,
             "sellHistory" : []
         };
 
-        for (let i;i=0;i++){
+        for (let i=0;i<sellData.length;i++){
             let prodId = sellData[i];
             let prodInfo = await products.getProductById(prodId);
             responseData.sellHistory.push(prodInfo);
         }
 
         try {
-            res.render("../views/pages/page-sell-history", responseData);
+            res.send(responseData);
         }
         catch (e) {
             return res.status(404).json({error: e});
@@ -120,7 +192,7 @@ router.post("/page-sell-history", async (req, res) => {
                 const responseSession = response.data;
                 try{
                     //res.redirect(url.parse(req.url).pathname);
-                    modifySession(sessionId,responseSession.supporter_link, responseSession.end_customer_link, true)
+                    modifySession(sessionId,responseSession.supporter_link, responseSession.end_customer_link, false)
                     res.send(responseSession);
                 } catch (e) {
                     return res.status(400).json({error: e});

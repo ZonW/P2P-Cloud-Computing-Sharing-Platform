@@ -1,23 +1,22 @@
 (function ($) {
-/*     let requestConfig = {
+    let requestConfig = {
       method : "GET",
-      url:"/page-order-history",
+      url:"order-details",
     };
 
     $.ajax(requestConfig).then(function (response) {
         console.log(response)
-        uuu=response.body.userName
-
-    });  */
-
-    $.ajax({url: '/page-order-history'}).done(function (data) {
-      console.log(data);
-    });
-
-    let responseMessage={
+        let responseMessage = {
+          userName:response.userName,
+          email:response.email,
+          orderSessions:response.orderSessions
+        }
+        
+    //let responseMessage = {
+    let testData={
         userName:"shiwodadiao",
         email:"shiwodadiao@wohaoniu.com",
-        phone:"1145142333",
+   //     phone:"1145142333",
         orderSessions:[
         {
         productName: "qunimade",
@@ -44,7 +43,7 @@
       }
     ]
   }  
-    $('#content-body').append(`<p>${uuu}</p>`)
+    
 
     $.each(responseMessage.orderSessions,function(index,element){
         $('#content-body').append(
@@ -178,8 +177,16 @@
           }
 //        }
         })
-
       })
-
-
+    });
 })(window.jQuery);
+
+/*     axios({method: 'GET',
+          url: "/order-details"})
+    .then(function (response) {
+        console.log(response);
+        uuu = response.userName;
+    })
+    .catch(function (error) {
+        console.log(error);
+    }); */
