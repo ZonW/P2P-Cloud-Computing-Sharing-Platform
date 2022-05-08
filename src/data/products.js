@@ -302,8 +302,7 @@ const exportedMethods = {
     } catch (err) {
       throw err;
     }
-  }
-
+  },
 }
 
 module.exports = exportedMethods;

@@ -52,6 +52,7 @@ async function main(){
  
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 }
-main();
+const a = {1:1,2:3}
+console.log(Object.keys(a).length)
 
 
