@@ -98,7 +98,7 @@ const exportedMethods = {
         filterKeywords = true;
       }
       
-      if (dis <= key.distance && filterKeywords && filterFeature){
+      if (this.checkDistance(dis, key.distance) && filterKeywords && filterFeature){
         if (shortestDistance){
 
           if (dislist.length === 0){
@@ -134,10 +134,29 @@ const exportedMethods = {
         }
       }
     }
-
     return respondproductList;
     
   },
+
+  checkDistance(dis, distance){
+    return (dis >=distance[0] && dis <= distance[1]);
+  },
+
+  getDistance(lat1, lng1, lat2, lng2) {
+    lat1 = lat1 || 0;
+    lng1 = lng1 || 0;
+    lat2 = lat2 || 0;
+    lng2 = lng2 || 0;
+
+    var rad1 = lat1 * Math.PI / 180.0;
+    var rad2 = lat2 * Math.PI / 180.0;
+    var a = rad1 - rad2;
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+    var r = 6378137;
+    var distance = r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))/1000;
+
+    return distance.toFixed(3);
+},
 
 
   //all set
@@ -166,6 +185,7 @@ const exportedMethods = {
       location: location,
       sessions: [],
       comments: [],
+      overall_score: null
     }
 
     const newInsertInformation = await productsCollection.insertOne(newProduct);
@@ -268,7 +288,22 @@ const exportedMethods = {
     }
     await productsCollection.updateOne({ _id: ObjectId(productId) }, { $set: updateInfo });
     return { commentAdded: true };
+  },
+
+  async getProductBySession(sessionId){
+    const productsCollection = await products();
+    try{
+      productInfo = await productsCollection.find(
+        {'sessions._id': { $eq: ObjectId(sessionId) }},
+        { projection: { _id: 1, sessions: 1} 
+      }).toArray();
+      if (productInfo.length === 0) throw `session not found with id of ${sessionId}`;
+      return productInfo[0]._id.toString();
+    } catch (err) {
+      throw err;
+    }
   }
+
 }
 
 module.exports = exportedMethods;

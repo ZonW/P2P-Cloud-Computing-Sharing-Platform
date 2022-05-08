@@ -10,8 +10,29 @@ router.get("/page-order-history", async (req, res) => {
     let user = await req.session.user;
     if (user) {
         try {
-            const userInfo = await getUserByEmail(user)
-            res.render("../views/pages/page-order-history", userInfo);
+            const userInfo = await getUserByEmail(user);
+            let responseData = {
+                "userId" : userInfo._id.toString(),
+                "userName" : userInfo.name,
+                "userEmail" : user,
+                "purchaseHistory" : []
+            };
+    
+            const sessionInfo = userInfo.orderSessionHistory;
+            for (let i;i=0;i++){
+                let sessionId = sessionInfo[i];
+                let prodInfo = await products.getProductBySession(sessionId);
+                let prodName = prodInfo.name;
+                let prodSession = prodInfo.sessions;
+                let prodId = prodInfo._id.toString();
+                let tempData = {
+                    "productId" : prodId,
+                    "productName" : prodName,
+                    "sessions" : prodSession
+                }
+                responseData.purchaseHistory.push(tempData);
+            }
+            res.render("../views/pages/page-order-history", responseData);
         }
         catch (e) {
             return res.status(404).json({error: e});
@@ -26,14 +47,23 @@ router.get("/page-order-history", async (req, res) => {
 router.get("/page-sell-history", async (req, res) => {
     let user = await req.session.user;
     if (user) {
-        const userInfo = await getUserByEmail(user)
-        const sessionInfo = userInfo.orderSessionHistory;
+        const userInfo = await getUserByEmail(user);
+        let sellData = userInfo.sellingServers;
+        let responseData = {
+            "userId" : userInfo._id.toString(),
+            "userName" : userInfo.name,
+            "userEmail" : user,
+            "sellHistory" : []
+        };
+
         for (let i;i=0;i++){
-            let sessionId = sessionInfo[i];
-            //////////////////////////////////////////////////
+            let prodId = sellData[i];
+            let prodInfo = await products.getProductById(prodId);
+            responseData.sellHistory.push(prodInfo);
         }
+
         try {
-            res.render("../views/pages/page-sell-history", userInfo);
+            res.render("../views/pages/page-sell-history", responseData);
         }
         catch (e) {
             return res.status(404).json({error: e});
