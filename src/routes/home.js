@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
 router.post('/search', async (req, res) => {
     try{
         const userInfo = req.body;
+        console.log(1)
         console.log(userInfo);
         const mes = await products.filterProduct(userInfo);
         console.log(mes)
@@ -32,15 +33,29 @@ router.post('/search', async (req, res) => {
             resMess[i+1] = tmp;
         }
         console.log(resMess);
-        res.json({ success: true, message: mes });
+        res.json({ success: true, message: resMess });
     } catch (e) {
         return res.status(400).json({error: e});
     }
 })
+
 router.get('/first', async (req, res) => {
+    try{
+        const productList = await products.getAllProduct();
+        if (productList.length<5){
+            res.json({ success: true, message: productList });
+        } else {
+            var resList = [];
+            for (var i = 0; i<5; i++){
+                resList.push(productList[i]);
+            }
+            res.json({ success: true, message: resList });
+        }
+    } catch (e) {
+        return res.status(400).json({error: e});
+    }
 
 })
-
 
 router.get("/all", async (req, res) => {
     try{
@@ -75,7 +90,6 @@ router.get("/all", async (req, res) => {
                 resData =prodData;
             } else {
                 for (var i = 0; i<prodData.length; i++){
-                    console.log(indexlist)
                     if (indexlist.length === 0){
                         indexlist.push(prodData[i].unitPrice);
                         resData.push(prodData[i]);
@@ -112,7 +126,6 @@ router.get("/all", async (req, res) => {
                 resData =prodData;
             } else {
                 for (var i = 0; i<prodData.length; i++){
-                    console.log(indexlist)
                     var dis = products.getDistance(reqLat, reqLon, prodData[i].location.lat, prodData[i].location.long)
                     if (indexlist.length === 0){
                         indexlist.push(dis);
@@ -150,7 +163,6 @@ router.get("/all", async (req, res) => {
                 resData =prodData;
             } else {
                 for (var i = 0; i<prodData.length; i++){
-                    console.log(indexlist)
                     if (indexlist.length === 0){
                         indexlist.push(prodData[i].overall_score);
                         resData.push(prodData[i]);

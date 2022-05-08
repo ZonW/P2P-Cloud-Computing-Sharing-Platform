@@ -3,12 +3,12 @@
     let recent = [];
 
     let searchInfo = {
-        keyword:"",
+        keywords:"",
         operatingSystem:"windows",
         features:[],
-        price:[0,10000],
+        price:10000,
         distance:[0,10000],
-        sortBy:"lowest_price",
+        sortBy:"lowestPrice",
         lat:40.7182,
         lon:-74.0476
     };
@@ -31,17 +31,20 @@
     };
 
     let requestConfig = {
-        method : "GET",
-        data : JSON.stringify(searchInfo)
+        method : "POST",
+        contentType: 'application/json',
+        data : JSON.stringify(searchInfo),
+        url:"/search"
     };
 
     let requestConfig1 = {
-        method: "POST",
-        url: "search"
+        method: "GET",
+        url: "http://ip-api.com/json/"
     };
 
     let requestConfig2 = {
-        method: "GET"
+        method: "GET",
+        url:"/first"
     };
 
     $.ajax(requestConfig1).then(function (responseMessage) {
@@ -51,19 +54,53 @@
 
     });
 
+    
+
     $.ajax(requestConfig2).then(function (responseMessage) {
 
-        for(let i in responseMessage){
-
-            recent.push(responseMessage[i]);
+        for(let j in responseMessage.message){
+            recent.push(responseMessage.message[j]);
         }
+        if(recent.length === 0){
+            mainDiv.append("<h3>No recent products found!</h3>");
+        } else {
+            for(let i of recent) {
+                    console.log(1)
+
+                    if (i.description.length>300){
+                        i.description = i.description.slice(0,297) + "...";
+                    }
+                
+                    mainDiv.append("<article class='card card-product-list'>" +
+                        "        <div class='row g-0'>" +
+                        "            <div class='col-xl-6 col-md-5 col-sm-7'>" +
+                        "                <div class='card-body'>" +
+                        "                    <a href='#' class='title h5'>"+i.name+"</a>" +
+                        "                    <p> "+i.description+"</p>" +
+                        "                </div>" +
+                        "            </div>" +
+                        "            <aside class='col-xl-3 col-md-3 col-sm-5'>" +
+                        "                <div class='info-aside'>" +
+                        "                    <div class='price-wrap'>" +
+                        "                        <span class='price h5'> $"+i.unitPrice+"</span>" +
+                        "                    </div>" +
+                        "                    <br>" +
+                        "                        <div class='mb-3'>" +
+                        "                            <a href='#' class='btn btn-primary'> Buy this </a>" +
+                        "                        </div>" +
+                        "                </div>" +
+                        "            </aside>" +
+                        "        </div>" +
+                        "    </article>");
+                }
+        
+            }
 
     });
 
+    if(recent.length > 5) recent = recent.slice(0,5);
 
-    let test_recent = [testRecentData,testRecentData,testRecentData,testRecentData,testRecentData];
 
-    if(test_recent.length > 5) test_recent = test_recent.slice(0,5);
 
     let ajaxTest = {
         1:{
@@ -158,10 +195,10 @@
 
     let ajaxTestConvert = [];
 
-    for(let i in ajaxTest){
-        ajaxTestLength += 1;
-        ajaxTestConvert.push(ajaxTest[i]);
-    }
+    // for(let i in ajaxTest){
+    //     ajaxTestLength += 1;
+    //     ajaxTestConvert.push(ajaxTest[i]);
+    // }
 
     let test_listing = [
         {
@@ -410,41 +447,9 @@
 
 //to do
 
-    if(test_recent.length === 0){
-        mainDiv.append("<h3>No recent products found!</h3>");
-    }
-    else{
+    console.log(recent);
 
-        for(let i of test_recent) {
-
-            if(i.description.length>300){
-                i.description = i.description.slice(0,297) + "...";
-            }
-
-            mainDiv.append("<article class='card card-product-list'>" +
-                "        <div class='row g-0'>" +
-                "            <div class='col-xl-6 col-md-5 col-sm-7'>" +
-                "                <div class='card-body'>" +
-                "                    <a href='#' class='title h5'>"+i.name+"</a>" +
-                "                    <p> "+i.description+"</p>" +
-                "                </div>" +
-                "            </div>" +
-                "            <aside class='col-xl-3 col-md-3 col-sm-5'>" +
-                "                <div class='info-aside'>" +
-                "                    <div class='price-wrap'>" +
-                "                        <span class='price h5'> $"+i.price+"</span>" +
-                "                    </div>" +
-                "                    <br>" +
-                "                        <div class='mb-3'>" +
-                "                            <a href='#' class='btn btn-primary'> Buy this </a>" +
-                "                        </div>" +
-                "                </div>" +
-                "            </aside>" +
-                "        </div>" +
-                "    </article>");
-        }
-
-    }
+    
 
 
 
@@ -510,15 +515,15 @@
 
         currentPageNumber = 1;
         showDiv.html(drawDiv());
-        // $.ajax(requestConfig).then(function (responseMessage){
-        //      for(let i in responseMessage){
-        //
-        //         ajaxTestConvert.push(ajaxTest[i]);
-        //     }
-        //      currentPageNumber = 1;
-        //      showDiv.html(drawDiv());
-        //
-        // });
+        $.ajax(requestConfig).then(function (responseMessage){
+             for(let i in responseMessage.message){
+        
+                ajaxTestConvert.push(responseMessage.message[i]);
+            }
+             currentPageNumber = 1;
+             showDiv.html(drawDiv());
+        
+        });
 
     });
 
@@ -655,9 +660,9 @@
                 "                    <div class='rating-wrap mb-2'>" +
                 "                        <ul class='rating-stars'>" +
                 "                           <li class='stars-active' style='width: "+(i.rating/5)*100+"%;'>" +
-                "                              <img src='images/misc/stars-active.svg' alt=''>" +
+                "                              <img src='./public/images/misc/stars-active.svg' alt=''>" +
                 "                           </li>" +
-                "                           <li> <img src='images/misc/starts-disable.svg' alt=''> </li>" +
+                "                           <li> <img src='./public/images/misc/starts-disable.svg' alt=''> </li>" +
                 "                        </ul>" +
                 "                    </div>"+
                 "                    <p> "+i.description+"</p>" +
@@ -700,7 +705,8 @@
            searchAlert.html("");
            searchAlert.attr("hidden","hidden");
 
-           searchInfo.keyword = inputKeyword;
+           searchInfo.keywords = inputKeyword;
+           requestConfig.data = JSON.stringify(searchInfo);
            console.log(searchInfo);
 
 
@@ -713,39 +719,21 @@
                resultDiv.html("<h3>No product found!</h3>");
            }
            else{
-
                currentPageNumber = 1;
                showDiv.html(drawDiv());
-               
-               requestConfig1 = {
-                method : "POST",
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    name: 'newName',
-                    description: 'newDescription'
-                }),
-                url: "/search"
-               }
-               console.log(searchInfo)
-               $.ajax(requestConfig1).then(function (responseMessage) {
-                console.log(1111)
-
-                console.log(responseMessage)
-        
-            });
-
-
            }
 
-           // $.ajax(requestConfig).then(function (responseMessage){
-           //      for(let i in responseMessage){
-           //
-           //         ajaxTestConvert.push(ajaxTest[i]);
-           //     }
-           //      currentPageNumber = 1;
-           //      showDiv.html(drawDiv());
-           //
-           // });
+           console.log(requestConfig);
+           $.ajax(requestConfig).then(function (responseMessage){
+               console.log(responseMessage.message)
+                for(let i in responseMessage.message){
+                    console.log(responseMessage.message[i])
+                   ajaxTestConvert.push(responseMessage.message[i]);
+               }
+                currentPageNumber = 1;
+                resultDiv.html(drawDiv());
+           
+           });
        }
 
 
