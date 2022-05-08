@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const products = require("../data/products");
+const productsData = require("../data/products");
 const users = require("../data/users");
 
 router.get("/", async (req, res) => {
     try{
-        let prodData = await products.getAllProduct()
+        let prodData = await productsData.getAllProduct()
         res.render("../views/pages/index", {});
     } catch(e) {
         return res.status(400).json({error: e});
@@ -15,13 +15,11 @@ router.get("/", async (req, res) => {
 router.post('/search',async (req, res) => {
     try{
         const userInfo = req.body;
-        console.log(userInfo);
-        const mes = await products.filterProduct(userInfo);
+        const mes = await productsData.filterProduct(userInfo);
         var resMess = {}
-        for (var i = 0; i<mes.Keys().length; i++){
-            resMess.i = mes[0];
+        for (var i = 0; i<mes.length; i++){
+            resMess[i+1] = mes[i];
         }
-        console.log(resMess);
         res.json({ success: true, message: mes });
     } catch (e) {
         return res.status(400).json({error: e});
@@ -56,7 +54,7 @@ router.get("/all", async (req, res) => {
             sortBy: querys.sortBy
           }
 
-        let prodData = await products.filterProduct(filter_info);
+        let prodData = await productsData.filterProduct(filter_info);
         let indexlist = [];
         let resData = [];
 
@@ -103,7 +101,7 @@ router.get("/all", async (req, res) => {
             } else {
                 for (var i = 0; i<prodData.length; i++){
                     console.log(indexlist)
-                    var dis = products.getDistance(reqLat, reqLon, prodData[i].location.lat, prodData[i].location.long)
+                    var dis = productsData.getDistance(reqLat, reqLon, prodData[i].location.lat, prodData[i].location.long)
                     if (indexlist.length === 0){
                         indexlist.push(dis);
                         resData.push(prodData[i]);
@@ -184,7 +182,7 @@ router.get("/all", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        const prodData = await products.getProductById(req.params.id);
+        const prodData = await productsData.getProductById(req.params.id);
         let comments = prodData.comments;
         if (comments.length > 5){
             comments = comments.reverse().slice(4)
