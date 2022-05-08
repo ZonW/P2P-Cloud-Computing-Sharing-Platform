@@ -97,12 +97,11 @@ router.get("/page-sell-history", async (req, res) => {
 });
 
 router.post("/createProduct", async (req, res) => {
-    console.log(req.body)
     let user = await req.session.user;
     if (user) {
         const userInfo = await usersData.getUserByEmail(user);
         //undefined parameters:
-        const time = 1;
+        const time = Date.parse(new Date());
         const lat = 1;
         const lon = 1;
         var sessions = [];
@@ -119,8 +118,8 @@ router.post("/createProduct", async (req, res) => {
         if (req.body.session1[0]){
             sessions.push({
                 _id: ObjectId(),
-                startTime: req.body.session1[0],
-                endTime: req.body.session1[1],
+                startTime: Date.parse(req.body.session1[0]),
+                endTime: Date.parse(req.body.session1[1]),
                 buyerLink: '',
                 sellerLink: '',
                 active: true
@@ -129,8 +128,8 @@ router.post("/createProduct", async (req, res) => {
         if (req.body.session2[0]){
             sessions.push({
                 _id: ObjectId(),
-                startTime: req.body.session2[0],
-                endTime: req.body.session2[1],
+                startTime: Date.parse(req.body.session2[0]),
+                endTime: Date.parse(req.body.session2[1]),
                 buyerLink: '',
                 sellerLink: '',
                 active: true
@@ -139,8 +138,8 @@ router.post("/createProduct", async (req, res) => {
         if (req.body.session3[0]){
             sessions.push({
                 _id: ObjectId(),
-                startTime: req.body.session3[0],
-                endTime: req.body.session3[1],
+                startTime: Date.parse(req.body.session3[0]),
+                endTime: Date.parse(req.body.session3[1]),
                 buyerLink: '',
                 sellerLink: '',
                 active: true
