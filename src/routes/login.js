@@ -61,13 +61,14 @@ router.post('/page-user-signup', async (req, res) => {
         }
     } catch (e) {
         res.status(500).render('../views/pages/page-user-signup', { error : e });
+        return;
     }
 
 });
 
 //POST login
 router.post('/page-user-login', async (req, res) => {
-    const email = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     let user;
     try {
@@ -86,13 +87,12 @@ router.post('/page-user-login', async (req, res) => {
         if (password.length < 6) throw 'password should be at least 6 characters long';
         user = await users.checkUserLogin(email, password);
     } catch (e) {
-        error = e;
-        res.status(400).render('../views/pages/page-user-login', { error });
+        res.status(400).render('../views/pages/page-user-login', { error : e });
         return;
     }
 
     try {
-        if (user.authenticated == true) {
+        if (user.authenticated) {
             req.session.user = email;
             console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`);
 
@@ -103,7 +103,7 @@ router.post('/page-user-login', async (req, res) => {
             return;
         }
     } catch (e) {
-        res.status(400).render('../views/pages/page-user-login', { error: 'username or password is not valid' });
+        res.status(400).render('../views/pages/page-user-login', { error: e });
         return;
     }
 });

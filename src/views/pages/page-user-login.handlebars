@@ -40,12 +40,12 @@
         <form id="login-form" method="post" action="page-user-login">
             <div class="mb-3">
                 <label class="form-label" for="email">Email</label>
-                <input id="email" name="lorem" class="form-control" placeholder="ex. name@gmail.com" type="email">
+                <input id="email" name="email" class="form-control" placeholder="ex. name@gmail.com" type="email">
             </div> <!-- col end.// -->
 
             <div class="mb-3">
                 <label class="form-label" for="password">Password</label>
-                <input id="password" class="form-control" placeholder="******" type="password">
+                <input id="password" class="form-control" placeholder="******" name="password" type="password">
             </div> <!-- col end.// -->
 
 
@@ -56,8 +56,9 @@
         <p class="text-divider my-4">New here?</p>
         <a href="/user/page-user-signup" class="btn w-100 btn-light">Create new account</a>
         
-        {{!-- {{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}} --}}
-        <div id="error" class="text-goes-here" hidden>I'm an error</div>
+        {{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}} 
+       
+        
     </div> <!-- card-body end.// -->
 </div> <!-- card end.// -->
 <!-- ============= COMPONENT LOGIN 1 END.// ============= -->
@@ -83,7 +84,7 @@
 <script src="../../public/js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom js -->
-<script src="../../public/js/script.js?v=2.0"></script>
+<script src="../../public/js//script.js?v=2.0"></script>
 <style>
     .owl {
         margin: auto;
@@ -178,7 +179,7 @@
     
     });
  </script>
- <script src="../public/pages_js/user-login.js"></script>
+ 
 
  <link href="../public/css/ui.css" rel="stylesheet" type="text/css" />
 <link href="../public/css/responsive.css" rel="stylesheet" type="text/css" />

@@ -11,11 +11,11 @@ router.get("/page-order-history", async (req, res) => {
     let user = await req.session.user;
     if (user) {
         try {
-            const userInfo = await getUserByEmail(user)
+            const userInfo = await getUserByEmail(user);
             res.render("../views/pages/page-order-history", userInfo);
         }
         catch (e) {
-            return res.status(404).json({error: e});
+            return res.status(400).json({error: e});
         }
     }
     else{
@@ -132,16 +132,28 @@ router.get("/page-new-item", (req, res) => {
       res.render("../views/pages/page-new-item", {});
     }
     catch (e) {
-        return res.status(404).json({error: e});
+        return res.status(400).json({error: e});
     }
 });
 
-router.post("/add_comment", (req, res) => {
-    try {
-      res.render("../views/pages/page-new-item", {});
-    }
-    catch (e) {
-        return res.status(404).json({error: e});
+router.post("/add_comment", async (req, res) => {
+    let user = req.session.user;
+    if (user) {
+        try {
+            const userInfo = await getUserByEmail(user);
+            const addComment = await productsData.addComment(userInfo._id.toString(),req.body.productId, req.body.comment_info);
+            if (!addComment.commentAdded){
+                return res.status(500).json({error: 'Internal Server Error'});
+            }
+
+            res.redirect('/');
+            return;
+        }
+        catch (e) {
+            return res.status(400).json({error: e});
+        }
+    } else {
+        return res.status(400).json({error: 'Non-Authenticated User'});
     }
 });
 
