@@ -5,6 +5,7 @@ const productsData = require("../data/products");
 const usersData = require("../data/users.js");
 const axios = require('axios')
 const url = require('url');
+const ObjectId = require('mongodb').ObjectId;
 const { getUserByEmail } = require("../data/users");
 
 router.get("/page-order-history", async (req, res) => {
@@ -104,7 +105,7 @@ router.post("/createProduct", async (req, res) => {
         const time = 1;
         const lat = 1;
         const lon = 1;
-        const sessions = [1];
+        var sessions = [];
         //
 
         const location =  {
@@ -115,6 +116,36 @@ router.post("/createProduct", async (req, res) => {
             lon: lon 
         }
 
+        if (req.body.session1[0]){
+            sessions.push({
+                _id: ObjectId(),
+                startTime: req.body.session1[0],
+                endTime: req.body.session1[1],
+                buyerLink: '',
+                sellerLink: '',
+                active: true
+              });
+        }
+        if (req.body.session2[0]){
+            sessions.push({
+                _id: ObjectId(),
+                startTime: req.body.session2[0],
+                endTime: req.body.session2[1],
+                buyerLink: '',
+                sellerLink: '',
+                active: true
+              });
+        }
+        if (req.body.session3[0]){
+            sessions.push({
+                _id: ObjectId(),
+                startTime: req.body.session3[0],
+                endTime: req.body.session3[1],
+                buyerLink: '',
+                sellerLink: '',
+                active: true
+              });
+        }
         
         try{
             await productsData.createProduct(userInfo._id.toString(), req.body.new_name, req.body.description, req.body.operating_system, 
