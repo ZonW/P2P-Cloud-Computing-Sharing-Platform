@@ -212,8 +212,8 @@ router.get("/:id", async (req, res) => {
             let response = {
                 "name" : prodData.name,
                 "time" :prodData.time,
-                "os" : prodData.operatingSystem,
-                "features" : prodData.features, //["xxx","xxx"]
+                "operatingSystem" : prodData.operatingSystem,
+                "features" : prodData.features, 
                 "description" : prodData.description,
                 "location" : {
                     "country" : prodData.country,
@@ -223,8 +223,8 @@ router.get("/:id", async (req, res) => {
                 },
                 "rating" : prodData.rating,
                 "price" : prodData.price,
-                "session" : prodData.sessions,  //[[start,end],[start,end]]
-                "comments" : comments //["xxx","xxx"]
+                "session" : prodData.sessions, 
+                "comments" : comments 
             }
             res.render('pages/page-item-detail',{});
         }
@@ -234,8 +234,8 @@ router.get("/:id", async (req, res) => {
     } else {
         res.redirect('/user/page-user-login');
     }
-
 });
+
 
 router.post("/:id", async (req, res) => {
     try {
@@ -251,6 +251,7 @@ router.post("/buy/:id", async (req, res) => {
     console.log()
     console.log(req.params)
 })
+
 
 router.get("/page-term-conditions/1", async (req, res) => {
     res.render("../views/pages/page-term-conditions", {});

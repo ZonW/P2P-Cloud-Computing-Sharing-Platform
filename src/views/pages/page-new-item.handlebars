@@ -60,8 +60,8 @@
     <div class="card  mb-4">
       <article class="card-body">
         <h4 class="mb-4">Submit product</h4>
-        <form action="page-new-item" method="post" >
-          
+        <form id="createproduct-form" method="post" action="createProduct">
+    
           <div class="row mb-4">
             <label class="col-3 col-form-label">Product name</label>
             <div class="col-9">
@@ -163,7 +163,7 @@
             <div class="row mb-4">
                 <label class="col-3 col-form-label">Country</label>
                 <div class="col-9">
-                    <select class="form-select" id="Country" aria-label="Country" name="features">
+                    <select class="form-select" id="Country" aria-label="Country" name="country">
                         <option value="Afganistan">N/A</option>
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
@@ -440,34 +440,34 @@
                 <label class="col-3 col-form-label">Session time(newest first)</label>
                 <div class="col-9">
                     &nbsp&nbspFrom&nbsp&nbsp&nbsp
-                    <input type="datetime-local"  value="" placeholder="Type here" id="session1_start_time">
+                    <input type="datetime-local"  value="" placeholder="Type here" id="session1_start_time" name="session1">
                     &nbsp&nbspTo&nbsp&nbsp&nbsp
-                    <input type="datetime-local"  value="" placeholder="Type here" id="session1_end_time">
+                    <input type="datetime-local"  value="" placeholder="Type here" id="session1_end_time"  name="session1">
                 </div> <!-- col end.// -->
             </div> <!-- row end.// -->
             <div class="row mb-4">
                 <label class="col-3 col-form-label">Session time</label>
                 <div class="col-9">
                     &nbsp&nbspFrom&nbsp&nbsp&nbsp
-                    <input type="datetime-local"  value="" placeholder="Type here" id="session2_start_time">
+                    <input type="datetime-local"  value="" placeholder="Type here" id="session2_start_time"  name="session2">
                     &nbsp&nbspTo&nbsp&nbsp&nbsp
-                    <input type="datetime-local"  value="" placeholder="Type here" id="session2_end_time">
+                    <input type="datetime-local"  value="" placeholder="Type here" id="session2_end_time"  name="session2">
                 </div> <!-- col end.// -->
             </div> <!-- row end.// -->
             <div class="row mb-4">
                 <label class="col-3 col-form-label">Session time</label>
                 <div class="col-9">
                     &nbsp&nbspFrom&nbsp&nbsp&nbsp
-                    <input type="datetime-local"  value="" placeholder="Type here" id="session3_start_time">
+                    <input type="datetime-local"  value="" placeholder="Type here" id="session3_start_time"  name="session3">
                     &nbsp&nbspTo&nbsp&nbsp&nbsp
-                    <input type="datetime-local"  value="" placeholder="Type here" id="session3_end_time">
+                    <input type="datetime-local"  value="" placeholder="Type here" id="session3_end_time"  name="session3">
                 </div> <!-- col end.// -->
             </div> <!-- row end.// -->
 
 
           <div class="row mb-2">
             <div class="col-9 offset-3">
-              <button type="button" class="btn btn-primary" id="bt">Add product</button>
+              <button type="submit" class="btn btn-primary" id="bt">Add product</button>
               <button type="reset" class="btn btn-outline-danger">Cancel</button>
             </div> <!-- col end.// -->
           </div> <!-- row end.// -->

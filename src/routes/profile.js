@@ -95,31 +95,35 @@ router.get("/page-sell-history", async (req, res) => {
     }
 });
 
-router.post("/page-###", async (req, res) => {
+router.post("/createProduct", async (req, res) => {
+    console.log(req.body)
     let user = await req.session.user;
     if (user) {
         const userInfo = await usersData.getUserByEmail(user);
-        const newItem = {
-            name: 'Good Computer 11',
-            description: 'This is a very good computer.',
-            operatingSystem: 'macos',
-            features: ["scientificCalculation", "deepLearning"],
-            time: 1651572490,
-            unitPrice: 10,
-            location: {"country": "United States",
-             "region": "NJ",
-             "city": "Jersey City",
-             "lat": 40.7467, 
-             "lon": -74.0574 
-           }
+        //undefined parameters:
+        const time = 1;
+        const lat = 1;
+        const lon = 1;
+        const sessions = [1];
+        //
+
+        const location =  {
+            country: req.body.country,
+            region: req.body.region,
+            city: req.body.city,
+            lat: lat, 
+            lon: lon 
         }
+
+        
         try{
-            await productsData.createProduct(userInfo._id.toString(), newItem.name, newItem.description, newItem.operatingSystem, 
-            newItem.features, newItem.time, newItem.unitPrice, newItem.location);
+            await productsData.createProduct(userInfo._id.toString(), req.body.new_name, req.body.description, req.body.operating_system, 
+            req.body.features, time, Number(req.body.new_price), location, sessions);
             //res.render("../views/pages/page-sell-history", {});
+            return res.json({1:"true"})
 
         } catch (err) {
-            return res.status(404).json({error: e});
+            return res.status(404).json({error: err});
         }
     }
     else{

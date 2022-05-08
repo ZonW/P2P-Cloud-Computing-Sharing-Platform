@@ -160,7 +160,7 @@ const exportedMethods = {
 
 
   //all set
-  async createProduct(userId, name, description, operatingSystem, features, time, unitPrice, location){
+  async createProduct(userId, name, description, operatingSystem, features, time, unitPrice, location, sessions){
     if (!userId) throw "userId must be provided";
     if (!name) throw "Name must be provided"
     if (!description) throw "Description must be provided"
@@ -169,6 +169,7 @@ const exportedMethods = {
     if (!features) throw "features must be provided";
     if (!unitPrice) throw "unitPrice must be provided";
     if (!location) throw "location must be provided";
+    if (!sessions) throw "sessions must be provided";
     
     if (!await usersData.getUserById(ObjectId(userId))) throw 'No user Found';
 
@@ -183,7 +184,7 @@ const exportedMethods = {
       time: time,
       unitPrice: unitPrice,
       location: location,
-      sessions: [],
+      sessions: sessions,
       comments: [],
       overall_score: null
     }
