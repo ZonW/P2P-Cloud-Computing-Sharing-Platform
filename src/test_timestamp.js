@@ -1,7 +1,10 @@
 let timestamp = 1607110465663
 let date = new Date(timestamp);
 
-/*
+url ="http://localhost:3000/profile/page-sell-history";
+urlCode=url.split("?")[1]
+//console.log(urlCode);
+
 let getStart=1607110465663;
 let getEnd=1607116465663;
 let startTime = new Date(getStart);
@@ -13,7 +16,7 @@ let end=(endTime.getMonth()+1)+"/"+endTime.getDate()+"/"+endTime.getFullYear()+
 
 console.log(start)
 console.log(end)
-*/
+/**/
 
 /*
 start="Date: "+date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()+

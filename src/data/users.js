@@ -213,8 +213,8 @@ const exportedMethods = {
             userName: _username_,
             password: _password_,
             sellerInfo: {
-                clientId: clientId,
-                clientSecret: clientSecret,
+               // clientId: clientId,
+      //          clientSecret: clientSecret,
             },
             name: {
                 firstName: this.checkName(firstName),

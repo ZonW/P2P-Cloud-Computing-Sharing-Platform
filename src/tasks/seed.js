@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 async function main() {
               //////user//////
-    /* try {
+    try {
         await usersData.createUser(
             'Zon',
             'Wei',
@@ -54,7 +54,7 @@ async function main() {
         );
     } catch (e) {
         console.log(e); 
-    }*/
+    }
               ///// Products/////
 
 
@@ -125,7 +125,7 @@ async function main() {
 
           ////////comment//////////
           //INPUT PRODUCT ID BY HAND//
-    try {
+    /* try {
       const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
       await productsData.addComment(
           userInfo1._id.toString(),
@@ -162,7 +162,7 @@ async function main() {
       );
     } catch (e) {
         console.log(e);
-    }
+    } */
 
 }
 
