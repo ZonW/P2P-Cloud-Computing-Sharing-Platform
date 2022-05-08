@@ -74,10 +74,10 @@
     };
     
     console.log(urlCode)
-     if(urlCode){
+/*      if(urlCode){
         $('#content-body').append(`<p>${urlCode}</p>`)
-    }
-
+    } */
+    
     /*
     var requestConfig = {
       method: 'GET',
@@ -198,7 +198,6 @@
                   
                   <a href="${sellerUrl}" class="btn btn-primary" id="connectButton_${index}_${indexSes}">Connect to TeamViewer</a>
                   <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="launchButton_${index}_${indexSes}">Launch</a>
-
                   
                   <p id="demo"></p>
                 </figcaption>
@@ -287,4 +286,11 @@
 
       })
     });
+
+/*     window.onload = function() {
+      if(!window.location.hash) {
+          window.location = window.location + '#loaded';
+          window.location.reload();
+      }
+    } */
 })(window.jQuery);

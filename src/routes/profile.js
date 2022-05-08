@@ -228,7 +228,8 @@ router.post("/page-sell-history", async (req, res) => {
                 try{
                     //res.redirect(url.parse(req.url).pathname);
                     const modReturn = await products.modifySession(sessionId,responseSession.supporter_link, responseSession.end_customer_link, false)
-                    res.send(responseSession);
+                    //res.send(responseSession);
+                    res.redirect("/page-sell-history")
                 } catch (e) {
                     return res.status(400).json({error: e});
                 }
@@ -249,6 +250,27 @@ router.get("/page-new-item", (req, res) => {
     }
     catch (e) {
         return res.status(404).json({error: e});
+    }
+});
+
+router.post("/add_comment", async (req, res) => {
+    let user = req.session.user;
+    if (user) {
+        try {
+            const userInfo = await getUserByEmail(user);
+            const addComment = await productsData.addComment(userInfo._id.toString(),req.body.productId, req.body.comment_info);
+            if (!addComment.commentAdded){
+                return res.status(500).json({error: 'Internal Server Error'});
+            }
+
+            res.redirect('/');
+            return;
+        }
+        catch (e) {
+            return res.status(400).json({error: e});
+        }
+    } else {
+        return res.status(400).json({error: 'Non-Authenticated User'});
     }
 });
 
