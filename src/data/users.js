@@ -21,16 +21,15 @@ const exportedMethods = {
 
 
     checkName(name) {
-        if (typeof name !== 'string') throw '';
+        if (typeof name !== 'string') throw 'name must be string';
         var name = name.trim();
-        if (!/(^[A-Za-z]+$)/.test(name)) throw '';
+        if (!/(^[A-Za-z]+$)/.test(name)) throw 'name not valid phone number';
         if (name.length < 2) throw '';
         return name.slice(0, 1).toUpperCase() + name.slice(1).toLowerCase();
     },
 
     checkEmail(email) {
-        if (arguments.length !== 1) throw 'email is needed';
-        if (typeof email !== 'string') throw 'Email should be string';
+        if (typeof email !== 'string') throw 'email must be string';
         var email = email.trim();
         if (email.match(/^\w+@\w+\.\w+$/i)) {
             return email;
@@ -43,21 +42,21 @@ const exportedMethods = {
     },
 
     checkPhone(phone) {
-        if (typeof phone !== 'string') throw '';
+        if (typeof phone !== 'string') throw 'phone must be string';
         var phone = phone.trim();
-        if (phone.length < 8) throw '';
+        if (phone.length < 8) throw 'not valid phone number';
         if (phone[0] !== '+') {
-            if (!/(^[0-9]+$)/.test(phone)) throw '';
+            if (!/(^[0-9]+$)/.test(phone)) throw 'not valid phone number';
         } else {
-            if (!/(^[0-9]+$)/.test(phone.slice(1))) throw '';
+            if (!/(^[0-9]+$)/.test(phone.slice(1))) throw 'not valid phone number';
         }
         return phone;
     },
 
     checkCity(city) {
-        if (typeof city !== 'string') throw '';
+        if (typeof city !== 'string') throw 'city must be string';
         var city = city.trim();
-        if (!/(^[A-Za-z\ ]+$)/.test(city)) throw '';
+        if (!/(^[A-Za-z\ ]+$)/.test(city)) throw 'city must be consists of letters';
         var cityStr = city.split(' ');
         for (var i = 0; i < cityStr.length; i++) {
             cityStr[i] = cityStr[i].slice(0, 1).toUpperCase() + cityStr[i].slice(1).toLowerCase();
@@ -66,26 +65,26 @@ const exportedMethods = {
     },
 
     checkState(state) {
-        if (typeof state !== 'string') throw '';
+        if (typeof state !== 'string') throw 'state must be string';
         var state = state.trim();
-        if (!/(^[A-Za-z]+$)/.test(state)) throw '';
+        if (!/(^[A-Za-z]+$)/.test(state)) throw 'state must be consists of letters';
 
         return state.toUpperCase();
     },
 
     checkCountry(country) {
-        if (typeof country !== 'string') throw '';
+        if (typeof country !== 'string') throw 'country must be string';
         var country = country.trim();
-        if (!/(^[A-Za-z]+$)/.test(country)) throw '';
+        if (!/(^[A-Za-z]+$)/.test(country)) throw 'country must be consists of letters';
 
         return country;
     },
 
     checkZipCode(zipCode) {
-        if (typeof zipCode !== 'string') throw '';
+        if (typeof zipCode !== 'string') throw 'string must be string';
         var zipCode = zipCode.trim();
-        if (zipCode.length !== 5) throw '';
-        if (!/(^[0-9]+$)/.test(zipCode)) throw '';
+        if (zipCode.length !== 5) throw 'not valid zipCode';
+        if (!/(^[0-9]+$)/.test(zipCode)) throw 'zipCode must be consists of numbers';
         return zipCode;
     },
 

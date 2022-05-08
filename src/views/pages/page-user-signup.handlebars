@@ -27,6 +27,7 @@
 
 
 <!-- ====== COMPONENT LOGIN  ====== -->
+{{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}}
 <div class="card shadow mx-auto" style="max-width:400px; margin-top:40px;">
 	<div class="card-body">
 	<h4 class="card-title mb-4">Sign up here</h4>
@@ -625,7 +626,6 @@
 	</form>
 	<hr>
 	<p class="text-center mb-2">Already have account? <a href="/user/page-user-login">Log in</a></p>
-	{{#if error}}<div class="text-goes-here">{{error}}</div>{{/if}}
 </div> <!-- card-body.// -->
 </div> <!-- card .// -->
 
@@ -648,3 +648,8 @@
 	</div><!-- //container -->
 </footer>
 <script src="../../public/pages_js/user-signup.js"></script>
+<style>
+.text-goes-here {
+        color: red;
+    }
+</style>

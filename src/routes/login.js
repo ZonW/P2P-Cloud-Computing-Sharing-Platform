@@ -57,11 +57,11 @@ router.post('/page-user-signup', async (req, res) => {
             res.redirect('/');
             return;
         } else {
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).render('../views/pages/page-user-signup', { error :  'Internal Server Error' });
             return;
         }
     } catch (e) {
-        return res.status(400).json({ error: e });
+        res.status(500).render('../views/pages/page-user-signup', { error : e });
     }
 
 });
@@ -109,21 +109,6 @@ router.post('/page-user-login', async (req, res) => {
         return;
     }
 });
-
-/* //private
-router.get('/private', async (req, res) => {
-    let user = await req.session.user;
-
-    if (user) {
-        console.log(console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Authenticated User`));
-        res.render('../views/pages/index', { username: user });
-    } else {
-        console.log(
-            console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} Non-Authenticated User`)
-        );
-        res.status(400).render('../views/pages/page-user-login', { error: 'username or password not valid' });
-    }
-}); */
 
 // GET logout
 router.get('/logout', async (req, res) => {
