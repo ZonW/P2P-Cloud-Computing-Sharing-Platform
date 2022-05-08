@@ -57,7 +57,7 @@ const exportedMethods = {
       productList = await productsCollection
       .find( { operatingSystem : key.operatingSystem, 
             $and:[ {unitPrice: { $gt: key.price[0] }},
-                   {unitPrice: { $eq: key.price[0] }}
+                   {unitPrice: { $lt: key.price[1] }}
             ]})
       .toArray();
       shortestDistance = true;
@@ -66,7 +66,7 @@ const exportedMethods = {
       productList = await productsCollection
       .find( { operatingSystem : key.operatingSystem, 
         $and:[ {unitPrice: { $gt: key.price[0] }},
-               {unitPrice: { $eq: key.price[0] }}
+               {unitPrice: { $lt: key.price[1] }}
         ]})
       .sort({overall_score: -1})
       .toArray();
@@ -75,7 +75,7 @@ const exportedMethods = {
       productList = await productsCollection
       .find( { operatingSystem : key.operatingSystem, 
         $and:[ {unitPrice: { $gt: key.price[0] }},
-               {unitPrice: { $eq: key.price[0] }}
+               {unitPrice: { $lt: key.price[1] }}
         ]})
       .toArray();
     }
