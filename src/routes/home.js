@@ -15,10 +15,7 @@ router.get("/", async (req, res) => {
 router.post('/search', async (req, res) => {
     try{
         const userInfo = req.body;
-        console.log(1)
-        console.log(userInfo);
         const mes = await products.filterProduct(userInfo);
-        console.log(mes)
         var resMess = {};
         for (var i = 0; i<Object.keys(mes).length; i++){
             if (!mes[i].overall_score) {rating = ""}
@@ -32,7 +29,6 @@ router.post('/search', async (req, res) => {
             };
             resMess[i+1] = tmp;
         }
-        console.log(resMess);
         res.json({ success: true, message: resMess });
     } catch (e) {
         return res.status(400).json({error: e});
@@ -205,36 +201,56 @@ router.get("/all", async (req, res) => {
 })
 
 router.get("/:id", async (req, res) => {
+    let user = req.session.user;
+    if (user){
+        try {
+            const prodData = await products.getProductById(req.params.id);
+            let comments = prodData.comments;
+            if (comments.length > 5){
+                comments = comments.reverse().slice(4)
+            }
+            let response = {
+                "name" : prodData.name,
+                "time" :prodData.time,
+                "os" : prodData.operatingSystem,
+                "features" : prodData.features, //["xxx","xxx"]
+                "description" : prodData.description,
+                "location" : {
+                    "country" : prodData.country,
+                    "region" : prodData.region,
+                    "city" : prodData.city,
+                    "zip" : prodData.zip
+                },
+                "rating" : prodData.rating,
+                "price" : prodData.price,
+                "session" : prodData.sessions,  //[[start,end],[start,end]]
+                "comments" : comments //["xxx","xxx"]
+            }
+            res.render('pages/page-item-detail',{});
+        }
+        catch (e) {
+            return res.status(404).json({error: e});
+        }
+    } else {
+        res.render('pages/page-user-login',{});
+    }
+
+});
+
+router.post("/:id", async (req, res) => {
     try {
-        const prodData = await products.getProductById(req.params.id);
-        let comments = prodData.comments;
-        if (comments.length > 5){
-            comments = comments.reverse().slice(4)
-        }
-        let response = {
-            "name" : prodData.name,
-            "time" :prodData.time,
-            "os" : prodData.operatingSystem,
-            "features" : prodData.features, //["xxx","xxx"]
-            "description" : prodData.description,
-            "location" : {
-                "country" : prodData.country,
-                "region" : prodData.region,
-                "city" : prodData.city,
-                "zip" : prodData.zip
-            },
-            "rating" : prodData.rating,
-            "price" : prodData.price,
-            "session" : prodData.sessions,  //[[start,end],[start,end]]
-            "comments" : comments //["xxx","xxx"]
-        }
-        res.send(response)
-    } 
+        const itemInfo = await products.getProductById(req.params.id);
+        res.send(itemInfo);
+    }
     catch (e) {
         return res.status(404).json({error: e});
     }
 });
 
+router.post("/buy/:id", async (req, res) => {
+    console.log()
+    console.log(req.params)
+})
 
 router.get("/page-term-conditions/1", async (req, res) => {
     res.render("../views/pages/page-term-conditions", {});

@@ -7,8 +7,6 @@ const constructorMethod = (app) => {
   app.use('/user', loginRoutes);
   app.use('/profile', profileRoutes);
 
-
-
   app.use('*', (req, res) => {
     res.sendStatus(404);
   });

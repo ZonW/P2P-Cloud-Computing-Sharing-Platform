@@ -231,6 +231,7 @@ const exportedMethods = {
     },
 
     async checkUserLogin(email, password) {
+        console.log(12)
         if (!email) throw 'email must be provided';
         if (!password) throw 'password must be provided';
 

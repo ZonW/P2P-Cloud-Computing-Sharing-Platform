@@ -57,7 +57,6 @@ async function main() {
     }
               ///// Products/////
 
-
      try {
          const userInfo1 = await usersData.getUserByEmail('zwei123@gmail.com');
          await productsData.createProduct(
