@@ -6,6 +6,7 @@
     let newRegion = $("#new_region");
     let newCity = $("#new_city");
 
+
     let session1StartTime = $("#session1_start_time");
     let session2StartTime = $("#session2_start_time");
     let session3StartTime = $("#session3_start_time");
@@ -24,47 +25,70 @@
         console.log(session1StartTime.val());
         console.log(Date.parse(session1StartTime.val()));
         console.log(new Date);
+        console.log(newName.val());
+
+        // console.log(session1StartTime);
+        // console.log(session1EndTime);
+
 
     });
 
 
+    setInterval(function (){
+        try{
+            if(newName.val().trim().length > 50||newName.val().trim()==="") throw "Product name should be less than 50 letters!";
 
+            if(newPrice.val() > 10000 || newPrice.val() < 0) throw "Product price should be between 0 and 10000!";
 
-    try{
-        if(newName.value.length > 50) throw "Product name should be less than 50 letters!";
+            if(newRegion.val().trim()=== "") throw "Region information is invalid!";
 
-        if(newPrice.value > 10000 || newPrice.value < 0) throw "Product price should be between 0 and 10000!";
+            if(newCity.val().trim() === "") throw "City information is invalid!";
 
-        if(newRegion.value.trim() === "") throw "Region information is invalid!";
+            if(newDescription.val().trim().length > 300 || newDescription.val().trim() === "") throw "Description should be no more than 300 letters!";
 
-        if(newCity.value.trim() === "") throw "City information is invalid!";
+            if(session1StartTime.val()===""){
+                if(session1EndTime.val()!=="") throw "Invalid time!";
+            }
+            if(session1EndTime.val()===""){
+                if(session1StartTime.val()!=="") throw "Invalid time!";
+            }
+            if(session2StartTime.val()===""){
+                if(session2EndTime.val()!=="") throw "Invalid time!";
+            }
+            if(session2EndTime.val()===""){
+                if(session2StartTime.val()!=="") throw "Invalid time!";
+            }
+            if(session3StartTime.val()===""){
+                if(session3EndTime.val()!=="") throw "Invalid time!";
+            }
+            if(session3EndTime.val()===""){
+                if(session3StartTime.val()!=="") throw "Invalid time!";
+            }
 
-        if(newDescription.length > 300) throw "Description should be no more than 300 letters!";
+            if((Number(session1StartTime.valueOf()) > Number(session1EndTime.valueOf()) )|| (Number(session2StartTime.valueOf()) > Number(session2EndTime.valueOf()))|| (Number(session3StartTime.valueOf()) > Number(session3EndTime.valueOf()))) throw "Invalid time!";
 
-        if(session1StartTime){
-            if(!session1EndTime) throw "Invalid time!";
+            alert.html("");
+            bt.removeAttr("hidden");
+            //
+            // console.log("start " + Date.parse(session1StartTime.val()));
+            // console.log("end " + Date.parse(session1EndTime.val()));
+
+            session1StartTime.value = Date.parse(session1StartTime.val());
+            session1EndTime.value = Date.parse(session1EndTime.val());
+            session2StartTime.value = Date.parse(session2StartTime.val());
+            session2EndTime.value = Date.parse(session2EndTime.val());
+            session3StartTime.value = Date.parse(session3StartTime.val());
+            session3EndTime.value = Date.parse(session3EndTime.val());
+
+        }catch(e){
+            alert.removeAttr("hidden");
+            alert.html("<h4>"+e+"</h4>");
+            bt.attr("hidden","hidden");
         }
-        if(session1EndTime){
-            if(!session1StartTime) throw "Invalid time!";
-        }
-        if(session2StartTime){
-            if(!session2EndTime) throw "Invalid time!";
-        }if(session2EndTime){
-            if(!session2StartTime) throw "Invalid time!";
-        }
-        if(session3StartTime){
-            if(!session3EndTime) throw "Invalid time!";
-        }
-        if(session3EndTime){
-            if(!session3StartTime) throw "Invalid time!";
-        }
+                          },200);
 
-        if(session1StartTime > session1EndTime || session2StartTime > session2EndTime || session3StartTime > session3EndTime) throw "Invalid time!";
 
-    }catch(e){
-        alert.removeAttr("hidden");
-        alert.append(e);
-    }
+
 
 
 
