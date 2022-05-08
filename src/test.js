@@ -26,7 +26,6 @@ async function main(){
     'status': 'CA',
     'country': 'US',
     'zipCode': '123435'
-
   }
 
   comment_info = {
@@ -46,13 +45,11 @@ async function main(){
   }
   //await usersData.createUser('zcc1234','zcc123','will', 'smith');
   //await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
-  const a= await productsData.getProductBySession('6276e89f0b8f5a03dcc9e2ee')
+  const a= await productsData.modifySession('6276e8974ec27ddf8eaa40f0','123','321',false)
   console.log(a)
   //const a = await productsData.filterProduct(filter_info);
  
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 }
-const a = {1:1,2:3}
-console.log(Object.keys(a).length)
-
+main()
 
