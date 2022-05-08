@@ -6,7 +6,7 @@
         keywords:"",
         operatingSystem:"windows",
         features:[],
-        price:10000,
+        price:[0,10000],
         distance:[0,10000],
         sortBy:"lowestPrice",
         lat:40.7182,

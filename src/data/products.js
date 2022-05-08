@@ -47,36 +47,36 @@ const exportedMethods = {
     if (key.sortBy === "lowestPrice"){
       productList = await productsCollection
       .find( { operatingSystem : key.operatingSystem, 
-            $or: [ {unitPrice: { $lt: key.price }},
-                   {unitPrice: { $eq: key.price }}
-                 ]})
+        $and:[ {unitPrice: { $gt: key.price[0] }},
+               {unitPrice: { $lt: key.price[1] }}
+        ]})
       .sort({unitPrice: 1})
       .toArray();
     }
     if (key.sortBy === "shortestDistance"){
       productList = await productsCollection
       .find( { operatingSystem : key.operatingSystem, 
-            $or: [ {unitPrice: { $lt: key.price }},
-                   {unitPrice: { $eq: key.price }}
-                 ]})
+            $and:[ {unitPrice: { $gt: key.price[0] }},
+                   {unitPrice: { $eq: key.price[0] }}
+            ]})
       .toArray();
       shortestDistance = true;
     }
     if (key.sortBy === "highestRated"){
       productList = await productsCollection
       .find( { operatingSystem : key.operatingSystem, 
-            $or: [ {unitPrice: { $lt: key.price }},
-                   {unitPrice: { $eq: key.price }}
-                 ]})
+        $and:[ {unitPrice: { $gt: key.price[0] }},
+               {unitPrice: { $eq: key.price[0] }}
+        ]})
       .sort({overall_score: -1})
       .toArray();
     }
     if (key.sortBy === "newestListed"){
       productList = await productsCollection
       .find( { operatingSystem : key.operatingSystem, 
-            $or: [ {unitPrice: { $lt: key.price }},
-                   {unitPrice: { $eq: key.price }}
-                 ]})
+        $and:[ {unitPrice: { $gt: key.price[0] }},
+               {unitPrice: { $eq: key.price[0] }}
+        ]})
       .toArray();
     }
     var dislist = [];
