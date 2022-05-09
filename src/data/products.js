@@ -270,9 +270,9 @@ const exportedMethods = {
   },
 
 
-  async addComment(userId, productId, comment_info){
+  async addComment(userId, sessionId, comment_info){
     if (!userId) throw "userId must be provided";
-    if (!productId) throw "productId must be provided";
+    if (!sessionId) throw "sessionId must be provided";
     if (!comment_info.content) throw "comment content must be provided";
     if (!comment_info.rating) throw "comment rating must be provided";
 
@@ -281,12 +281,13 @@ const exportedMethods = {
 
     const productsCollection = await products();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
-    if (!ObjectId.isValid(productId)) throw "id is not a valid ObjectId";
-    if (!await usersData.getUserById(ObjectId(userId))) throw 'No user Found';
-    if (!await this.getProductById(ObjectId(productId))) throw "No Product Found";
+    if (!ObjectId.isValid(sessionId)) throw "id is not a valid ObjectId";
+    if (!await usersData.getUserById(userId)) throw 'No user Found';
+    if (!await this.getProductBySession(sessionId)) throw "No Product Found";
 
-    const userInfo = await usersData.getUserById(ObjectId(userId));
-    var productInfo = await this.getProductById(ObjectId(productId));
+    const productId = await this.getProductBySession(sessionId);
+    const userInfo = await usersData.getUserById(userId);
+    var productInfo = await this.getProductById(productId);
 
     var commentAddInfo = {};
     commentAddInfo._id = userInfo._id.toString();

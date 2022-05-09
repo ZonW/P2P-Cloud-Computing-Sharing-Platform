@@ -31,7 +31,7 @@ async function main(){
 
   comment_info = {
     content: "so good",
-    rating: 1
+    rating: 4
   }
 
   filter_info = {
@@ -46,13 +46,14 @@ async function main(){
   }
   //await usersData.createUser('zcc1234','zcc123','will', 'smith');
   //await usersData.modifyUserInformation('62688608c6990edc2c626646', updatedInfo)
-  const a= await productsData.getProductBySession('6276e89f0b8f5a03dcc9e2ee')
+  const a= await productsData.addComment('627844e918367025ed01d4dd','627844e918367025ed01d4df',comment_info);
+  await productsData.addComment('627844e918367025ed01d4dd','627844e918367025ed01d4df',comment_info);
+  await productsData.addComment('627844e918367025ed01d4dd','627844e918367025ed01d4df',comment_info);
   console.log(a)
   //const a = await productsData.filterProduct(filter_info);
  
   //console.log(ObjectId.isValid('6249e659cc200fe94e8d11c1'))
 }
-const a = {1:1,2:3}
-console.log(Object.keys(a).length)
+main()
 
 

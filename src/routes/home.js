@@ -239,7 +239,13 @@ router.get("/:id", async (req, res) => {
 
 router.post("/:id", async (req, res) => {
     try {
-        const itemInfo = await products.getProductById(req.params.id);
+        let itemInfo = await products.getProductById(req.params.id);
+        //let newSessions = [];
+        //for (var i = 0; i< itemInfo.sessions.length; i++){
+        //    let tmp = [itemInfo.sessions[i].startTime, itemInfo[i].sessions.endTime, itemInfo[i].sessions._id.toString()];
+        //    newSessions.push(tmp);
+        //}
+        //itemInfo.sessions = newSessions;
         res.send(itemInfo);
     }
     catch (e) {
