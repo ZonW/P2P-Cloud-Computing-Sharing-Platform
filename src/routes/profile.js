@@ -182,6 +182,8 @@ router.get("/sell-details", async (req, res) => {
 router.post("/createProduct", async (req, res) => {
     let user = await req.session.user;
     if (user) {
+        console.log(user);
+        
         const userInfo = await users.getUserByEmail(user);
         //undefined parameters:
         const time = Date.parse(new Date());
