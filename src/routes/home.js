@@ -12,6 +12,14 @@ router.get("/", async (req, res) => {
     }
 })
 
+router.get("/FAQ/help", async (req, res) => {
+    try{
+        res.render("../views/pages/help", {});
+    } catch(e) {
+        return res.status(400).json({error: e});
+    }
+})
+
 router.post('/search', async (req, res) => {
     try{
         const userInfo = req.body;
