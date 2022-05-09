@@ -49,8 +49,6 @@ Currently, for testing, all sellers are free to use the Teamviewer remote connec
 (There's a max limit of 10 sessions per hour for the free account used by the website owner)  
 In the comming future, we are planning to upgrade our service to give sellers more control and freedom :D  
   
-### 3. Q: Whom should I contact if I have questions regarding the website?  
- A: Please send your questions to our customer service: wzongshuo@gmail.com  
 
 
 
