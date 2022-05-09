@@ -276,9 +276,12 @@ const exportedMethods = {
     if (!comment_info.content) throw "comment content must be provided";
     if (!comment_info.rating) throw "comment rating must be provided";
 
-    if (typeof comment_info.rating !== 'number') throw "comment rating must be number";
-    if (comment_info.rating < 1 || comment_info.rating > 5) throw "rating is out of range (1-5)";
-
+    try {
+      if (isNaN(Number(comment_info.rating))) throw "comment rating is invalid";
+    } catch (e) {
+      throw e;
+    }
+    if (Number(comment_info.rating) < 1 || Number(comment_info.rating) > 5) throw "rating is out of range (1-5)";
     const productsCollection = await products();
     if (!ObjectId.isValid(userId)) throw "id is not a valid ObjectId";
     if (!ObjectId.isValid(sessionId)) throw "id is not a valid ObjectId";
@@ -293,9 +296,9 @@ const exportedMethods = {
     commentAddInfo._id = userInfo._id.toString();
     commentAddInfo.username = userInfo.username;
     commentAddInfo.content = comment_info.content;
-    commentAddInfo.rating = comment_info.rating;
+    commentAddInfo.rating = Number(comment_info.rating);
 
-    new_overall_score = (productInfo.overall_score * productInfo.comments.length + comment_info.rating)/(productInfo.comments.length + 1);
+    new_overall_score = (productInfo.overall_score * productInfo.comments.length + Number(comment_info.rating))/(productInfo.comments.length + 1);
     productInfo.comments.push(commentAddInfo);
 
     var updateInfo = {

@@ -10,7 +10,15 @@ router.get("/", async (req, res) => {
     } catch(e) {
         return res.status(400).json({error: e});
     }
-})
+});
+
+router.get("/FAQ/help", async (req, res) => {
+    try{
+        res.render("../views/pages/help", {});
+    } catch(e) {
+        return res.status(400).json({error: e});
+    }
+});
 
 router.get("/FAQ/help", async (req, res) => {
     try{
@@ -262,8 +270,20 @@ router.post("/:id", async (req, res) => {
 });
 
 router.post("/buy/:id", async (req, res) => {
-    console.log()
-    console.log(req.params)
+    let user = req.session.user;
+    if (user){
+        try {
+            const userInfo = await users.getUserByEmail(user);
+            for (var i = 0; i<req.body.sessionId.length; i++){
+                await users.addBuyingHistory(userInfo._id.toString(),req.body.sessionId[i]);
+            }
+            return ;
+        } catch (err) {
+            return res.status(400).json({error: 'Non-Authenticated User'});
+        }
+    } else {
+        return res.status(400).json({error: 'Non-Authenticated User'});
+    }
 })
 
 

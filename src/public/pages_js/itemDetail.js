@@ -17,7 +17,6 @@
 
         tempData = responseMessage;
         outputData.prodId = responseMessage._id;
-        console.log(outputData);
 
     });
 
@@ -36,18 +35,8 @@
         
     }
 
-    
 
-    setTimeout(function(){
-
-        console.log(tempData);
-        let requestConfig1 = {
-
-            method: "POST",
-            data:JSON.stringify(outputData),
-            url:"/buy/"+outputData.prodId
-
-        }
+    setTimeout(function(){       
 
         if(tempData.comments.length > 3) tempData.comments = tempData.comments.slice(0,3);
 
@@ -291,7 +280,15 @@
                     }
                 }
             }
-            console.log(outputData);
+
+            let requestConfig1 = {
+
+                method: "POST",
+                contentType: 'application/json',
+                data:JSON.stringify(outputData),
+                url:"/buy/"+outputData.prodId
+    
+            }
             $.ajax(requestConfig1).then(function (responseMessage) {
 
                 alert("Success!");
