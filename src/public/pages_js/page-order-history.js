@@ -169,7 +169,7 @@
                   <strong> On going </strong>
                   <p>Please wait</p>
                   </div>
-                  <a href="${elementSes.end_customer_link}" class="btn btn-primary" id="buyerLaunchButton_${index}_${indexSes}">Launch</a>
+                  <a href="${elementSes.supporter_link}" class="btn btn-primary" id="buyerLaunchButton_${index}_${indexSes}">Launch</a>
 
                   <p id="demo"></p>
                 </figcaption>
