@@ -338,7 +338,7 @@ router.post("/add_comment", async (req, res) => {
     if (user) {
         try {
             const userInfo = await getUserByEmail(user);
-            const addComment = await productsData.addComment(userInfo._id.toString(),req.body.productId, req.body.comment_info);
+            const addComment = await productsData.addComment(userInfo._id.toString(),req.body.sessionId, req.body.comment_info);
             if (!addComment.commentAdded){
                 return res.status(500).json({error: 'Internal Server Error'});
             }

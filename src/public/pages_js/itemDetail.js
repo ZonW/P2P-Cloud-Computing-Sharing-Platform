@@ -17,12 +17,30 @@
 
         tempData = responseMessage;
         outputData.prodId = responseMessage._id;
+        console.log(outputData);
 
     });
 
+
+    function convert(time){
+        // let result = "Date" + time.getDate() +
+        // "/" + (time.getMonth()+1) + 
+        // "/" + time.getFullYear() + 
+        // " " + time.getHours() + 
+        // ":" + time.getMinutes() +
+        // ":" + time.getSeconds();
+        let ts = new Date(time);
+        let result = ts.toTimeString();
+
+        return result;
+        
+    }
+
+    
+
     setTimeout(function(){
 
-
+        console.log(tempData);
         let requestConfig1 = {
 
             method: "POST",
@@ -33,7 +51,7 @@
 
         if(tempData.comments.length > 3) tempData.comments = tempData.comments.slice(0,3);
 
-        outputData.prodId = tempData.id;
+        outputData.prodId = tempData._id;
 
         let featuresString = "";
         for(let i in tempData.features){
@@ -52,7 +70,6 @@
                 locationArray.push(i);
             }
         }
-        console.log(locationArray);
         for(let i in locationArray){
             if(i >= 1){
                 locationString = locationString + " <i class='dot'></i> &nbsp";
@@ -111,8 +128,8 @@
             session5Label.attr("hidden","hidden");
 
             // session1.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
-            session1.value = tempData.session[0][2];
-            session1Label.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
+            session1.value = tempData.sessions[0]._id;
+            session1Label.html(convert(tempData.sessions[0].startTime) + " TO " + convert(tempData.session[0].endTime));
 
         }else if(tempData.sessions.length === 2){
 
@@ -125,10 +142,10 @@
 
             // session1.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
             // session2.html(tempData.session[1][0] + " TO " + tempData.session[1][1]);
-            session1.value = tempData.session[0][2];
-            session2.value = tempData.session[1][2];
-            session1Label.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
-            session2Label.html(tempData.session[1][0] + " TO " + tempData.session[1][1]);
+            session1.value = tempData.sessions[0]._id;
+            session2.value = tempData.sessions[1]._id;
+            session1Label.html(convert(tempData.sessions[0].startTime) + " TO " + convert(tempData.sessions[0].endTime));
+            session2Label.html(convert(tempData.sessions[1].startTime) + " TO " + convert(tempData.sessions[1].endTime));
 
         }else if(tempData.sessions.length === 3){
 
@@ -140,12 +157,12 @@
             // session1.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
             // session2.html(tempData.session[1][0] + " TO " + tempData.session[1][1]);
             // session3.html(tempData.session[2][0] + " TO " + tempData.session[2][1]);
-            session1.value = tempData.session[0][2];
-            session2.value = tempData.session[1][2];
-            session3.value = tempData.session[2][2];
-            session1Label.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
-            session2Label.html(tempData.session[1][0] + " TO " + tempData.session[1][1]);
-            session3Label.html(tempData.session[2][0] + " TO " + tempData.session[2][1]);
+            session1.value = tempData.sessions[0]._id;
+            session2.value = tempData.sessions[1]._id;
+            session3.value = tempData.sessions[2]._id;
+            session1Label.html(convert(tempData.sessions[0].startTime) + " TO " + convert(tempData.sessions[0].endTime));
+            session2Label.html(convert(tempData.sessions[1].startTime) + " TO " + convert(tempData.sessions[1].endTime));
+            session3Label.html(convert(tempData.sessions[2].startTime) + " TO " + convert(tempData.sessions[2].endTime));
 
         }else if(tempData.sessions.length === 4){
 
@@ -156,14 +173,14 @@
             // session2.html(tempData.session[1][0] + " TO " + tempData.session[1][1]);
             // session3.html(tempData.session[2][0] + " TO " + tempData.session[2][1]);
             // session4.html(tempData.session[3][0] + " TO " + tempData.session[3][1]);
-            session1.value = tempData.session[0][2];
-            session2.value = tempData.session[1][2];
-            session3.value = tempData.session[2][2];
-            session4.value = tempData.session[3][2];
-            session1Label.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
-            session2Label.html(tempData.session[1][0] + " TO " + tempData.session[1][1]);
-            session3Label.html(tempData.session[2][0] + " TO " + tempData.session[2][1]);
-            session4Label.html(tempData.session[3][0] + " TO " + tempData.session[3][1]);
+            session1.value = tempData.sessions[0]._id;
+            session2.value = tempData.sessions[1]._id;
+            session3.value = tempData.sessions[2]._id;
+            session4.value = tempData.sessions[3]._id;
+            session1Label.html(convert(tempData.sessions[0].startTime) + " TO " + convert(tempData.sessions[0].endTime));
+            session2Label.html(convert(tempData.sessions[1].startTime) + " TO " + convert(tempData.sessions[1].endTime));
+            session3Label.html(convert(tempData.sessions[2].startTime) + " TO " + convert(tempData.sessions[2].endTime));
+            session4Label.html(convert(tempData.sessions[3].startTime) + " TO " + convert(tempData.sessions[3].endTime));
 
         }else{
             // session1.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
@@ -171,17 +188,17 @@
             // session3.html(tempData.session[2][0] + " TO " + tempData.session[2][1]);
             // session4.html(tempData.session[3][0] + " TO " + tempData.session[3][1]);
             // session5.html(tempData.session[4][0] + " TO " + tempData.session[4][1]);
-            session1.value = tempData.session[0][2];
-            session2.value = tempData.session[1][2];
-            session3.value = tempData.session[2][2];
-            session4.value = tempData.session[3][2];
-            session5.value = tempData.session[4][2];
+            session1.value = tempData.sessions[0]._id;
+            session2.value = tempData.sessions[1]._id;
+            session3.value = tempData.sessions[2]._id;
+            session4.value = tempData.sessions[3]._id;
+            session5.value = tempData.sessions[4]._id;
 
-            session1Label.html(tempData.session[0][0] + " TO " + tempData.session[0][1]);
-            session2Label.html(tempData.session[1][0] + " TO " + tempData.session[1][1]);
-            session3Label.html(tempData.session[2][0] + " TO " + tempData.session[2][1]);
-            session4Label.html(tempData.session[3][0] + " TO " + tempData.session[3][1]);
-            session5Label.html(tempData.session[4][0] + " TO " + tempData.session[4][1]);
+            session1Label.html(convert(tempData.sessions[0].startTime) + " TO " + convert(tempData.sessions[0].endTime));
+            session2Label.html(convert(tempData.sessions[1].startTime) + " TO " + convert(tempData.sessions[1].endTime));
+            session3Label.html(convert(tempData.sessions[2].startTime) + " TO " + convert(tempData.sessions[2].endTime));
+            session4Label.html(convert(tempData.sessions[3].startTime) + " TO " + convert(tempData.sessions[3].endTime));
+            session5Label.html(convert(tempData.sessions[4].startTime) + " TO " + convert(tempData.sessions[4].endTime));
         }
 
 
@@ -189,11 +206,15 @@
             commentsDiv.html("");
         }
         for(let i of tempData.comments){
+
+            console.log(i);
             commentsDiv.append("<article class='card card-product-list'>" +
                 "        <div class='row g-0'>" +
                 "            <div class='col-xl-6 col-md-5 col-sm-7'>" +
                 "                <div class='card-body'>" +
-                "                    <p> "+i+"</p>" +
+                "                   <h4>user:"+i.username+"</h4>" +
+                "                       <h6>Rating: "+ i.rating+"</h6>" +
+                "                    <p> Comment:  "+i.content+"</p>" +
                 "                </div>" +
                 "            </div>" +
                 "        </div>" +
@@ -270,6 +291,7 @@
                     }
                 }
             }
+            console.log(outputData);
             $.ajax(requestConfig1).then(function (responseMessage) {
 
                 alert("Success!");
