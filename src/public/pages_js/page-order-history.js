@@ -57,12 +57,43 @@
               </header>
               <hr>
               <div class="row">
-                <div class="col-lg-4">
-                </div> <!-- col.// -->
-                <div class="col-lg-4 border-start">
-                </div> <!-- col.// -->
-                <div class="col-lg-4 border-start">
-                </div> <!-- col.// -->
+
+
+
+              <!-- =================== COMPONENT REVIEW ====================== -->
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Message to seller </h5>
+
+<form>
+	
+	<div class="mb-3">
+		<textarea class="form-control" placeholder="Type here" id="comment-text"></textarea>
+	</div>
+
+	<div class="row mb-3 gy-2 gx-3 align-items-center">
+	  <div class="col-lg-3">
+	    <select class="form-select" id="comment-rate">
+	      <option selected> Rating </option>
+	      <option value="1">1</option>
+	      <option value="2">2</option>
+	      <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+	    </select>
+	  </div>
+	</div>
+	<button type="submit" class="btn btn-primary" id="submit-comment-button">Submit comment</button>
+</form>
+
+  </div>
+</div>
+<!-- =================== COMPONENT REVIEW .// ================== -->   
+
+
+
+
+
               </div> <!-- row.// -->
               <hr>
               <ul class="row" id="row${index}">
@@ -72,6 +103,18 @@
             </div> <!-- card-body .// -->
             </article>`
         );
+
+        $("#submit-comment-button").click(function(){
+          console.log($('#comment-text').val());
+          console.log($('#comment-rate').val())
+          $.post("add_comment",{
+            sessionId:element.sessions[0]._id,
+            comment_info:{
+              content:$('#comment-text').val(),
+              rating:$('#comment-rate').val()
+            }
+          })
+        })
 
         $.each(responseMessage.orderSessions[index].sessions,function(indexSes,elementSes){
 //        for(let indexSes=0; indexSes<responseMessage.orderSessions[index].sessions.length;indexSes++){

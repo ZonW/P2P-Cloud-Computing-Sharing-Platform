@@ -135,7 +135,7 @@
                 <div class="col-lg-4 border-start">
                 </div> <!-- col.// -->
               </div> <!-- row.// -->
-              <hr>
+              
               <ul class="row" id="row${index}">
                 <!-- Sessions goes here -->
        
