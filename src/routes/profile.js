@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 const products = require("../data/products");
@@ -8,6 +7,7 @@ const url = require('url');
 const ObjectId = require('mongodb').ObjectId;
 const { getUserByEmail } = require("../data/users");
 const { modifySession } = require("../data/products");
+const xss = require('xss');
 
 function groupBy(list, group, key, value) {
     return Array.from(list
@@ -146,9 +146,7 @@ router.get("/sell-details", async (req, res) => {
                                     "number" : "sessions"
                                 }
                 for (let j=0;j<prodSession.length;j++){
-                    console.log(prodSession[j]);
-                    console.log(prodSession[j]._id);
-                    console.log(typeof prodSession[j]._id.toString())
+     
                     let prodSessionAtom = {
                         "_id" : prodSession[j]._id.toString(),
                         'startTime': prodSession[j].startTime,
@@ -162,7 +160,6 @@ router.get("/sell-details", async (req, res) => {
                 responseData.sellSessions.push(sessionAtom)
             }
             let input = responseData.sellSessions;
-            //console.log(input)
             let result
             try{
                 result = groupBy(input, 'productName', 'sessions', 'number');
@@ -170,8 +167,6 @@ router.get("/sell-details", async (req, res) => {
             catch(e){
                 throw e
             }
-            
-            console.log(result)
             responseData.sellSessions = result
             res.send(responseData);
         }
@@ -185,7 +180,6 @@ router.get("/sell-details", async (req, res) => {
 });
 
 router.post("/createProduct", async (req, res) => {
-    console.log(req.body)
     let user = await req.session.user;
     if (user) {
         const userInfo = await users.getUserByEmail(user);
@@ -261,13 +255,9 @@ router.post("/createProduct", async (req, res) => {
 
 router.post("/page-sell-history", async (req, res) => {
     const postData = req.body;
-    console.log(postData)
     const active_code = postData.code;
     const sessionId = postData.session;
-    console.log(active_code)
-    console.log(sessionId )
-    if (active_code){
-        console.log(active_code)      
+    if (active_code){   
         const tokenRequestOptions = {
             method: 'post',
             url: 'https://webapi.teamviewer.com/api/v1/oauth2/token',
@@ -290,7 +280,6 @@ router.post("/page-sell-history", async (req, res) => {
                 throw "No token get"
             }
             const token = response.data.access_token;
-            console.log(token)
             const sessionRequestOptions = {
                 method: 'post',
                 url: 'https://webapi.teamviewer.com/api/v1/sessions',
@@ -303,7 +292,6 @@ router.post("/page-sell-history", async (req, res) => {
 
             axios(sessionRequestOptions)
             .then(async function (response) {
-                console.log(response.data);
                 const responseSession = response.data;
                 try{
                     //res.redirect(url.parse(req.url).pathname);
@@ -338,6 +326,8 @@ router.post("/add_comment", async (req, res) => {
     if (user) {
         try {
             const userInfo = await getUserByEmail(user);
+            console.log(1)
+            console.log(req.body)
             const addComment = await products.addComment(userInfo._id.toString(),req.body.sessionId, req.body.comment_info);
             if (!addComment.commentAdded){
                 return res.status(500).json({error: 'Internal Server Error'});

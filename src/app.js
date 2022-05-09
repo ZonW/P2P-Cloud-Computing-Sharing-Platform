@@ -25,7 +25,6 @@ app.use(
 );
 
 app.use('/private', (req, res, next) => {
-  console.log(req.session.id);
   if (!req.session.user) {
     return res.redirect('/');
   } else {

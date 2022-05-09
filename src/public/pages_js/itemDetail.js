@@ -196,7 +196,6 @@
         }
         for(let i of tempData.comments){
 
-            console.log(i);
             commentsDiv.append("<article class='card card-product-list'>" +
                 "        <div class='row g-0'>" +
                 "            <div class='col-xl-6 col-md-5 col-sm-7'>" +
@@ -282,15 +281,13 @@
             }
 
             let requestConfig1 = {
-
                 method: "POST",
                 contentType: 'application/json',
                 data:JSON.stringify(outputData),
                 url:"/buy/"+outputData.prodId
-    
             }
-            $.ajax(requestConfig1).then(function (responseMessage) {
 
+            $.ajax(requestConfig1).then(function (responseMessage) {
                 alert("Success!");
                 location.reload();
             });

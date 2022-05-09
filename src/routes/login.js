@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const users = require('../data/users');
+const xss = require('xss');
 
 //GET
 router.get('/page-user-login', (req, res) => {
@@ -33,12 +34,14 @@ router.post('/page-user-signup', async (req, res) => {
         const lastName = users.checkName(req.body.lastName);
         const email = users.checkEmail(req.body.email);
         const password = users.checkPassword(req.body.password);
+        const repassword = users.checkPassword(req.body.repassword);
         const phone = users.checkPhone(req.body.phone);
         const city = users.checkCity(req.body.city);
         const state = users.checkState(req.body.state);
         const country = users.checkCountry(req.body.country);
         const zipCode = users.checkZipCode(req.body.zipCode);
 
+        if (password !== repassword) {throw "password doesn't match"};
         const user = await users.createUser(
             firstName,
             lastName,

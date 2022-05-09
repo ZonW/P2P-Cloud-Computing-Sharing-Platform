@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const products = require("../data/products");
 const users = require("../data/users");
+const xss = require('xss');
 
 router.get("/", async (req, res) => {
     try{
@@ -72,8 +73,7 @@ router.get("/all", async (req, res) => {
         let reqOS = querys.operatingSystem;
         let reqPrice = querys.price;
         let reqSort = querys.sortBy;
-        console.log(reqKeyword)
-        console.log(typeof reqKeyword)
+
         filter_info = {
             distance: querys.distance,
             features: [querys.features],
@@ -268,6 +268,7 @@ router.post("/buy/:id", async (req, res) => {
             const userInfo = await users.getUserByEmail(user);
             for (var i = 0; i<req.body.sessionId.length; i++){
                 await users.addBuyingHistory(userInfo._id.toString(),req.body.sessionId[i]);
+                await products.modifySession(req.body.sessionId[i],'','',false);
             }
             return ;
         } catch (err) {
