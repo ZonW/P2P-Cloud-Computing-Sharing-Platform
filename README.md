@@ -30,9 +30,9 @@ npm start
 
 
 ## **FAQ**
-1. Q: How to use this website?  
-
-A: It's nothing more complicated than your everyday grocery shopping website!  
+### 1. Q: How to use this website?  
+  
+ A: It's nothing more complicated than your everyday grocery shopping website!  
 1. One click to register and login (watch out for our pet owl!).  
 2. In the home page, you can browse our recently listed items and search by product keyword.  
 3. You can filter and sort the product and pick the session to fit the best of your needs.  
@@ -43,14 +43,14 @@ A: It's nothing more complicated than your everyday grocery shopping website!
 8. Sellers can list your product in the profile section.  
   
   
-2. Q: Do I need to register as a seller?  
-A: Right now you can post your own machines without a specific seller account.  
+### 2. Q: Do I need to register as a seller?  
+ A: Right now you can post your own machines without a specific seller account.  
 Currently, for testing, all sellers are free to use the Teamviewer remote connection service provided by the website.  
 (There's a max limit of 10 sessions per hour for the free account used by the website owner)  
 In the comming future, we are planning to upgrade our service to give sellers more control and freedom :D  
-
-3. Q: Whom should I contact if I have questions regarding the website?  
-A: Please send your questions to our customer service: wzongshuo@gmail.com  
+  
+### 3. Q: Whom should I contact if I have questions regarding the website?  
+ A: Please send your questions to our customer service: wzongshuo@gmail.com  
 
 
 
