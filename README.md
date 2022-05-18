@@ -1,13 +1,5 @@
 
-# <center>P2P Cloud Computing Resource Sharing</center>
-<center>CS546 Web Programming Section B Group 27</center>
-
-## **Group Member**
-- Zongshuo Wei
-- Jiyuan Xia
-- Chengchen Zhao
-- Lingrui Li
-- Hanyu Wang
+# <center>P2P Cloud Computing Resource Sharing Website</center>
 
 ## **Introduction**
 The idea of the project is to allow users to lease their idle computing resource (from portable laptops to powerful workstations) to customers who are in need for various tasks likeScientific calculation, simulation, deep learning, video rendering, gaming, etc. Unlike popular Iaas cloud computing providers, this website aims to provide p2p service through the traditional form of a shopping website, which will not only provide customers with various choices of machines, but also greatly reduce the cost from a centralized computing server. The decentrualization process of cloud computing services enables better data latency and rich customizable features.  
@@ -25,9 +17,6 @@ npm install
 npm run seed
 npm start
 ```
-
-## **Default User**
-
 
 ## **FAQ**
 ### 1. Q: How to use this website?  
